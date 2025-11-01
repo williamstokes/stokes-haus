@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
 }
 
 :root {
-    /* Earth tones - muted old money palette */
+    /* Earth tones */
     --earth-clay: #8B6F47;
     --sage-green: #9CAF88;
     --dusty-rose: #C4A484;
@@ -15,10 +15,12 @@
     --charcoal: #2C2416;
     --warm-gray: #D4C9B8;
     --deep-brown: #4A3E2F;
+    --terracotta: #B85C38;
     
     /* Typography */
     --serif: 'Playfair Display', 'Cormorant Garamond', 'EB Garamond', 'Georgia', serif;
     --serif-body: 'Cormorant Garamond', 'EB Garamond', 'Georgia', serif;
+    --sans: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 }
 
 html {
@@ -29,285 +31,474 @@ html {
 body {
     font-family: var(--serif-body);
     font-size: 1.125rem;
-    line-height: 1.8;
+    line-height: 1.6;
     color: var(--charcoal);
     background-color: var(--parchment);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
-/* Typography */
-h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--charcoal);
-    margin-bottom: 0.5em;
-    line-height: 1.2;
-}
-
-h2 {
-    font-family: var(--serif);
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    font-weight: 400;
-    color: var(--slate-brown);
-    margin: 2.5em 0 1.5em;
-    letter-spacing: -0.01em;
-    border-bottom: 1px solid var(--warm-gray);
-    padding-bottom: 0.5em;
-}
-
-h3 {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--deep-brown);
-    margin-bottom: 0.5em;
-    line-height: 1.4;
-}
-
-p {
-    margin-bottom: 1em;
-}
-
-/* Layout */
-main {
-    max-width: 900px;
+.container {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    position: relative;
 }
 
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 4rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid var(--warm-gray);
+/* Floating glyph */
+.glyph-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.glyph-container:hover {
+    opacity: 0.7;
 }
 
 .glyph {
-    width: 32px;
-    height: 32px;
-    margin: 0 auto 1.5rem;
+    width: 40px;
+    height: 40px;
     color: var(--earth-clay);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Hero header - disjunctive */
+.hero {
+    margin: 4rem 0 6rem;
+    position: relative;
+}
+
+.name-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.name-large {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.name-large.offset {
+    transform: translateY(0.3em);
+    margin-left: -0.1em;
+}
+
+.tag-line {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    letter-spacing: 0.2em;
+    color: var(--slate-brown);
+    margin-left: 1rem;
     opacity: 0.6;
-    display: block;
 }
 
-/* About section */
+/* About section - overlapping */
 .about {
-    margin-bottom: 4rem;
+    margin: 8rem 0;
+    position: relative;
 }
 
-.content-wrapper {
+.about-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
     align-items: start;
 }
 
-.about-text {
-    max-width: none;
-}
-
-.intro {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--slate-brown);
-    margin-bottom: 1.5em;
-}
-
-.photo-placeholder {
-    width: 100%;
-    max-width: 300px;
+.photo-wrapper {
+    position: relative;
+    max-width: 280px;
     margin: 0 auto;
 }
 
 .photo-frame {
     aspect-ratio: 3 / 4;
-    background: linear-gradient(135deg, var(--warm-gray) 0%, var(--dusty-rose) 100%);
-    border: 2px solid var(--sage-green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    position: relative;
+    background: var(--warm-gray);
+    border: 3px solid var(--charcoal);
     overflow: hidden;
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+    box-shadow: 12px 12px 0 var(--sage-green);
 }
 
-.photo-frame::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(44, 36, 22, 0.03) 10px,
-        rgba(44, 36, 22, 0.03) 20px
-    );
-}
-
-.photo-instruction {
-    font-size: 0.9rem;
-    color: var(--slate-brown);
-    opacity: 0.7;
-    text-align: center;
-    font-style: italic;
-    z-index: 1;
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.02);
 }
 
 .photo-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
-    position: relative;
-    z-index: 1;
-}
-
-/* When img exists, hide instruction text */
-.photo-frame:has(img) .photo-instruction {
-    display: none;
-}
-
-.photo-frame:has(img) img {
     display: block;
 }
 
-/* Publications and Essays sections */
-.publications,
-.essays {
-    margin-bottom: 4rem;
+.photo-label {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--earth-clay);
+    background: var(--parchment);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--charcoal);
 }
 
-.publication-list,
-.essay-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+.about-text {
+    max-width: 600px;
 }
 
-.publication-item,
-.essay-item {
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.4);
-    border-left: 3px solid var(--sage-green);
-    transition: all 0.3s ease;
+.intro-large {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    line-height: 1.4;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
 }
 
-.publication-item:hover,
-.essay-item:hover {
-    background: rgba(255, 255, 255, 0.7);
-    transform: translateX(4px);
+.intro-small {
+    font-size: 1.125rem;
+    color: var(--slate-brown);
+    margin-bottom: 1.5rem;
+    font-style: italic;
 }
 
-.poem-title,
-.essay-title {
-    margin-bottom: 0.75em;
+.work-desc {
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--deep-brown);
+    max-width: 500px;
+}
+
+/* Publications - scattered grid */
+.publications {
+    margin: 10rem 0;
+    position: relative;
+}
+
+.section-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 4rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.section-title.rotate {
+    transform: rotate(-2deg);
+    display: inline-block;
+}
+
+.pub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pub-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid var(--charcoal);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 6px 6px 0 var(--warm-gray);
+}
+
+.pub-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--sage-green);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.pub-number {
+    position: absolute;
+    top: -1rem;
+    right: 1.5rem;
+    font-family: var(--sans);
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--sage-green);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+.card-1 {
+    transform: rotate(0.5deg);
+}
+
+.card-2 {
+    transform: rotate(-0.8deg);
+}
+
+.card-3 {
+    transform: rotate(0.3deg);
+}
+
+.card-4 {
+    transform: rotate(-0.5deg);
+}
+
+.poem-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--deep-brown);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    margin-top: 1rem;
 }
 
 .journal {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--earth-clay);
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
     font-style: italic;
 }
 
 .note {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--slate-brown);
-    opacity: 0.8;
+    opacity: 0.7;
     font-style: italic;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
+    text-transform: lowercase;
 }
 
 .link {
     display: inline-block;
-    color: var(--slate-brown);
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    color: var(--charcoal);
     text-decoration: none;
+    margin-top: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.link:hover {
+    transform: translateX(4px);
+}
+
+/* Essays */
+.essays {
+    margin: 8rem 0;
+}
+
+.essay-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.essay-card {
+    background: var(--charcoal);
+    color: var(--parchment);
+    padding: 3rem;
+    position: relative;
+    transition: all 0.3s ease;
+    border-left: 6px solid var(--sage-green);
+}
+
+.essay-card:hover {
+    transform: translateX(8px);
+    border-left-color: var(--terracotta);
+}
+
+.essay-header {
+    display: flex;
+    align-items: start;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.essay-tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sage-green);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--sage-green);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.essay-title {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 400;
+    color: var(--parchment);
+    line-height: 1.4;
+}
+
+.essay-card .journal {
+    color: var(--warm-gray);
     font-size: 0.95rem;
-    margin-top: 0.5em;
+    margin-bottom: 1rem;
+}
+
+.link-expand {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--sage-green);
+    text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
 }
 
-.link:hover {
-    color: var(--earth-clay);
-    border-bottom-color: var(--earth-clay);
+.link-expand:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+    padding-left: 0.5rem;
 }
 
 /* Footer */
 footer {
-    margin-top: 5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--warm-gray);
-    text-align: center;
+    margin: 8rem 0 3rem;
+    padding-top: 3rem;
+    border-top: 2px solid var(--charcoal);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .copyright {
-    font-size: 0.9rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
     color: var(--slate-brown);
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
-/* Responsive design - Mobile First */
-@media (min-width: 768px) {
-    .content-wrapper {
-        grid-template-columns: 1.5fr 1fr;
-        gap: 4rem;
-    }
-    
-    .photo-placeholder {
-        margin: 0;
-    }
-    
-    .publication-item,
-    .essay-item {
-        padding: 2.5rem;
-    }
+.footer-name {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--charcoal);
+    font-weight: 400;
 }
 
-/* iPhone 15+ specific optimizations */
-@media only screen and (max-width: 428px) {
-    main {
-        padding: 1.5rem 1.25rem;
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .glyph-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: 2rem;
+        display: inline-block;
     }
     
-    .glyph {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 1rem;
+    .hero {
+        margin: 2rem 0 4rem;
     }
     
-    h1 {
-        font-size: 2rem;
+    .name-large {
+        font-size: clamp(3rem, 20vw, 8rem);
     }
     
-    h2 {
-        font-size: 1.5rem;
-        margin-top: 2em;
+    .about-grid {
+        gap: 2rem;
     }
     
-    .publication-item,
-    .essay-item {
+    .photo-wrapper {
+        max-width: 220px;
+    }
+    
+    .photo-frame {
+        box-shadow: 8px 8px 0 var(--sage-green);
+    }
+    
+    .pub-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pub-card {
         padding: 1.5rem;
     }
     
-    .intro {
-        font-size: 1.125rem;
+    .essay-card {
+        padding: 2rem;
+    }
+    
+    .essay-header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .section-title.rotate {
+        transform: rotate(0deg);
+    }
+    
+    .footer-content {
+        flex-direction: column;
     }
 }
 
-/* Print styles */
+/* iPhone 15+ optimizations */
+@media (max-width: 428px) {
+    .container {
+        padding: 1.25rem;
+    }
+    
+    .glyph {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .name-large {
+        font-size: 4rem;
+    }
+    
+    .intro-large {
+        font-size: 1.5rem;
+    }
+    
+    .pub-number {
+        font-size: 3rem;
+        top: -0.75rem;
+        right: 1rem;
+    }
+}
+
+/* Print */
 @media print {
     body {
         background: white;
+    }
+    
+    .glyph-container {
+        display: none;
     }
     
     .link::after {
@@ -316,4 +507,3 @@ footer {
         color: #666;
     }
 }
-

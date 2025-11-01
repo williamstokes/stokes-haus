@@ -15,89 +15,111 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main>
-        <header>
+    <div class="container">
+        <!-- Floating glyph -->
+        <div class="glyph-container">
             <svg class="glyph" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <!-- Sphinx glyph: hand-drawn, geometric, mythic -->
-                <!-- Head/Body -->
                 <path d="M30 72 L70 72 L68 55 L58 38 L42 38 L32 55 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Eyes -->
                 <circle cx="46" cy="45" r="2.5" fill="currentColor"/>
                 <circle cx="54" cy="45" r="2.5" fill="currentColor"/>
-                <!-- Mouth -->
                 <path d="M46 52 Q50 55 54 52" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                <!-- Crown/Headpiece -->
                 <path d="M50 38 L50 32 M45 33 L50 30 L55 33" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Wing/Body detail -->
                 <path d="M20 72 Q12 68 8 65" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-            <h1>Will Stokes</h1>
+        </div>
+
+        <!-- Header - split and disjunctive -->
+        <header class="hero">
+            <div class="name-block">
+                <h1 class="name-large">Will</h1>
+                <h1 class="name-large offset">Stokes</h1>
+            </div>
+            <div class="tag-line">poet</div>
         </header>
 
+        <!-- About - overlapping photo and text -->
         <section class="about">
-            <div class="content-wrapper">
-                <div class="about-text">
-                    <p class="intro">Will Stokes is an MFA candidate in poetry at the Bennington Writing Seminars. He studied at Vanderbilt University and the Berlin Writers' Workshop. He lives in Brooklyn.</p>
-                    <p>His work explores the intersections of place, memory, and the natural world, often set against the backdrop of the American South.</p>
-                </div>
-                <div class="photo-placeholder">
+            <div class="about-grid">
+                <div class="photo-wrapper">
                     <div class="photo-frame">
                         <img src="photo.jpg" alt="Will Stokes">
                     </div>
+                    <div class="photo-label">2025</div>
+                </div>
+                <div class="about-text">
+                    <p class="intro-large">Will Stokes is an MFA candidate in poetry at the Bennington Writing Seminars.</p>
+                    <p class="intro-small">He studied at Vanderbilt University and the Berlin Writers' Workshop. He lives in Brooklyn.</p>
+                    <p class="work-desc">His work explores the intersections of place, memory, and the natural world, often set against the backdrop of the American South.</p>
                 </div>
             </div>
         </section>
 
+        <!-- Publications - scattered layout -->
         <section class="publications">
-            <h2>Publications</h2>
+            <h2 class="section-title rotate">Publications</h2>
             
-            <div class="publication-list">
-                <article class="publication-item">
+            <div class="pub-grid">
+                <article class="pub-card card-1">
+                    <div class="pub-number">01</div>
                     <h3 class="poem-title">Ten Miles Upriver from the Browns Ferry Nuclear Facility</h3>
                     <p class="journal"><em>Volume Poetry</em></p>
-                    <a href="https://volumepoetry.com/Ten-Miles-Will-Stokes" target="_blank" rel="noopener noreferrer" class="link">Read at Volume Poetry →</a>
+                    <a href="https://volumepoetry.com/Ten-Miles-Will-Stokes" target="_blank" rel="noopener noreferrer" class="link">→</a>
                 </article>
 
-                <article class="publication-item">
+                <article class="pub-card card-2">
+                    <div class="pub-number">02</div>
                     <h3 class="poem-title">Two Poems</h3>
                     <p class="journal"><em>& Change</em>, Issue No. 5 (January 2024)</p>
-                    <p class="note">Available in print only</p>
-                    <a href="https://www.andchangepoetry.com/issues/p/no-5" target="_blank" rel="noopener noreferrer" class="link">View Issue →</a>
+                    <p class="note">print only</p>
+                    <a href="https://www.andchangepoetry.com/issues/p/no-5" target="_blank" rel="noopener noreferrer" class="link">→</a>
                 </article>
 
-                <article class="publication-item">
+                <article class="pub-card card-3">
+                    <div class="pub-number">03</div>
                     <h3 class="poem-title">One Poem</h3>
-                    <p class="journal"><em>Frozen Sea (2024)</em></p>
-                    <a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer" class="link">Read at Frozen Sea →</a>
+                    <p class="journal"><em>Frozen Sea</em> (2024)</p>
+                    <a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer" class="link">→</a>
                 </article>
-                <article class="publication-item">
+
+                <article class="pub-card card-4">
+                    <div class="pub-number">04</div>
                     <h3 class="poem-title">One Poem</h3>
-                    <p class="journal"><em>Olney Magazine (2023)</em></p>
+                    <p class="journal"><em>Olney Magazine</em> (2023)</p>
                 </article>
             </div>
         </section>
 
+        <!-- Essays - different treatment -->
         <section class="essays">
-            <h2>Essays</h2>
+            <h2 class="section-title">Essays</h2>
             
             <div class="essay-list">
-                <article class="essay-item">
-                    <h3 class="essay-title">Why does everything look the same right now?</h3>
+                <article class="essay-card">
+                    <div class="essay-header">
+                        <span class="essay-tag">essay</span>
+                        <h3 class="essay-title">Why does everything look the same right now?</h3>
+                    </div>
                     <p class="journal"><em>Screenshot Media</em></p>
-                    <a href="https://screenshot-media.com/the-future/trends/why-does-everything-look-the-same/" target="_blank" rel="noopener noreferrer" class="link">Read essay →</a>
+                    <a href="https://screenshot-media.com/the-future/trends/why-does-everything-look-the-same/" target="_blank" rel="noopener noreferrer" class="link-expand">read →</a>
                 </article>
 
-                <article class="essay-item">
-                    <h3 class="essay-title">Beyond the meditation rooms, open-plan offices, and TGIF at Silicon Valley</h3>
+                <article class="essay-card">
+                    <div class="essay-header">
+                        <span class="essay-tag">essay</span>
+                        <h3 class="essay-title">Beyond the meditation rooms, open-plan offices, and TGIF at Silicon Valley</h3>
+                    </div>
                     <p class="journal"><em>Screenshot Media</em></p>
-                    <a href="https://screenshot-media.com/the-future/trends/beyond-the-meditation-rooms-open-plan-offices-and-tgif-at-silicon-valley/" target="_blank" rel="noopener noreferrer" class="link">Read essay →</a>
+                    <a href="https://screenshot-media.com/the-future/trends/beyond-the-meditation-rooms-open-plan-offices-and-tgif-at-silicon-valley/" target="_blank" rel="noopener noreferrer" class="link-expand">read →</a>
                 </article>
             </div>
         </section>
 
         <footer>
-            <p class="copyright">© 2025 Will Stokes</p>
+            <div class="footer-content">
+                <p class="copyright">© 2025</p>
+                <p class="footer-name">Will Stokes</p>
+            </div>
         </footer>
-    </main>
+    </div>
 </body>
 </html>
