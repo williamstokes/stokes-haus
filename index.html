@@ -3,123 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Will Stokes is a poet, product manager, and dinner-party host based in Brooklyn. Published in Volume Poetry, & Change, Frozen Sea, and Olney Magazine.">
-    <meta name="keywords" content="Will Stokes, poet, poetry, Brooklyn, Volume Poetry, product manager">
+    <meta name="description" content="Will Stokes is a poet, product manager, and dinner-party host based in Brooklyn.">
+    <meta name="keywords" content="Will Stokes, poet, poetry, Brooklyn">
     <meta name="author" content="Will Stokes">
     <meta property="og:title" content="Will Stokes — Poet">
     <meta property="og:description" content="Poet, product manager, and dinner-party host based in Brooklyn">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://willstokes.com">
     <link rel="canonical" href="https://willstokes.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <title>Will Stokes — Poet</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Floating glyph -->
-        <div class="glyph-container">
-            <svg class="glyph" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 72 L70 72 L68 55 L58 38 L42 38 L32 55 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="46" cy="45" r="2.5" fill="currentColor"/>
-                <circle cx="54" cy="45" r="2.5" fill="currentColor"/>
-                <path d="M46 52 Q50 55 54 52" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                <path d="M50 38 L50 32 M45 33 L50 30 L55 33" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M20 72 Q12 68 8 65" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-        </div>
+    <!-- Navigation - minimal, top-right -->
+    <nav class="nav-intentional">
+        <a href="#poems" class="nav-link-intentional">Poems</a>
+        <a href="#about" class="nav-link-intentional">About</a>
+        <a href="#contact" class="nav-link-intentional">Contact</a>
+    </nav>
 
-        <!-- Header - split and disjunctive -->
-        <header class="hero">
-            <div class="name-block">
-                <h1 class="name-large">Will</h1>
-                <h1 class="name-large offset">Stokes</h1>
+    <!-- Main container for SPA feel -->
+    <main id="app">
+        <!-- Home / Landing -->
+        <section id="home" class="page active">
+            <div class="landing-intentional">
+                <h1 class="name-oversized">Will Stokes</h1>
+                <p class="epigraph-rotating" id="epigraph"></p>
             </div>
-            <div class="tag-line">poet</div>
-        </header>
+        </section>
 
-        <!-- About - overlapping photo and text -->
-        <section class="about">
-            <div class="about-grid">
-                <div class="photo-wrapper">
-                    <div class="photo-frame">
-                        <img src="photo.jpg" alt="Will Stokes">
-                    </div>
-                    <div class="photo-label">2025</div>
+        <!-- Poems Page -->
+        <section id="poems-page" class="page">
+            <div class="page-content">
+                <div class="poems-list-intentional">
+                    <article class="poem-list-item">
+                        <a href="#poem-1" class="poem-link-intentional">
+                            <span class="poem-title-intentional">Ten Miles Upriver from the Browns Ferry Nuclear Facility</span>
+                            <span class="poem-excerpt">I want it dragged through the garden. Crushed cardamom and cracked fennel seeds pestled in molars all pell-mell, washed clean with vinegar and dill floss.</span>
+                        </a>
+                        <div class="poem-source">Volume Poetry</div>
+                    </article>
+
+                    <article class="poem-list-item">
+                        <a href="#poem-2" class="poem-link-intentional">
+                            <span class="poem-title-intentional">Two Poems</span>
+                            <span class="poem-excerpt">Available in print only.</span>
+                        </a>
+                        <div class="poem-source">& Change, Issue No. 5 (2024)</div>
+                    </article>
+
+                    <article class="poem-list-item">
+                        <a href="#poem-3" class="poem-link-intentional">
+                            <span class="poem-title-intentional">One Poem</span>
+                            <span class="poem-excerpt">Frozen Sea, 2024.</span>
+                        </a>
+                        <div class="poem-source">Frozen Sea</div>
+                    </article>
+
+                    <article class="poem-list-item">
+                        <div class="poem-link-intentional">
+                            <span class="poem-title-intentional">One Poem</span>
+                            <span class="poem-excerpt">Olney Magazine, 2023.</span>
+                        </div>
+                        <div class="poem-source">Olney Magazine</div>
+                    </article>
                 </div>
-                <div class="about-text">
-                    <p class="intro-large">Will Stokes is an MFA candidate in poetry at the Bennington Writing Seminars.</p>
-                    <p class="intro-small">He studied at Vanderbilt University and the Berlin Writers' Workshop. He lives in Brooklyn.</p>
-                    <p class="work-desc">His work explores the intersections of place, memory, and the natural world, often set against the backdrop of the American South.</p>
+
+                <div class="essays-section">
+                    <h3 class="essays-label">Essays</h3>
+                    <article class="poem-list-item">
+                        <a href="https://screenshot-media.com/the-future/trends/why-does-everything-look-the-same/" target="_blank" rel="noopener noreferrer" class="poem-link-intentional">
+                            <span class="poem-title-intentional">Why does everything look the same right now?</span>
+                            <span class="poem-excerpt">Screenshot Media</span>
+                        </a>
+                    </article>
+
+                    <article class="poem-list-item">
+                        <a href="https://screenshot-media.com/the-future/trends/beyond-the-meditation-rooms-open-plan-offices-and-tgif-at-silicon-valley/" target="_blank" rel="noopener noreferrer" class="poem-link-intentional">
+                            <span class="poem-title-intentional">Beyond the meditation rooms, open-plan offices, and TGIF at Silicon Valley</span>
+                            <span class="poem-excerpt">Screenshot Media</span>
+                        </a>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Publications - scattered layout -->
-        <section class="publications">
-            <h2 class="section-title rotate">Publications</h2>
-            
-            <div class="pub-grid">
-                <article class="pub-card card-1">
-                    <div class="pub-number">01</div>
-                    <h3 class="poem-title">Ten Miles Upriver from the Browns Ferry Nuclear Facility</h3>
-                    <p class="journal"><em>Volume Poetry</em></p>
-                    <a href="https://volumepoetry.com/Ten-Miles-Will-Stokes" target="_blank" rel="noopener noreferrer" class="link">→</a>
-                </article>
-
-                <article class="pub-card card-2">
-                    <div class="pub-number">02</div>
-                    <h3 class="poem-title">Two Poems</h3>
-                    <p class="journal"><em>& Change</em>, Issue No. 5 (January 2024)</p>
-                    <p class="note">print only</p>
-                    <a href="https://www.andchangepoetry.com/issues/p/no-5" target="_blank" rel="noopener noreferrer" class="link">→</a>
-                </article>
-
-                <article class="pub-card card-3">
-                    <div class="pub-number">03</div>
-                    <h3 class="poem-title">One Poem</h3>
-                    <p class="journal"><em>Frozen Sea</em> (2024)</p>
-                    <a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer" class="link">→</a>
-                </article>
-
-                <article class="pub-card card-4">
-                    <div class="pub-number">04</div>
-                    <h3 class="poem-title">One Poem</h3>
-                    <p class="journal"><em>Olney Magazine</em> (2023)</p>
-                </article>
+        <!-- About Page -->
+        <section id="about-page" class="page">
+            <div class="page-content about-content-intentional">
+                <div class="about-image-intentional">
+                    <img src="photo.jpg" alt="Will Stokes" class="portrait-grayscale">
+                </div>
+                <div class="about-text-intentional">
+                    <p>Will Stokes is an MFA candidate in poetry at the Bennington Writing Seminars. He studied at Vanderbilt University and the Berlin Writers' Workshop. He lives in Brooklyn.</p>
+                    <p>His work explores the intersections of place, memory, and the natural world, often set against the backdrop of the American South.</p>
+                    <p class="statement-italic">A poet exploring the intersections of place, memory, and the natural world.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Essays - different treatment -->
-        <section class="essays">
-            <h2 class="section-title">Essays</h2>
-            
-            <div class="essay-list">
-                <article class="essay-card">
-                    <div class="essay-header">
-                        <span class="essay-tag">essay</span>
-                        <h3 class="essay-title">Why does everything look the same right now?</h3>
-                    </div>
-                    <p class="journal"><em>Screenshot Media</em></p>
-                    <a href="https://screenshot-media.com/the-future/trends/why-does-everything-look-the-same/" target="_blank" rel="noopener noreferrer" class="link-expand">read →</a>
-                </article>
-
-                <article class="essay-card">
-                    <div class="essay-header">
-                        <span class="essay-tag">essay</span>
-                        <h3 class="essay-title">Beyond the meditation rooms, open-plan offices, and TGIF at Silicon Valley</h3>
-                    </div>
-                    <p class="journal"><em>Screenshot Media</em></p>
-                    <a href="https://screenshot-media.com/the-future/trends/beyond-the-meditation-rooms-open-plan-offices-and-tgif-at-silicon-valley/" target="_blank" rel="noopener noreferrer" class="link-expand">read →</a>
-                </article>
+        <!-- Contact Page -->
+        <section id="contact-page" class="page">
+            <div class="page-content contact-content-intentional">
+                <a href="mailto:will@willstokes.com" class="contact-email-intentional">will@willstokes.com</a>
+                <p class="contact-note-small">For readings, collaborations, and inquiries</p>
             </div>
         </section>
+    </main>
 
-        <footer>
-            <div class="footer-content">
-                <p class="copyright">© 2025</p>
-                <p class="footer-name">Will Stokes</p>
-            </div>
-        </footer>
-    </div>
+    <footer class="footer-intentional">
+        <p class="footer-text-tiny">© 2025</p>
+    </footer>
+
+    <script>
+        // Epigraph rotation
+        const epigraphs = [
+            "When the sirens erupt, and it's too late to evacuate what will you eat at the end of your world?",
+            "Grit-slick, flytrap, blue hydrangea––",
+            "At home in my containment zone with rain chain pillars, lambs-ear, kudzu blooms––",
+            "Two feet deep on Cherokee lands.",
+            "In the morning I wake and smell vinegar, grease, jam, clotted cream."
+        ];
+        
+        const epigraphEl = document.getElementById('epigraph');
+        const randomEpigraph = epigraphs[Math.floor(Math.random() * epigraphs.length)];
+        epigraphEl.textContent = randomEpigraph;
+
+        // SPA navigation
+        document.querySelectorAll('.nav-link-intentional').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show target page
+                if (target === '#poems') {
+                    document.getElementById('poems-page').classList.add('active');
+                } else if (target === '#about') {
+                    document.getElementById('about-page').classList.add('active');
+                } else if (target === '#contact') {
+                    document.getElementById('contact-page').classList.add('active');
+                }
+                
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Home link (clicking name or logo could go home)
+        document.querySelector('.name-oversized')?.addEventListener('click', function() {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('home').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade in on scroll for poems
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.poem-list-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            fadeObserver.observe(item);
+        });
+    </script>
 </body>
 </html>
