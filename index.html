@@ -413,8 +413,18 @@
         <div class="name-header">Will Stokes</div>
         <nav class="menu-nav">
             <a href="#about" class="menu-link">About</a>
+            <a href="#bio" class="menu-link">Bio</a>
             <a href="#poems" class="menu-link">Poems</a>
         </nav>
+    </div>
+
+    <!-- Bio page -->
+    <div id="bio-page" class="bio-page">
+        <div class="bio-about-layer"></div>
+        <div class="bio-content">
+            <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He studied international business at Vanderbilt University and has worked in high technology companies from Texas to Berlin, where he began writing poetry at the Berlin Writers' Workshop. As a staff product manager at Etsy, he thinks a lot about what it means for something to be "handmade." As a poet, he thinks a lot about what it means for something to be. He is an MFA candidate in poetry & literature at Bennington College.</p>
+            <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
+        </div>
     </div>
 
     <!-- Poems page -->
@@ -422,9 +432,10 @@
         <div class="poems-content">
             <ul class="poems-list">
                 <li><a href="https://www.volumepoetry.com" target="_blank" rel="noopener noreferrer">Ten Miles Upriver from the Browns Ferry Nuclear Facility</a><sup>1</sup></li>
-                <li>Two Poems<sup>2</sup></li>
-                <li>One Poem<sup>3</sup></li>
-                <li>One Poem<sup>4</sup></li>
+                <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Koyaanisqatsi (or, Life out of Balance)</a><sup>2</sup></li>
+                <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Middle Kingdom</a><sup>2</sup></li>
+                <li><a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer">Despite All The Conjuring, My Ancestors Refuse To Haunt Me</a><sup>3</sup></li>
+                <li>Susan (The Prairie School)<sup>4</sup></li>
             </ul>
             <div class="footnotes">
                 <div class="footnote">1. Volume Poetry</div>
@@ -439,6 +450,7 @@
         // Page navigation
         const menuOverlay = document.getElementById('menu-overlay');
         const aboutBackground = document.getElementById('about-background');
+        const bioPage = document.getElementById('bio-page');
         const poemsPage = document.getElementById('poems-page');
         const menuLinks = document.querySelectorAll('.menu-link');
 
@@ -453,12 +465,21 @@
                     menuOverlay.classList.remove('active');
                     aboutBackground.classList.add('active');
                     aboutBackground.classList.remove('dimmed');
+                    bioPage.classList.remove('active');
+                    poemsPage.classList.remove('active');
+                } else if (target === '#bio') {
+                    // Show Bio page (hide menu and dim about)
+                    menuOverlay.classList.remove('active');
+                    aboutBackground.classList.remove('active');
+                    aboutBackground.classList.add('dimmed');
+                    bioPage.classList.add('active');
                     poemsPage.classList.remove('active');
                 } else if (target === '#poems') {
                     // Show Poems page (hide menu and dim about more)
                     menuOverlay.classList.remove('active');
                     aboutBackground.classList.remove('active');
                     aboutBackground.classList.add('dimmed');
+                    bioPage.classList.remove('active');
                     poemsPage.classList.add('active');
                 }
             });
@@ -469,6 +490,7 @@
             menuOverlay.classList.add('active');
             aboutBackground.classList.remove('active');
             aboutBackground.classList.remove('dimmed');
+            bioPage.classList.remove('active');
             poemsPage.classList.remove('active');
         });
 
@@ -480,6 +502,16 @@
                 this.classList.remove('dimmed');
                 }
             });
+
+        // Click anywhere on bio page to return home
+        bioPage.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                menuOverlay.classList.add('active');
+                aboutBackground.classList.remove('active');
+                aboutBackground.classList.remove('dimmed');
+                this.classList.remove('active');
+            }
+        });
 
         // Click anywhere on poems page to return home  
         poemsPage.addEventListener('click', function() {

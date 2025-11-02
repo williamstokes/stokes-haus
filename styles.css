@@ -170,6 +170,83 @@ body {
     width: 8em;
 }
 
+/* Bio page */
+.bio-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow-y: auto;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.bio-page.active {
+    display: block;
+}
+
+.bio-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('photo.jpg');
+    background-size: 200%;
+    background-position: top left;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.bio-about-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f4ed;
+    opacity: 0.75;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.bio-content {
+    max-width: 100%;
+    position: relative;
+    z-index: 3;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
+    padding-top: calc(2rem + (1.25rem * 1.4 * 5));
+}
+
+.bio-photo {
+    display: none;
+}
+
+.bio-content p {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    color: #2a2a2a;
+}
+
+.instagram-link {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.5rem;
+    color: #2a2a2a;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.instagram-link:hover {
+    opacity: 0.7;
+}
+
 /* Menu overlay (home page) */
 .menu {
     position: absolute;
@@ -293,7 +370,7 @@ body {
 }
 
 .poems-list li {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-family: 'Crimson Pro', Georgia, serif;
     font-weight: normal;
     line-height: 0.95;
@@ -311,7 +388,7 @@ body {
 }
 
 .poems-list sup {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     vertical-align: super;
 }
 
@@ -424,17 +501,34 @@ body {
         right: 2rem;
     }
 
+    .bio-content {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 3rem;
+        padding-top: calc(2rem + (1rem * 1.4 * 5));
+    }
+
+    .bio-content p {
+        font-size: 1.2rem;
+        color: #2a2a2a;
+    }
+
+    .instagram-link {
+        font-size: 1.2rem;
+        color: #2a2a2a;
+    }
+
     .poems-page {
         padding: 3rem 2rem;
     }
 
     .poems-list li {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         line-height: 0.95;
     }
     
     .poems-list sup {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
     }
 
     .footnotes {
@@ -507,16 +601,33 @@ body {
         right: 1.5rem;
     }
 
+    .bio-content {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 3rem;
+        padding-top: calc(1.5rem + (1rem * 1.4 * 5));
+    }
+
+    .bio-content p {
+        font-size: 1.2rem;
+        color: #2a2a2a;
+    }
+
+    .instagram-link {
+        font-size: 1.2rem;
+        color: #2a2a2a;
+    }
+
     .poems-page {
         padding: 3rem 1.5rem;
     }
 
     .poems-list li {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         line-height: 0.95;
     }
     
     .poems-list sup {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
     }
 }
