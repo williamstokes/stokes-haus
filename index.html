@@ -457,6 +457,14 @@
     </div>
 
     <script>
+        // Track initial page load
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-MJ4TBKVZF7', {
+                'page_path': '/',
+                'page_title': 'Home'
+            });
+        }
+
         // Page navigation
         const menuOverlay = document.getElementById('menu-overlay');
         const aboutBackground = document.getElementById('about-background');
@@ -469,6 +477,7 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = this.getAttribute('href');
+                const pageName = target.substring(1) || 'home';
                 
                 if (target === '#about') {
                     // Show About page (hide menu, keep about visible, remove dimming)
@@ -477,6 +486,16 @@
                     aboutBackground.classList.remove('dimmed');
                     bioPage.classList.remove('active');
                     poemsPage.classList.remove('active');
+                    // Track pageview
+                    if (typeof gtag !== 'undefined') {
+                        gtag('config', 'G-MJ4TBKVZF7', {
+                            'page_path': '/about'
+                        });
+                        gtag('event', 'page_view', {
+                            'page_title': 'About',
+                            'page_location': window.location.href + '#about'
+                        });
+                    }
                 } else if (target === '#bio') {
                     // Show Bio page (hide menu and dim about)
                     menuOverlay.classList.remove('active');
@@ -484,6 +503,16 @@
                     aboutBackground.classList.add('dimmed');
                     bioPage.classList.add('active');
                     poemsPage.classList.remove('active');
+                    // Track pageview
+                    if (typeof gtag !== 'undefined') {
+                        gtag('config', 'G-MJ4TBKVZF7', {
+                            'page_path': '/bio'
+                        });
+                        gtag('event', 'page_view', {
+                            'page_title': 'Bio',
+                            'page_location': window.location.href + '#bio'
+                        });
+                    }
                 } else if (target === '#poems') {
                     // Show Poems page (hide menu and dim about more)
                     menuOverlay.classList.remove('active');
@@ -491,6 +520,25 @@
                     aboutBackground.classList.add('dimmed');
                     bioPage.classList.remove('active');
                     poemsPage.classList.add('active');
+                    // Track pageview
+                    if (typeof gtag !== 'undefined') {
+                        gtag('config', 'G-MJ4TBKVZF7', {
+                            'page_path': '/poems'
+                        });
+                        gtag('event', 'page_view', {
+                            'page_title': 'Poems',
+                            'page_location': window.location.href + '#poems'
+                        });
+                    }
+                }
+                
+                // Track navigation click event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'navigation_click', {
+                        'event_category': 'Navigation',
+                        'event_label': pageName,
+                        'link_url': target
+                    });
                 }
             });
         });
@@ -502,6 +550,17 @@
             aboutBackground.classList.remove('dimmed');
             bioPage.classList.remove('active');
             poemsPage.classList.remove('active');
+            // Track return to home
+            if (typeof gtag !== 'undefined') {
+                gtag('config', 'G-MJ4TBKVZF7', {
+                    'page_path': '/'
+                });
+                gtag('event', 'navigation_click', {
+                    'event_category': 'Navigation',
+                    'event_label': 'home',
+                    'link_url': '/'
+                });
+            }
         });
 
         // Click anywhere on about page to return home
@@ -531,6 +590,22 @@
                 aboutBackground.classList.remove('dimmed');
                 this.classList.remove('active');
             }
+        });
+
+        // Track external link clicks (poems, Instagram, etc.)
+        document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (typeof gtag !== 'undefined') {
+                    const linkText = this.textContent.trim();
+                    const linkUrl = this.getAttribute('href');
+                    gtag('event', 'outbound_click', {
+                        'event_category': 'External Links',
+                        'event_label': linkText,
+                        'link_url': linkUrl,
+                        'transport_type': 'beacon'
+                    });
+                }
+            });
         });
     </script>
     </div>
