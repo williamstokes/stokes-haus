@@ -200,7 +200,7 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('photo.jpg');
-    background-size: 300% auto;
+    background-size: 200% auto;
     background-position: top left;
     background-repeat: no-repeat;
     z-index: 1;
