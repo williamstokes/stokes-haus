@@ -570,7 +570,7 @@ body {
     .name-header {
         left: 1.5rem;
         right: auto;
-        top: 1.5rem;
+        top: 2.5rem;
         font-size: 3.5rem;
         line-height: 1.2;
         text-align: left;
@@ -580,7 +580,7 @@ body {
         left: auto;
         right: 1.5rem;
         top: auto;
-        bottom: calc(1.5rem - 0.2rem);
+        bottom: calc(2.5rem - 0.2rem);
         transform: none;
         align-items: flex-end;
     }
@@ -592,12 +592,12 @@ body {
     }
 
     .menu-glyph.top-left {
-        top: 1.5rem;
+        top: 2.5rem;
         left: 1.5rem;
     }
 
     .menu-glyph.bottom-right {
-        bottom: 1.5rem;
+        bottom: 2.5rem;
         right: 1.5rem;
     }
 
