@@ -472,6 +472,15 @@
         const poemsPage = document.getElementById('poems-page');
         const menuLinks = document.querySelectorAll('.menu-link');
 
+        // Ensure initial state - only menu visible on load
+        window.addEventListener('DOMContentLoaded', function() {
+            menuOverlay.classList.add('active');
+            aboutBackground.classList.remove('active');
+            aboutBackground.classList.remove('dimmed');
+            bioPage.classList.remove('active');
+            poemsPage.classList.remove('active');
+        });
+
         // Handle menu clicks
         menuLinks.forEach(link => {
             link.addEventListener('click', function(e) {
