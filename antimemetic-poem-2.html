@@ -25,7 +25,6 @@
                 <div class="epigraph-attribution">after C.D. Wright</div>
                 LEAR: ... you see how this world goes.<br>GLOUCESTER:
             </div>
-            <div class="publication-date"><em>Published December 19, 2025</em></div>
             
             <div class="password-form">
                 <input type="text" id="password-input" class="password-input" placeholder="password">
@@ -33,8 +32,10 @@
                 <div id="error-message" class="error-message"></div>
                 <div id="attempts-info" class="attempts-info"></div>
             </div>
+            <div id="publication-date-before" class="publication-date"><em>Published December 19, 2025</em></div>
             
             <div id="poem-content" class="poem-content"></div>
+            <div id="publication-date-after" class="publication-date" style="display: none;"><em>Published December 19, 2025</em></div>
             <button id="obscure-btn" class="obscure-btn">forget</button>
         </div>
         
@@ -58,6 +59,8 @@
         const obscureBtn = document.getElementById('obscure-btn');
         const attemptsInfo = document.getElementById('attempts-info');
         const passwordForm = document.querySelector('.password-form');
+        const publicationDateBefore = document.getElementById('publication-date-before');
+        const publicationDateAfter = document.getElementById('publication-date-after');
         
         // Update attempts info
         function updateAttemptsInfo() {
@@ -121,6 +124,10 @@
                 
                 // Hide password form when poem is shown
                 passwordForm.style.display = 'none';
+                
+                // Hide publication date before, show after
+                publicationDateBefore.style.display = 'none';
+                publicationDateAfter.style.display = 'block';
                 
                 // Reset attempts on success
                 resetAttempts(POEM_ID);
@@ -205,6 +212,10 @@
             
             // Show password form again
             passwordForm.style.display = 'block';
+            
+            // Show publication date before, hide after
+            publicationDateBefore.style.display = 'block';
+            publicationDateAfter.style.display = 'none';
             
             passwordInput.value = '';
             passwordInput.disabled = false;
