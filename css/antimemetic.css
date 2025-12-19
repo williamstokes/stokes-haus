@@ -108,17 +108,34 @@ h1 {
     color: #2a2a2a;
     font-family: 'Crimson Pro', Georgia, serif;
     width: 300px;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .submit-btn {
     font-size: 1.5rem;
     padding: 0.5rem 1.5rem;
-    margin-left: 0.5rem;
+    margin-left: 0;
     border: 1px solid #2a2a2a;
     background-color: #f5f4ed;
     color: #2a2a2a;
     font-family: 'Crimson Pro', Georgia, serif;
     cursor: pointer;
+    display: block;
+}
+
+@media (min-width: 600px) {
+    .password-input {
+        display: inline-block;
+        width: 300px;
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+    
+    .submit-btn {
+        display: inline-block;
+        margin-left: 0;
+    }
 }
 
 .submit-btn:hover {
