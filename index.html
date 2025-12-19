@@ -424,7 +424,7 @@
             <a href="#about" class="menu-link">About</a>
             <a href="#bio" class="menu-link">Bio</a>
             <a href="#poems" class="menu-link">Poems</a>
-            <a href="antimemetic-poetics.html" class="menu-link">Antimemetic Poetics</a>
+            <a href="antimemetic-poetics.html" class="menu-link">antimemetic poetics</a>
         </nav>
     </div>
 
@@ -486,8 +486,14 @@
         // Handle menu clicks
         menuLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
                 const target = this.getAttribute('href');
+                
+                // If it's not a hash link (external link), allow normal navigation
+                if (!target.startsWith('#')) {
+                    return; // Allow default navigation
+                }
+                
+                e.preventDefault();
                 const pageName = target.substring(1) || 'home';
                 
                 if (target === '#about') {
