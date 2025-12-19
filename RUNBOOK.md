@@ -142,13 +142,15 @@ This will:
 - Read the poem text from `poems/poem-{number}.txt`
 - Read metadata from `poems/poem-{number}.json`
 - Encrypt the poem using the first password from the JSON
-- Create or update `antimemetic-poem-{number}.html` with:
+- **Automatically create** `antimemetic-poem-{number}.html` if it doesn't exist (from template)
+- **Or update** the existing HTML file with:
   - Title (in `<title>` and `<h1>`)
   - Epigraph (with attribution if present)
   - Password(s) in JavaScript
   - Publication date
   - Difficulty
   - Encrypted poem content
+  - POEM_ID in JavaScript
 
 #### Step 5: Add to Listing Page
 
@@ -156,6 +158,8 @@ Edit `antimemetic-poetics.html` and add a new list item:
 ```html
 <li><a href="antimemetic-poem-3.html">three</a></li>
 ```
+
+**Note**: The HTML file is automatically created by the encryption script, so you don't need to manually create it!
 
 #### Step 6: Test
 
