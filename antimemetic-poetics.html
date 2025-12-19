@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/antimemetic.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ4TBKVZF7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MJ4TBKVZF7');
+    </script>
 </head>
 <body>
     <div class="container">
@@ -21,6 +29,21 @@
         </ul>
         <a href="index.html" class="back-link">back</a>
     </div>
+    <script src="js/antimemetic.js"></script>
+    <script>
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-MJ4TBKVZF7', {
+                'page_path': '/antimemetic-poetics.html',
+                'page_title': 'antimemetic poetics'
+            });
+            gtag('event', 'page_view', {
+                'page_title': 'antimemetic poetics',
+                'page_location': window.location.href,
+                'user_id': getUserId()
+            });
+        }
+    </script>
 </body>
 </html>
 

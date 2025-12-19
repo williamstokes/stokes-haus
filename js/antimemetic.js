@@ -1,5 +1,69 @@
 // Antimemetic Poetics - Encryption, Decryption, and Attempt Tracking
 
+// Generate or retrieve user ID for tracking
+function getUserId() {
+    const userIdKey = 'antimemetic_user_id';
+    let userId = getStoredValue(userIdKey);
+    
+    if (!userId) {
+        // Generate a unique user ID (timestamp + random)
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        setStoredValue(userIdKey, userId);
+    }
+    
+    return userId;
+}
+
+// Track password attempt event
+function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts) {
+    if (typeof gtag === 'undefined') return;
+    
+    const userId = getUserId();
+    const eventName = isCorrect ? 'password_success' : 'password_attempt';
+    
+    gtag('event', eventName, {
+        'event_category': 'Antimemetic Poetics',
+        'event_label': `Poem ${poemId}`,
+        'poem_id': poemId,
+        'user_id': userId,
+        'attempt_count': attemptCount,
+        'max_attempts': maxAttempts,
+        'is_correct': isCorrect,
+        'remaining_attempts': maxAttempts - attemptCount
+    });
+    
+    // Also set user_id as a custom dimension if configured in GA
+    gtag('set', { 'user_id': userId });
+}
+
+// Track password attempts exceeded
+function trackAttemptsExceeded(poemId) {
+    if (typeof gtag === 'undefined') return;
+    
+    const userId = getUserId();
+    
+    gtag('event', 'password_attempts_exceeded', {
+        'event_category': 'Antimemetic Poetics',
+        'event_label': `Poem ${poemId}`,
+        'poem_id': poemId,
+        'user_id': userId
+    });
+}
+
+// Track poem decryption success
+function trackPoemDecrypted(poemId) {
+    if (typeof gtag === 'undefined') return;
+    
+    const userId = getUserId();
+    
+    gtag('event', 'poem_decrypted', {
+        'event_category': 'Antimemetic Poetics',
+        'event_label': `Poem ${poemId}`,
+        'poem_id': poemId,
+        'user_id': userId
+    });
+}
+
 // Get Eastern time date string (YYYY-MM-DD)
 function getEasternDate() {
     const now = new Date();

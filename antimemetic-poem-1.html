@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/antimemetic.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ4TBKVZF7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MJ4TBKVZF7');
+    </script>
 </head>
 <body>
     <div class="container">
@@ -64,8 +72,9 @@
             if (isAttemptsExceeded(POEM_ID)) {
                 passwordInput.disabled = true;
                 submitBtn.disabled = true;
-                errorMessage.textContent = 'Maximum attempts exceeded. Please try again tomorrow.';
+                errorMessage.textContent = 'Maximum attempts exceeded. Attempt counter resets at midnight EST. Note: Due to limitations in current antimemetic containment technology, the decrypted password may be discoverable in the source directory for those who know where to look.';
                 errorMessage.classList.add('show');
+                trackAttemptsExceeded(POEM_ID);
                 return false;
             }
             return true;
@@ -109,9 +118,25 @@
                 
                 // Reset attempts on success
                 resetAttempts(POEM_ID);
+                
+                // Track successful decryption
+                trackPoemDecrypted(POEM_ID);
             } catch (error) {
                 throw new Error('Incorrect password or failed to decrypt poem');
             }
+        }
+        
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-MJ4TBKVZF7', {
+                'page_path': '/antimemetic-poem-1.html',
+                'page_title': 'Shibboleth - antimemetic poetics'
+            });
+            gtag('event', 'page_view', {
+                'page_title': 'Shibboleth - antimemetic poetics',
+                'page_location': window.location.href,
+                'user_id': getUserId()
+            });
         }
         
         // Handle submit
@@ -130,17 +155,30 @@
             if (normalizedPassword) {
                 try {
                     await loadPoem(normalizedPassword);
+                    // Track successful password attempt
+                    const attemptData = getAttemptData(POEM_ID);
+                    const maxAttempts = POEM_ID * 10;
+                    trackPasswordAttempt(POEM_ID, true, attemptData.count + 1, maxAttempts);
                 } catch (error) {
                     showError(error.message);
+                    // Track failed decryption (wrong password format but passed validation)
+                    const attemptData = getAttemptData(POEM_ID);
+                    const maxAttempts = POEM_ID * 10;
+                    trackPasswordAttempt(POEM_ID, false, attemptData.count, maxAttempts);
                 }
             } else {
                 const attempts = incrementAttempts(POEM_ID);
                 updateAttemptsInfo();
+                const maxAttempts = POEM_ID * 10;
+                
+                // Track incorrect password attempt
+                trackPasswordAttempt(POEM_ID, false, attempts, maxAttempts);
                 
                 if (isAttemptsExceeded(POEM_ID)) {
-                    showError('Incorrect password. Maximum attempts exceeded. Attempt counter resets at midnight EST.');
+                    showError('Incorrect password. Maximum attempts exceeded. Attempt counter resets at midnight EST. Note: Due to limitations in current antimemetic containment technology, the decrypted password may be discoverable in the source directory for those who know where to look.');
                     passwordInput.disabled = true;
                     submitBtn.disabled = true;
+                    trackAttemptsExceeded(POEM_ID);
                 } else {
                     showError('Incorrect password. Try thinking sideways. Try not thinking. Attempt counter resets at midnight EST.');
                 }
