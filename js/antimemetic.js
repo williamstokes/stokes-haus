@@ -16,52 +16,84 @@ function getUserId() {
 
 // Track password attempt event
 function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts) {
-    if (typeof gtag === 'undefined') return;
+    // Wait for gtag to be available
+    if (typeof gtag === 'undefined') {
+        console.warn('gtag not available for tracking - will retry');
+        // Retry after a short delay
+        setTimeout(() => trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts), 100);
+        return;
+    }
     
     const userId = getUserId();
     const eventName = isCorrect ? 'password_success' : 'password_attempt';
     
-    gtag('event', eventName, {
-        'event_category': 'Antimemetic Poetics',
-        'event_label': `Poem ${poemId}`,
-        'poem_id': poemId,
+    const eventParams = {
+        'poem_id': String(poemId),
         'user_id': userId,
         'attempt_count': attemptCount,
         'max_attempts': maxAttempts,
         'is_correct': isCorrect,
         'remaining_attempts': maxAttempts - attemptCount
-    });
+    };
     
-    // Also set user_id as a custom dimension if configured in GA
-    gtag('set', { 'user_id': userId });
+    console.log('Tracking event:', eventName, eventParams);
+    
+    try {
+        gtag('event', eventName, eventParams);
+        console.log('Event sent successfully');
+    } catch (error) {
+        console.error('Error sending event:', error);
+    }
 }
 
 // Track password attempts exceeded
 function trackAttemptsExceeded(poemId) {
-    if (typeof gtag === 'undefined') return;
+    if (typeof gtag === 'undefined') {
+        console.warn('gtag not available for tracking - will retry');
+        setTimeout(() => trackAttemptsExceeded(poemId), 100);
+        return;
+    }
     
     const userId = getUserId();
     
-    gtag('event', 'password_attempts_exceeded', {
-        'event_category': 'Antimemetic Poetics',
-        'event_label': `Poem ${poemId}`,
-        'poem_id': poemId,
+    const eventParams = {
+        'poem_id': String(poemId),
         'user_id': userId
-    });
+    };
+    
+    console.log('Tracking event: password_attempts_exceeded', eventParams);
+    
+    try {
+        gtag('event', 'password_attempts_exceeded', eventParams);
+        console.log('Event sent successfully');
+    } catch (error) {
+        console.error('Error sending event:', error);
+    }
 }
 
 // Track poem decryption success
 function trackPoemDecrypted(poemId) {
-    if (typeof gtag === 'undefined') return;
+    if (typeof gtag === 'undefined') {
+        console.warn('gtag not available for tracking - will retry');
+        setTimeout(() => trackPoemDecrypted(poemId), 100);
+        return;
+    }
     
     const userId = getUserId();
     
-    gtag('event', 'poem_decrypted', {
-        'event_category': 'Antimemetic Poetics',
-        'event_label': `Poem ${poemId}`,
-        'poem_id': poemId,
+    const eventParams = {
+        'poem_id': String(poemId),
         'user_id': userId
-    });
+    };
+    
+    console.log('Tracking event: poem_decrypted', eventParams);
+    
+    try {
+        gtag('event', 'poem_decrypted', eventParams);
+        console.log('Event sent successfully');
+    } catch (error) {
+        console.error('Error sending event:', error);
+    }
 }
 
 // Get Eastern time date string (YYYY-MM-DD)
