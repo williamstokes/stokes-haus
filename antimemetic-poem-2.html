@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mute swan in a dark room - antimemetic poetics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/antimemetic.css">
+</head>
+<body>
+    <div class="container">
+        <div class="poem-page">
+            <h1 class="poem-title">Mute swan in a dark room</h1>
+            <div class="epigraph">
+                <div class="epigraph-attribution">after C.D. Wright</div>
+                LEAR: ... you see how this world goes.<br>GLOUCESTER:
+            </div>
+            
+            <div class="password-form">
+                <input type="text" id="password-input" class="password-input" placeholder="password">
+                <button id="submit-btn" class="submit-btn">submit</button>
+                <div id="error-message" class="error-message"></div>
+                <div id="attempts-info" class="attempts-info"></div>
+            </div>
+            
+            <div id="poem-content" class="poem-content"></div>
+            <button id="obscure-btn" class="obscure-btn">forget</button>
+        </div>
+        
+        <a href="antimemetic-poetics.html" class="back-link">back</a>
+    </div>
+    
+    <script src="js/antimemetic.js"></script>
+    <script id="encrypted-poem-data" type="text/plain">
+        0/97W7mI+14pkNwcTUO5MjP1Tqx7EnUUaszrsez4sye2Z0b4hV42u7kV+sR7we/2tIDCaa51Yv2GbLdK8lRJvrLj2RsFIBzwcB8Dg3R/LzNX0cUcEzqiFRDkThjNKg1W1rvIFM+9bVxvLdmC8EpimYcOKBLpbOqHOBjG5w6C7sIuZXPhr0J6Cjs2HhElYdhvi/HocUgy3+EnknAM9v79lqOGlQbfmR/hZF1AmnJz7PTW8UOKmyj+4eut7nkMnPLr5lTuuAJRTCvZXSGyxqUsMGb1zdUV6qtodtrt0NiA/K0balZv6/BmfydLSJXs1qQMmdMltOA0IZpCoYSfDcQL4Fq1d6INqmRhhUo2g2YowDHZVVQMQOpOIIiLFRgPuIWIqrXyRSWpZgzHKQVBXqPiaPDqln7v8FE9NqY3J9CafR7n+s27x75Weh+JWjRcYuDFxYmPLbsQfdTxnTdsfueuKemi74C/oVk/Bwv52g6lrjMMi+4VDvgCL3C51wuCiFpB8N/RK6MKoJziaKUXir1mV3bF9GcgNT+DY2kj2J9BtVeg14ZZ1SWKNwuQiEFjokoFvhDyDh+6pJosV3EpXuGMwIy9AbwSQVMOvEOqZbrhVPaWt0aeU+/Cl3FvYiW1hjuquHIugGQwyAtMUxADQ//ZRJ101T6uLOMT1B1O9RE9L6yKtus9xvuqKMmdO/PmZFmik/f/K8mWQlJTlG2IUqpIdw7ZuGTqJDskgGV5/llViwuuna2Bb+n6JbmLEONZM2sPCEFvkWo84pAPYGFRFWiDt829lFoDmqRn/3DMMatjHykwUYcKr9Ywx64/BW+zR5tRb4UQBUwIHbfpdhY6vtEXjksQh4o9wSFmbsDydMk6KRyiOW3UhMZTRpq65t3kCwRhOzFOkY/0r/q5uDUMZIYDYpOFIE/g/psbIZmlub3plxEZ269XP3Cp/yO977B+dYUozNqik5VIJjf1DQUSSIovkL8BZB6c6GxPNQO+VFScB7BAEmyhz3PX7DqJKe+gQHnVgabWrhnnVERyp1snUm+DwF/U6kVjcjOY39Frii2SoQHu+A==
+    </script>
+    <script>
+        // Poem configuration
+        const POEM_ID = 2;
+        const ACCEPTABLE_PASSWORDS = ['i see it feelingly', 'i see it feelingly.']; // case insensitive
+        const ENCRYPTED_FILE = 'poems/poem-2.encrypted';
+        
+        const passwordInput = document.getElementById('password-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMessage = document.getElementById('error-message');
+        const poemContent = document.getElementById('poem-content');
+        const obscureBtn = document.getElementById('obscure-btn');
+        const attemptsInfo = document.getElementById('attempts-info');
+        const passwordForm = document.querySelector('.password-form');
+        
+        // Update attempts info
+        function updateAttemptsInfo() {
+            const remaining = getRemainingAttempts(POEM_ID);
+            const maxAttempts = POEM_ID * 10;
+            if (remaining > 0) {
+                attemptsInfo.textContent = `${remaining} of ${maxAttempts} attempts remaining`;
+            } else {
+                attemptsInfo.textContent = 'No attempts remaining. Try again tomorrow.';
+            }
+        }
+        
+        // Check if attempts exceeded
+        function checkAttempts() {
+            if (isAttemptsExceeded(POEM_ID)) {
+                passwordInput.disabled = true;
+                submitBtn.disabled = true;
+                errorMessage.textContent = 'Maximum attempts exceeded. Please try again tomorrow.';
+                errorMessage.classList.add('show');
+                return false;
+            }
+            return true;
+        }
+        
+        // Validate password (case insensitive) and return normalized password
+        function isValidPassword(password) {
+            const lowerPassword = password.toLowerCase().trim();
+            const matchingPassword = ACCEPTABLE_PASSWORDS.find(p => p.toLowerCase() === lowerPassword);
+            return matchingPassword || null;
+        }
+        
+        // Show error
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Load and decrypt poem
+        async function loadPoem(password) {
+            const protocol = window.location.protocol;
+            const isFileProtocol = protocol === 'file:';
+            try {
+                let encryptedBase64;
+                
+                // Check if we're using file:// protocol (local file)
+                if (isFileProtocol) {
+                    // Read from embedded script tag
+                    const scriptTag = document.getElementById('encrypted-poem-data');
+                    if (!scriptTag) {
+                        throw new Error('Encrypted poem data not found');
+                    }
+                    encryptedBase64 = scriptTag.textContent.trim();
+                    if (encryptedBase64.includes('PLACEHOLDER')) {
+                        throw new Error('Encrypted poem content not yet generated. Please generate it using generate-poem-2.html');
+                    }
+                } else {
+                    // Use fetch for http/https (e.g., GitHub Pages)
+                    const response = await fetch(ENCRYPTED_FILE);
+                    if (!response.ok) {
+                        throw new Error('Failed to load encrypted poem');
+                    }
+                    encryptedBase64 = await response.text();
+                }
+                const decrypted = await decryptPoem(encryptedBase64.trim(), password);
+                
+                // Replace "/" with line breaks
+                const formattedPoem = decrypted.replace(/\s*\/\s*/g, '\n');
+                poemContent.textContent = formattedPoem;
+                poemContent.classList.add('show');
+                obscureBtn.classList.add('show');
+                
+                // Hide password form when poem is shown
+                passwordForm.style.display = 'none';
+                
+                // Reset attempts on success
+                resetAttempts(POEM_ID);
+            } catch (error) {
+                throw new Error('Incorrect password or failed to decrypt poem');
+            }
+        }
+        
+        // Handle submit
+        submitBtn.addEventListener('click', async function() {
+            if (!checkAttempts()) {
+                return;
+            }
+            
+            const password = passwordInput.value;
+            if (!password) {
+                showError('Please enter a password');
+                return;
+            }
+            
+            const normalizedPassword = isValidPassword(password);
+            if (normalizedPassword) {
+                try {
+                    await loadPoem(normalizedPassword);
+                } catch (error) {
+                    showError(error.message);
+                }
+            } else {
+                const attempts = incrementAttempts(POEM_ID);
+                updateAttemptsInfo();
+                
+                if (isAttemptsExceeded(POEM_ID)) {
+                    showError('Incorrect password. Maximum attempts exceeded. Attempt counter resets at midnight EST.');
+                    passwordInput.disabled = true;
+                    submitBtn.disabled = true;
+                } else {
+                    showError('Incorrect password. Try thinking sideways. Try not thinking. Attempt counter resets at midnight EST.');
+                }
+            }
+        });
+        
+        // Handle Enter key
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+        
+        // Handle forget button
+        obscureBtn.addEventListener('click', function() {
+            poemContent.classList.remove('show');
+            obscureBtn.classList.remove('show');
+            
+            // Show password form again
+            passwordForm.style.display = 'block';
+            
+            passwordInput.value = '';
+            passwordInput.disabled = false;
+            submitBtn.disabled = false;
+            errorMessage.classList.remove('show');
+            updateAttemptsInfo();
+        });
+        
+        // Initialize
+        updateAttemptsInfo();
+        checkAttempts();
+    </script>
+</body>
+</html>
+

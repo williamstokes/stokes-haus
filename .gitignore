@@ -19,3 +19,15 @@ build/
 .DS_Store
 Thumbs.db
 
+# Antimemetic Poetics - Helper/Temporary Files
+# These files are for local development only and should not be committed
+encrypt-helper.html
+encrypt-poem.js
+encrypt-poem.py
+generate-encrypted.html
+generate-poem-2.html
+test-setup.html
+
+# Debug logs
+.cursor/debug.log
+*.log

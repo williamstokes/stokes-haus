@@ -1,0 +1,181 @@
+/* Antimemetic Poetics - Minimal Raw Styling */
+
+body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background-color: #f5f4ed;
+    color: #2a2a2a;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: normal;
+    margin: 2rem 0;
+    font-family: 'Averia Sans Libre', sans-serif;
+}
+
+.user-guide {
+    margin: 2rem 0 3rem 0;
+    max-width: 100%;
+}
+
+.user-guide p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #2a2a2a;
+    margin: 0;
+}
+
+.poem-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.poem-list li {
+    margin: 1.5rem 0;
+}
+
+.poem-list a {
+    font-size: 3rem;
+    color: #2a2a2a;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.poem-list a:hover {
+    opacity: 0.7;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #2a2a2a;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #2a2a2a;
+    background-color: #f5f4ed;
+    font-family: 'Crimson Pro', Georgia, serif;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+.poem-page {
+    margin: 2rem 0;
+}
+
+.poem-title {
+    font-size: 3rem;
+    font-weight: normal;
+    margin: 2rem 0 1rem 0;
+    font-family: 'Averia Sans Libre', sans-serif;
+}
+
+.epigraph {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin: 1rem 0 2rem 0;
+    opacity: 0.8;
+}
+
+.epigraph-attribution {
+    font-size: 1rem;
+    font-style: normal;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.password-form {
+    margin: 2rem 0;
+}
+
+.password-input {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 1px solid #2a2a2a;
+    background-color: #f5f4ed;
+    color: #2a2a2a;
+    font-family: 'Crimson Pro', Georgia, serif;
+    width: 300px;
+}
+
+.submit-btn {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    margin-left: 0.5rem;
+    border: 1px solid #2a2a2a;
+    background-color: #f5f4ed;
+    color: #2a2a2a;
+    font-family: 'Crimson Pro', Georgia, serif;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    opacity: 0.7;
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #8b0000;
+    font-size: 1.25rem;
+    margin: 1rem 0;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.poem-content {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    white-space: pre-line;
+    display: none;
+}
+
+.poem-content.show {
+    display: block;
+}
+
+.obscure-btn {
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+    margin-top: 2rem;
+    border: 1px solid #2a2a2a;
+    background-color: #f5f4ed;
+    color: #2a2a2a;
+    font-family: 'Crimson Pro', Georgia, serif;
+    cursor: pointer;
+    display: none;
+}
+
+.obscure-btn.show {
+    display: inline-block;
+}
+
+.obscure-btn:hover {
+    opacity: 0.7;
+}
+
+.attempts-info {
+    font-size: 1rem;
+    margin: 1rem 0;
+    opacity: 0.6;
+}
+
