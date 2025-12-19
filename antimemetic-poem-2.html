@@ -91,31 +91,17 @@
         
         // Load and decrypt poem
         async function loadPoem(password) {
-            const protocol = window.location.protocol;
-            const isFileProtocol = protocol === 'file:';
             try {
-                let encryptedBase64;
-                
-                // Check if we're using file:// protocol (local file)
-                if (isFileProtocol) {
-                    // Read from embedded script tag
-                    const scriptTag = document.getElementById('encrypted-poem-data');
-                    if (!scriptTag) {
-                        throw new Error('Encrypted poem data not found');
-                    }
-                    encryptedBase64 = scriptTag.textContent.trim();
-                    if (encryptedBase64.includes('PLACEHOLDER')) {
-                        throw new Error('Encrypted poem content not yet generated. Please generate it using generate-poem-2.html');
-                    }
-                } else {
-                    // Use fetch for http/https (e.g., GitHub Pages)
-                    const response = await fetch(ENCRYPTED_FILE);
-                    if (!response.ok) {
-                        throw new Error('Failed to load encrypted poem');
-                    }
-                    encryptedBase64 = await response.text();
+                // Always read from embedded script tag (works for both file:// and http(s)://)
+                const scriptTag = document.getElementById('encrypted-poem-data');
+                if (!scriptTag) {
+                    throw new Error('Encrypted poem data not found');
                 }
-                const decrypted = await decryptPoem(encryptedBase64.trim(), password);
+                const encryptedBase64 = scriptTag.textContent.trim();
+                if (encryptedBase64.includes('PLACEHOLDER')) {
+                    throw new Error('Encrypted poem content not yet generated. Please generate it using generate-poem-2.html');
+                }
+                const decrypted = await decryptPoem(encryptedBase64, password);
                 
                 // Replace "/" with line breaks
                 const formattedPoem = decrypted.replace(/\s*\/\s*/g, '\n');
