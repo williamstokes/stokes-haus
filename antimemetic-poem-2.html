@@ -131,7 +131,8 @@
                 }
                 const decrypted = await decryptPoem(encryptedBase64, password);
                 
-                // Replace "/" with line breaks
+                // Replace "/" with line breaks (for backwards compatibility)
+                // If poem already has line breaks, this won't affect it
                 const formattedPoem = decrypted.replace(/\s*\/\s*/g, '\n');
                 poemContent.textContent = formattedPoem;
                 poemContent.classList.add('show');
