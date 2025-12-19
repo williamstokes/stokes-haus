@@ -36,14 +36,21 @@
             </div>
             <div id="publication-date-before" class="publication-date"><em>Published December 19, 2025</em></div>
             <div id="difficulty-before" class="difficulty">difficulty: β</div>
+            <div id="poem-attribution-before" class="poem-attribution">an original poem by Will Stokes</div>
             
             <div id="poem-content" class="poem-content"></div>
             <div id="publication-date-after" class="publication-date" style="display: none;"><em>Published December 19, 2025</em></div>
             <div id="difficulty-after" class="difficulty" style="display: none;">difficulty: β</div>
+            <div id="poem-attribution-after" class="poem-attribution" style="display: none;">an original poem by Will Stokes</div>
             <button id="obscure-btn" class="obscure-btn">forget</button>
         </div>
         
         <a href="antimemetic-poetics.html" class="back-link">back</a>
+        
+        <div class="site-copyright">
+            <p>© 2025 Will Stokes. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;"><a href="privacy-policy.html" style="color: inherit; text-decoration: none; opacity: 0.5;">privacy policy</a></p>
+        </div>
     </div>
     
     <script src="js/antimemetic.js"></script>
@@ -67,6 +74,8 @@
         const publicationDateAfter = document.getElementById('publication-date-after');
         const difficultyBefore = document.getElementById('difficulty-before');
         const difficultyAfter = document.getElementById('difficulty-after');
+        const poemAttributionBefore = document.getElementById('poem-attribution-before');
+        const poemAttributionAfter = document.getElementById('poem-attribution-after');
         
         // Update attempts info
         function updateAttemptsInfo() {
@@ -131,11 +140,13 @@
                 // Hide password form when poem is shown
                 passwordForm.style.display = 'none';
                 
-                // Hide publication date and difficulty before, show after
+                // Hide publication date, difficulty, and attribution before, show after
                 publicationDateBefore.style.display = 'none';
                 publicationDateAfter.style.display = 'block';
                 difficultyBefore.style.display = 'none';
                 difficultyAfter.style.display = 'block';
+                poemAttributionBefore.style.display = 'none';
+                poemAttributionAfter.style.display = 'block';
                 
                 // Reset attempts on success
                 resetAttempts(POEM_ID);
@@ -221,11 +232,13 @@
             // Show password form again
             passwordForm.style.display = 'block';
             
-            // Show publication date and difficulty before, hide after
+            // Show publication date, difficulty, and attribution before, hide after
             publicationDateBefore.style.display = 'block';
             publicationDateAfter.style.display = 'none';
             difficultyBefore.style.display = 'block';
             difficultyAfter.style.display = 'none';
+            poemAttributionBefore.style.display = 'block';
+            poemAttributionAfter.style.display = 'none';
             
             passwordInput.value = '';
             passwordInput.disabled = false;
