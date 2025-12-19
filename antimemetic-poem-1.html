@@ -30,9 +30,11 @@
                 <div id="attempts-info" class="attempts-info"></div>
             </div>
             <div id="publication-date-before" class="publication-date"><em>Published December 19, 2025</em></div>
+            <div id="difficulty-before" class="difficulty">difficulty: α</div>
             
             <div id="poem-content" class="poem-content"></div>
             <div id="publication-date-after" class="publication-date" style="display: none;"><em>Published December 19, 2025</em></div>
+            <div id="difficulty-after" class="difficulty" style="display: none;">difficulty: α</div>
             <button id="obscure-btn" class="obscure-btn">forget</button>
         </div>
         
@@ -58,6 +60,8 @@
         const passwordForm = document.querySelector('.password-form');
         const publicationDateBefore = document.getElementById('publication-date-before');
         const publicationDateAfter = document.getElementById('publication-date-after');
+        const difficultyBefore = document.getElementById('difficulty-before');
+        const difficultyAfter = document.getElementById('difficulty-after');
         
         // Update attempts info
         function updateAttemptsInfo() {
@@ -119,9 +123,11 @@
                 // Hide password form when poem is shown
                 passwordForm.style.display = 'none';
                 
-                // Hide publication date before, show after
+                // Hide publication date and difficulty before, show after
                 publicationDateBefore.style.display = 'none';
                 publicationDateAfter.style.display = 'block';
+                difficultyBefore.style.display = 'none';
+                difficultyAfter.style.display = 'block';
                 
                 // Reset attempts on success
                 resetAttempts(POEM_ID);
@@ -207,9 +213,11 @@
             // Show password form again
             passwordForm.style.display = 'block';
             
-            // Show publication date before, hide after
+            // Show publication date and difficulty before, hide after
             publicationDateBefore.style.display = 'block';
             publicationDateAfter.style.display = 'none';
+            difficultyBefore.style.display = 'block';
+            difficultyAfter.style.display = 'none';
             
             passwordInput.value = '';
             passwordInput.disabled = false;
