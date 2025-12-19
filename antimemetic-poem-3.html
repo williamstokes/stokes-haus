@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Siren - antimemetic poetics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/antimemetic.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ4TBKVZF7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MJ4TBKVZF7', {
+            'anonymize_ip': true
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="poem-page">
+            <h1 class="poem-title">American Siren</h1>
+            <div class="epigraph">liberal use of the page as __</div>
+            
+            <div class="password-form">
+                <input type="text" id="password-input" class="password-input" placeholder="password">
+                <button id="submit-btn" class="submit-btn">submit</button>
+                <div id="error-message" class="error-message"></div>
+                <div id="attempts-info" class="attempts-info"></div>
+            </div>
+            <div id="publication-date-before" class="publication-date"><em>Published December 19, 2025</em></div>
+            <div id="difficulty-before" class="difficulty">difficulty: γ</div>
+            <div id="poem-attribution-before" class="poem-attribution">an original poem by Will Stokes</div>
+            
+            <div id="poem-content" class="poem-content"></div>
+            <div id="publication-date-after" class="publication-date" style="display: none;"><em>Published December 19, 2025</em></div>
+            <div id="difficulty-after" class="difficulty" style="display: none;">difficulty: γ</div>
+            <div id="poem-attribution-after" class="poem-attribution" style="display: none;">an original poem by Will Stokes</div>
+            <button id="obscure-btn" class="obscure-btn">forget</button>
+        </div>
+        
+        <a href="antimemetic-poetics.html" class="back-link">back</a>
+        
+        <div class="site-copyright">
+            <p>© 2025 Will Stokes. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;"><a href="privacy-policy.html" style="color: inherit; text-decoration: none; opacity: 0.5;">privacy policy</a></p>
+        </div>
+    </div>
+    
+    <script src="js/antimemetic.js"></script>
+    <script id="encrypted-poem-data" type="text/plain">
+        ezUpXLCbJry6YgnmG+PsVrXIlJxh03l7OodEV/T+NlvDaWXt8GntWQLeX5B0U5iPf7H9wGFgtq+FkJ7Eky+qW6P0lFAXE+GpcSOhwebZ9Pj1rkZbUWPC/B8wr2MDkhs8ECy/alKCtEkTJB+SqFyPfJd5aHnoZPs89Uft8B5H6xD9ZEWyac/Ybuqc0Z054FNWL10t+soSlRlzVgixQ6x1vxskRfbq/3FjMOJNqca3vIBs7eEoKLH4lnpgvBUl5EK54SnHVt+r3cWrwtBRsFy6K3lJN5peEEFk5l9t5v9drMwJ/9fXuR8GWivmKqF73j9Y2DNCkewxHZbIiTmGvujxwmflvFLsFxMf64r5MMDHiCjYIGRAw/MNZFXueC6bps48HNzwpkWpMkGrv//VzMVCgCaEgDn2khyXJPtzb4OMrd1km6R9zGrjh8OSdDEVh5o9s5SEI9CNZqkUaiwugSq4RYUX9RA3LLZcIHwjvw06gqkVztRRfk1Q+A+cnsXNAdFmRjyPsY9jSyTKjmxYu/lTjwWqzTlsFWe5jvLlzre4WH/kEuyiGNiVcYtYc5SYYsRFsxScoAM7TOBjG6/nW42aJjNq/PG/AdnfvJgsh0mHDuZI4AEW0BIbCPH9anu3vq4QYBX/Qo4LODBkkIeY9cxO4iYzueVwDvMV6uc0erp4GVyHONgb9ahXc7oakh1vD6/yn1wX5ta+ySeV32yk+fkSkXFeChgC7tMPXBAwRZyp1U8pgbn/dq2l4Fo6HqspFYBAMOhB2PYF8RrH4vo03H/bw6s+8e0DM9esaTSCl/bUCG7B2P+2TNklqak00w0ZjsICoF6qgUEEnVf9vehqr19wQ+4mF3UKK2qrGP7MLS4iZZltibKs1fjKSTo6vnIJ22p3KCra5ZAsqEZb0ohJoJdXnyFBCnaRDC8RuI+oFgSS8SbUuTLdfzGzntv5OY+DVfBRbcUO6W0He5TZlxBmPaoamgV3uOfpWC1T3L1cmuZyxTd5u+9p9TnULEZ9V/6yDWdPS4ZVD0RzD+h5IGnDXD6Y/QQWxOmdriZtAxjrS8BF850wMs7+ziQpPHe9IDGedvdvhkiYyD7CdI5ZrBMQtFzJvU9UJLWaPlJcRxBWxdnEUcvnODy8j5src4OxwwrN6WxcHcsaQywZWkosELWfQQSdedkysMuzOE1jdBShNi/6xrH2DXGbPwNyzs1iZ13e3H7oP9r7B9Ce3IvB4oOlnotDMDBhcFIkf9Li7zzJ3+Wu2ETEpx0DX/JftbJTw0ofJvDFHXmdQrNEnk+lKziOmnFSqr9rotLba47/xJRMpj1BKQy5gFLTIxbQYS4b4eYeoZv5RVvSzY86t1K66fI/xm027HLteIJ8wwnYG71fCnxkMTpSQ7v79d2Z/5qx1R+mrf3XG1nosqBVcaz1vtA=
+    </script>
+    <script>
+        // Poem configuration
+        const POEM_ID = 3;
+        const ACCEPTABLE_PASSWORDS = ["field"]; // case insensitive
+        const ENCRYPTED_FILE = 'poems/poem-3.encrypted';
+        
+        const passwordInput = document.getElementById('password-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMessage = document.getElementById('error-message');
+        const poemContent = document.getElementById('poem-content');
+        const obscureBtn = document.getElementById('obscure-btn');
+        const attemptsInfo = document.getElementById('attempts-info');
+        const passwordForm = document.querySelector('.password-form');
+        const publicationDateBefore = document.getElementById('publication-date-before');
+        const publicationDateAfter = document.getElementById('publication-date-after');
+        const difficultyBefore = document.getElementById('difficulty-before');
+        const difficultyAfter = document.getElementById('difficulty-after');
+        const poemAttributionBefore = document.getElementById('poem-attribution-before');
+        const poemAttributionAfter = document.getElementById('poem-attribution-after');
+        
+        // Update attempts info
+        function updateAttemptsInfo() {
+            const remaining = getRemainingAttempts(POEM_ID);
+            const maxAttempts = POEM_ID * 10;
+            if (remaining > 0) {
+                attemptsInfo.textContent = `${remaining} of ${maxAttempts} attempts remaining`;
+            } else {
+                attemptsInfo.textContent = 'No attempts remaining. Try again tomorrow.';
+            }
+        }
+        
+        // Check if attempts exceeded
+        function checkAttempts() {
+            if (isAttemptsExceeded(POEM_ID)) {
+                passwordInput.disabled = true;
+                submitBtn.disabled = true;
+                errorMessage.textContent = 'Maximum attempts exceeded. Attempt counter resets at midnight EST. Note: Due to limitations in current antimemetic containment technology, the decrypted password may be discoverable in the source directory for those who know where to look.';
+                errorMessage.classList.add('show');
+                trackAttemptsExceeded(POEM_ID);
+                return false;
+            }
+            return true;
+        }
+        
+        // Validate password (case insensitive) and return normalized password
+        function isValidPassword(password) {
+            const lowerPassword = password.toLowerCase().trim();
+            const matchingPassword = ACCEPTABLE_PASSWORDS.find(p => p.toLowerCase() === lowerPassword);
+            return matchingPassword || null;
+        }
+        
+        // Show error
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Load and decrypt poem
+        async function loadPoem(password) {
+            try {
+                // Always read from embedded script tag (works for both file:// and http(s)://)
+                const scriptTag = document.getElementById('encrypted-poem-data');
+                if (!scriptTag) {
+                    throw new Error('Encrypted poem data not found');
+                }
+                const encryptedBase64 = scriptTag.textContent.trim();
+                const decrypted = await decryptPoem(encryptedBase64, password);
+                
+                // Replace "/" with line breaks (for backwards compatibility)
+                // If poem already has line breaks, this won't affect it
+                const formattedPoem = decrypted.replace(/\s*\/\s*/g, '\n');
+                poemContent.textContent = formattedPoem;
+                poemContent.classList.add('show');
+                obscureBtn.classList.add('show');
+                
+                // Hide password form when poem is shown
+                passwordForm.style.display = 'none';
+                
+                // Hide publication date, difficulty, and attribution before, show after
+                publicationDateBefore.style.display = 'none';
+                publicationDateAfter.style.display = 'block';
+                difficultyBefore.style.display = 'none';
+                difficultyAfter.style.display = 'block';
+                poemAttributionBefore.style.display = 'none';
+                poemAttributionAfter.style.display = 'block';
+                
+                // Reset attempts on success
+                resetAttempts(POEM_ID);
+                
+                // Track successful decryption
+                trackPoemDecrypted(POEM_ID);
+            } catch (error) {
+                throw new Error('Incorrect password or failed to decrypt poem');
+            }
+        }
+        
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-MJ4TBKVZF7', {
+                'page_path': '/antimemetic-poem-1.html',
+                'page_title': 'Shibboleth - antimemetic poetics'
+            });
+            gtag('event', 'page_view', {
+                'page_title': 'Shibboleth - antimemetic poetics',
+                'page_location': window.location.href,
+                'user_id': getUserId()
+            });
+        }
+        
+        // Handle submit
+        submitBtn.addEventListener('click', async function() {
+            if (!checkAttempts()) {
+                return;
+            }
+            
+            const password = passwordInput.value;
+            if (!password) {
+                showError('Please enter a password');
+                return;
+            }
+            
+            const normalizedPassword = isValidPassword(password);
+            if (normalizedPassword) {
+                try {
+                    await loadPoem(normalizedPassword);
+                    // Track successful password attempt
+                    const attemptData = getAttemptData(POEM_ID);
+                    const maxAttempts = POEM_ID * 10;
+                    trackPasswordAttempt(POEM_ID, true, attemptData.count + 1, maxAttempts);
+                } catch (error) {
+                    showError(error.message);
+                    // Track failed decryption (wrong password format but passed validation)
+                    const attemptData = getAttemptData(POEM_ID);
+                    const maxAttempts = POEM_ID * 10;
+                    trackPasswordAttempt(POEM_ID, false, attemptData.count, maxAttempts);
+                }
+            } else {
+                const attempts = incrementAttempts(POEM_ID);
+                updateAttemptsInfo();
+                const maxAttempts = POEM_ID * 10;
+                
+                // Track incorrect password attempt
+                trackPasswordAttempt(POEM_ID, false, attempts, maxAttempts);
+                
+                if (isAttemptsExceeded(POEM_ID)) {
+                    showError('Incorrect password. Maximum attempts exceeded. Attempt counter resets at midnight EST. Note: Due to limitations in current antimemetic containment technology, the decrypted password may be discoverable in the source directory for those who know where to look.');
+                    passwordInput.disabled = true;
+                    submitBtn.disabled = true;
+                    trackAttemptsExceeded(POEM_ID);
+                } else {
+                    showError('Incorrect password. Try thinking sideways. Try not thinking. Attempt counter resets at midnight EST.');
+                }
+            }
+        });
+        
+        // Handle Enter key
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+        
+        // Handle forget button
+        obscureBtn.addEventListener('click', function() {
+            poemContent.classList.remove('show');
+            obscureBtn.classList.remove('show');
+            
+            // Show password form again
+            passwordForm.style.display = 'block';
+            
+            // Show publication date, difficulty, and attribution before, hide after
+            publicationDateBefore.style.display = 'block';
+            publicationDateAfter.style.display = 'none';
+            difficultyBefore.style.display = 'block';
+            difficultyAfter.style.display = 'none';
+            poemAttributionBefore.style.display = 'block';
+            poemAttributionAfter.style.display = 'none';
+            
+            // Track poem forgotten event
+            trackPoemForgotten(POEM_ID);
+            
+            passwordInput.value = '';
+            passwordInput.disabled = false;
+            submitBtn.disabled = false;
+            errorMessage.classList.remove('show');
+            updateAttemptsInfo();
+        });
+        
+        // Initialize
+        updateAttemptsInfo();
+        checkAttempts();
+    </script>
+</body>
+</html>
+
