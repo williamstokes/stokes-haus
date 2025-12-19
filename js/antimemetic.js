@@ -96,6 +96,31 @@ function trackPoemDecrypted(poemId) {
     }
 }
 
+// Track poem forgotten (when user clicks forget button)
+function trackPoemForgotten(poemId) {
+    if (typeof gtag === 'undefined') {
+        console.warn('gtag not available for tracking - will retry');
+        setTimeout(() => trackPoemForgotten(poemId), 100);
+        return;
+    }
+    
+    const userId = getUserId();
+    
+    const eventParams = {
+        'poem_id': String(poemId),
+        'user_id': userId
+    };
+    
+    console.log('Tracking event: poem_forgotten', eventParams);
+    
+    try {
+        gtag('event', 'poem_forgotten', eventParams);
+        console.log('Event sent successfully');
+    } catch (error) {
+        console.error('Error sending event:', error);
+    }
+}
+
 // Get Eastern time date string (YYYY-MM-DD)
 function getEasternDate() {
     const now = new Date();

@@ -240,6 +240,9 @@
             poemAttributionBefore.style.display = 'block';
             poemAttributionAfter.style.display = 'none';
             
+            // Track poem forgotten event
+            trackPoemForgotten(POEM_ID);
+            
             passwordInput.value = '';
             passwordInput.disabled = false;
             submitBtn.disabled = false;
