@@ -15,17 +15,49 @@ function getUserId() {
 }
 
 // Track password attempt event
-function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts) {
+function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts, passwordAttempt) {
     // Wait for gtag to be available
     if (typeof gtag === 'undefined') {
         console.warn('gtag not available for tracking - will retry');
         // Retry after a short delay
-        setTimeout(() => trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts), 100);
+        setTimeout(() => trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts, passwordAttempt), 100);
         return;
     }
     
     const userId = getUserId();
     const eventName = isCorrect ? 'password_success' : 'password_attempt';
+    
+    // Store password attempt in local log
+    const logEntry = {
+        timestamp: new Date().toISOString(),
+        poemId: poemId,
+        userId: userId,
+        passwordAttempt: passwordAttempt || '',
+        isCorrect: isCorrect,
+        attemptCount: attemptCount,
+        maxAttempts: maxAttempts
+    };
+    
+    // Store in localStorage for viewing
+    const logKey = 'antimemetic_password_logs';
+    let logs = [];
+    try {
+        const storedLogs = localStorage.getItem(logKey);
+        if (storedLogs) {
+            logs = JSON.parse(storedLogs);
+        }
+        logs.push(logEntry);
+        // Keep only last 1000 entries to avoid storage issues
+        if (logs.length > 1000) {
+            logs = logs.slice(-1000);
+        }
+        localStorage.setItem(logKey, JSON.stringify(logs));
+    } catch (error) {
+        console.error('Error storing password log:', error);
+    }
+    
+    // Truncate password for GA (max 100 chars per parameter)
+    const passwordForGA = passwordAttempt ? passwordAttempt.substring(0, 100) : '';
     
     const eventParams = {
         'poem_id': String(poemId),
@@ -33,10 +65,12 @@ function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts) {
         'attempt_count': attemptCount,
         'max_attempts': maxAttempts,
         'is_correct': isCorrect,
-        'remaining_attempts': maxAttempts - attemptCount
+        'remaining_attempts': maxAttempts - attemptCount,
+        'password_attempt': passwordForGA
     };
     
     console.log('Tracking event:', eventName, eventParams);
+    console.log('Password attempt logged:', passwordAttempt);
     
     try {
         gtag('event', eventName, eventParams);
@@ -94,6 +128,49 @@ function trackPoemDecrypted(poemId) {
     } catch (error) {
         console.error('Error sending event:', error);
     }
+}
+
+// View password attempt logs
+function viewPasswordLogs(poemId = null) {
+    const logKey = 'antimemetic_password_logs';
+    try {
+        const storedLogs = localStorage.getItem(logKey);
+        if (!storedLogs) {
+            console.log('No password logs found');
+            return [];
+        }
+        
+        let logs = JSON.parse(storedLogs);
+        
+        // Filter by poem ID if specified
+        if (poemId !== null) {
+            logs = logs.filter(log => log.poemId === poemId);
+        }
+        
+        // Sort by timestamp (newest first)
+        logs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        console.log('=== PASSWORD ATTEMPT LOGS ===');
+        console.log(`Total entries: ${logs.length}`);
+        if (poemId !== null) {
+            console.log(`Filtered for Poem ${poemId}`);
+        }
+        console.log('---');
+        logs.forEach((log, index) => {
+            console.log(`${index + 1}. [${log.timestamp}] Poem ${log.poemId} | User: ${log.userId} | Password: "${log.passwordAttempt}" | Correct: ${log.isCorrect} | Attempt ${log.attemptCount}/${log.maxAttempts}`);
+        });
+        console.log('=== END LOGS ===');
+        
+        return logs;
+    } catch (error) {
+        console.error('Error reading password logs:', error);
+        return [];
+    }
+}
+
+// Export viewPasswordLogs to window for console access
+if (typeof window !== 'undefined') {
+    window.viewPasswordLogs = viewPasswordLogs;
 }
 
 // Track poem forgotten (when user clicks forget button)
