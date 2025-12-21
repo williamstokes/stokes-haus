@@ -196,12 +196,35 @@ if (typeof window !== 'undefined') {
 // Get global success rate statistics
 function getGlobalSuccessRate() {
     const globalStatsKey = 'antimemetic_global_stats';
+    const baselineInitializedKey = 'antimemetic_baseline_initialized';
+    
     try {
         const storedStats = localStorage.getItem(globalStatsKey);
-        if (!storedStats) {
-            return { totalAttempts: 0, totalSuccesses: 0, percentage: 0 };
+        const baselineInitialized = localStorage.getItem(baselineInitializedKey);
+        
+        // Historical baseline from Google Analytics (as of initial implementation):
+        // Poem 1: 22 successful, 34 unsuccessful = 56 total
+        // Poem 2: 15 successful, 18 unsuccessful = 33 total
+        // Poem 3: 17 successful, 42 unsuccessful = 59 total
+        // Total: 54 successful, 94 unsuccessful = 148 total
+        const baselineStats = {
+            totalAttempts: 148,
+            totalSuccesses: 54
+        };
+        
+        if (!storedStats || !baselineInitialized) {
+            // Initialize with historical baseline
+            localStorage.setItem(globalStatsKey, JSON.stringify(baselineStats));
+            localStorage.setItem(baselineInitializedKey, 'true');
+            const percentage = (baselineStats.totalSuccesses / baselineStats.totalAttempts * 100).toFixed(1);
+            return {
+                totalAttempts: baselineStats.totalAttempts,
+                totalSuccesses: baselineStats.totalSuccesses,
+                percentage: percentage
+            };
         }
         
+        // Use existing stats (which may have been updated by new attempts)
         const stats = JSON.parse(storedStats);
         const percentage = stats.totalAttempts > 0 
             ? (stats.totalSuccesses / stats.totalAttempts * 100).toFixed(1)
@@ -214,7 +237,8 @@ function getGlobalSuccessRate() {
         };
     } catch (error) {
         console.error('Error reading global stats:', error);
-        return { totalAttempts: 0, totalSuccesses: 0, percentage: 0 };
+        // Return baseline as fallback
+        return { totalAttempts: 148, totalSuccesses: 54, percentage: 36.5 };
     }
 }
 
