@@ -56,26 +56,6 @@ function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts, pass
         console.error('Error storing password log:', error);
     }
     
-    // Track global success/failure counts
-    const globalStatsKey = 'antimemetic_global_stats';
-    try {
-        let globalStats = {
-            totalAttempts: 0,
-            totalSuccesses: 0
-        };
-        const storedStats = localStorage.getItem(globalStatsKey);
-        if (storedStats) {
-            globalStats = JSON.parse(storedStats);
-        }
-        globalStats.totalAttempts += 1;
-        if (isCorrect) {
-            globalStats.totalSuccesses += 1;
-        }
-        localStorage.setItem(globalStatsKey, JSON.stringify(globalStats));
-    } catch (error) {
-        console.error('Error storing global stats:', error);
-    }
-    
     // Truncate password for GA (max 100 chars per parameter)
     const passwordForGA = passwordAttempt ? passwordAttempt.substring(0, 100) : '';
     
