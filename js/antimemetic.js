@@ -56,6 +56,26 @@ function trackPasswordAttempt(poemId, isCorrect, attemptCount, maxAttempts, pass
         console.error('Error storing password log:', error);
     }
     
+    // Track global success/failure counts
+    const globalStatsKey = 'antimemetic_global_stats';
+    try {
+        let globalStats = {
+            totalAttempts: 0,
+            totalSuccesses: 0
+        };
+        const storedStats = localStorage.getItem(globalStatsKey);
+        if (storedStats) {
+            globalStats = JSON.parse(storedStats);
+        }
+        globalStats.totalAttempts += 1;
+        if (isCorrect) {
+            globalStats.totalSuccesses += 1;
+        }
+        localStorage.setItem(globalStatsKey, JSON.stringify(globalStats));
+    } catch (error) {
+        console.error('Error storing global stats:', error);
+    }
+    
     // Truncate password for GA (max 100 chars per parameter)
     const passwordForGA = passwordAttempt ? passwordAttempt.substring(0, 100) : '';
     
@@ -171,6 +191,45 @@ function viewPasswordLogs(poemId = null) {
 // Export viewPasswordLogs to window for console access
 if (typeof window !== 'undefined') {
     window.viewPasswordLogs = viewPasswordLogs;
+}
+
+// Get global success rate statistics
+function getGlobalSuccessRate() {
+    const globalStatsKey = 'antimemetic_global_stats';
+    try {
+        const storedStats = localStorage.getItem(globalStatsKey);
+        if (!storedStats) {
+            return { totalAttempts: 0, totalSuccesses: 0, percentage: 0 };
+        }
+        
+        const stats = JSON.parse(storedStats);
+        const percentage = stats.totalAttempts > 0 
+            ? (stats.totalSuccesses / stats.totalAttempts * 100).toFixed(1)
+            : 0;
+        
+        return {
+            totalAttempts: stats.totalAttempts,
+            totalSuccesses: stats.totalSuccesses,
+            percentage: percentage
+        };
+    } catch (error) {
+        console.error('Error reading global stats:', error);
+        return { totalAttempts: 0, totalSuccesses: 0, percentage: 0 };
+    }
+}
+
+// Update global success rate display
+function updateGlobalSuccessRate() {
+    const stats = getGlobalSuccessRate();
+    const successRateElement = document.getElementById('global-success-rate');
+    if (successRateElement) {
+        if (stats.totalAttempts > 0) {
+            successRateElement.textContent = 
+                `Global success rate: ${stats.percentage}% (${stats.totalSuccesses}/${stats.totalAttempts})`;
+        } else {
+            successRateElement.textContent = 'Global success rate: No attempts yet';
+        }
+    }
 }
 
 // Track poem forgotten (when user clicks forget button)

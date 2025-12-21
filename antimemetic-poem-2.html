@@ -33,6 +33,7 @@
                 <button id="submit-btn" class="submit-btn">submit</button>
                 <div id="error-message" class="error-message"></div>
                 <div id="attempts-info" class="attempts-info"></div>
+                <div id="global-success-rate" class="global-success-rate"></div>
             </div>
             <div id="publication-date-before" class="publication-date"><em>Published December 19, 2025</em></div>
             <div id="difficulty-before" class="difficulty">difficulty: β</div>
@@ -86,6 +87,8 @@
             } else {
                 attemptsInfo.textContent = 'No attempts remaining. Try again tomorrow.';
             }
+            // Update global success rate
+            updateGlobalSuccessRate();
         }
         
         // Check if attempts exceeded
@@ -253,6 +256,7 @@
         
         // Initialize
         updateAttemptsInfo();
+        updateGlobalSuccessRate();
         checkAttempts();
     </script>
 </body>
