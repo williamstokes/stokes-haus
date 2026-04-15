@@ -33,14 +33,12 @@
     <!-- About page content (always in background) -->
     <div id="about-background" class="about-page">
         <div class="about-content">
-            <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He studied international business at Vanderbilt University and has worked in high technology companies from Texas to Berlin, where he began writing poetry at the Berlin Writers' Workshop. As a staff product manager at Etsy, he thinks a lot about what it means for something to be "handmade." As a poet, he thinks a lot about what it means for something to be. He is an MFA candidate in poetry & literature at Bennington College.</p>
-            
-            <div class="sphinx-divider">
-                <hr>
-                <img src="winged-sphinx-Persian-glyph.png" alt="Winged Sphinx Persian Glyph" class="sphinx-glyph">
-                <hr>
-            </div>           
-            <div class="tractatus">
+            <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He is an MFA candidate in poetry & literature at Bennington College.</p>
+            <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
+
+            <img src="wsphoto.jpeg" alt="Will Stokes" class="about-photo">
+
+            <div class="tractatus" style="display:none">
                 <div class="tractatus-entry">
                     <span class="tractatus-number">1</span>
                     <span class="tractatus-text">The world is all that is the case.</span>
@@ -403,16 +401,6 @@
                 </div>
             </div>
 
-            <div class="sphinx-divider">
-                <hr>
-                <img src="winged-sphinx-Persian-glyph.png" alt="Winged Sphinx Persian Glyph" class="sphinx-glyph">
-                <hr>
-            </div>
-
-            <div class="tractatus-citation">
-                <p><em>Tractatus Logico-Philosophicus</em> by Ludwig Wittgenstein. Translated by D. F. Pears and B. F. McGuinness. Routledge & Kegan Paul, 1961.</p>
-            </div>
-
             <div class="site-copyright">
                 <p>© 2025 Will Stokes. All rights reserved.</p>
                 <p style="margin-top: 0.5rem; font-size: 0.75rem;"><a href="privacy-policy.html" style="color: inherit; text-decoration: none; opacity: 0.5;">privacy policy</a></p>
@@ -425,20 +413,8 @@
         <div class="name-header">Will Stokes</div>
         <nav class="menu-nav">
             <a href="#about" class="menu-link">About</a>
-            <a href="#bio" class="menu-link">Bio</a>
             <a href="#poems" class="menu-link">Poems</a>
-            <a href="antimemetic-poetics.html" class="menu-link">antimemetic poetics</a>
         </nav>
-    </div>
-
-    <!-- Bio page -->
-    <div id="bio-page" class="bio-page">
-        <div class="bio-background"></div>
-        <div class="bio-about-layer"></div>
-        <div class="bio-content">
-            <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He studied international business at Vanderbilt University and has worked in high technology companies from Texas to Berlin, where he began writing poetry at the Berlin Writers' Workshop. As a staff product manager at Etsy, he thinks a lot about what it means for something to be "handmade." As a poet, he thinks a lot about what it means for something to be. He is an MFA candidate in poetry & literature at Bennington College.</p>
-            <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
-        </div>
     </div>
 
     <!-- Poems page -->
@@ -473,7 +449,6 @@
         // Page navigation
         const menuOverlay = document.getElementById('menu-overlay');
         const aboutBackground = document.getElementById('about-background');
-        const bioPage = document.getElementById('bio-page');
         const poemsPage = document.getElementById('poems-page');
         const menuLinks = document.querySelectorAll('.menu-link');
 
@@ -482,7 +457,6 @@
             menuOverlay.classList.add('active');
             aboutBackground.classList.remove('active');
             aboutBackground.classList.remove('dimmed');
-            bioPage.classList.remove('active');
             poemsPage.classList.remove('active');
         });
 
@@ -504,7 +478,6 @@
                     menuOverlay.classList.remove('active');
                     aboutBackground.classList.add('active');
                     aboutBackground.classList.remove('dimmed');
-                    bioPage.classList.remove('active');
                     poemsPage.classList.remove('active');
                     // Track pageview
                     if (typeof gtag !== 'undefined') {
@@ -516,29 +489,11 @@
                             'page_location': window.location.href + '#about'
                         });
                     }
-                } else if (target === '#bio') {
-                    // Show Bio page (hide menu and dim about)
-                    menuOverlay.classList.remove('active');
-                    aboutBackground.classList.remove('active');
-                    aboutBackground.classList.add('dimmed');
-                    bioPage.classList.add('active');
-                    poemsPage.classList.remove('active');
-                    // Track pageview
-                    if (typeof gtag !== 'undefined') {
-                        gtag('config', 'G-MJ4TBKVZF7', {
-                            'page_path': '/bio'
-                        });
-                        gtag('event', 'page_view', {
-                            'page_title': 'Bio',
-                            'page_location': window.location.href + '#bio'
-                        });
-                    }
                 } else if (target === '#poems') {
-                    // Show Poems page (hide menu and dim about more)
+                    // Show Poems page (hide menu and dim about)
                     menuOverlay.classList.remove('active');
                     aboutBackground.classList.remove('active');
                     aboutBackground.classList.add('dimmed');
-                    bioPage.classList.remove('active');
                     poemsPage.classList.add('active');
                     // Track pageview
                     if (typeof gtag !== 'undefined') {
@@ -568,7 +523,6 @@
             menuOverlay.classList.add('active');
             aboutBackground.classList.remove('active');
             aboutBackground.classList.remove('dimmed');
-            bioPage.classList.remove('active');
             poemsPage.classList.remove('active');
             // Track return to home
             if (typeof gtag !== 'undefined') {
@@ -591,16 +545,6 @@
                 this.classList.remove('dimmed');
                 }
             });
-
-        // Click anywhere on bio page to return home
-        bioPage.addEventListener('click', function() {
-            if (this.classList.contains('active')) {
-                menuOverlay.classList.add('active');
-                aboutBackground.classList.remove('active');
-                aboutBackground.classList.remove('dimmed');
-                this.classList.remove('active');
-            }
-        });
 
         // Click anywhere on poems page to return home  
         poemsPage.addEventListener('click', function() {
