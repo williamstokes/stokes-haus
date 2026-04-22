@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /antimemetic-poetics.html
+Disallow: /antimemetic-poem-1.html
+Disallow: /antimemetic-poem-2.html
+Disallow: /antimemetic-poem-3.html
 
 Sitemap: https://willstokes.com/sitemap.xml
 
