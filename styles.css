@@ -77,73 +77,9 @@ body {
     font-size: 1.5rem;
 }
 
-/* Sphinx divider with horizontal rules */
-.sphinx-divider {
-    display: flex;
-    align-items: center;
-    margin: 2rem 0;
-    gap: 1.5rem;
-}
-
-.sphinx-divider hr {
-    flex: 1;
-    border: none;
-    border-top: 1px solid #2a2a2a;
-    opacity: 0.3;
-}
-
-.sphinx-glyph {
-    width: 30px;
-    height: auto;
-    opacity: 0.9;
-    flex-shrink: 0;
-}
-
 /* Literature-style indents for some paragraphs */
 .about-content p.indent {
     text-indent: 2em;
-}
-
-/* Tractatus formatting */
-.tractatus {
-    margin-top: 2rem;
-}
-
-.tractatus-entry {
-    display: flex;
-    margin-bottom: 1rem;
-    align-items: baseline;
-}
-
-.tractatus-number {
-    flex-shrink: 0;
-    width: 5rem;
-    font-family: 'Averia Sans Libre', sans-serif;
-    font-size: 1.25rem;
-    text-align: left;
-    position: relative;
-    top: 0.05em;
-}
-
-.tractatus-text {
-    flex: 1;
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1.25rem;
-    line-height: 1.4;
-}
-
-.tractatus-citation {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #2a2a2a;
-    opacity: 0.6;
-}
-
-.tractatus-citation p {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin: 0;
 }
 
 .site-copyright {
@@ -183,6 +119,19 @@ body {
     opacity: 0.7;
 }
 
+.email-link {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.5rem;
+    color: #2a2a2a;
+    text-decoration: none;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.email-link:hover {
+    opacity: 0.7;
+}
+
 .about-photo {
     display: block;
     width: 100%;
@@ -205,27 +154,6 @@ body {
 .menu.active {
     display: block;
     pointer-events: auto;
-}
-
-.menu-glyph {
-    position: absolute;
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 150;
-}
-
-.menu-glyph path {
-    fill: #2a2a2a;
-}
-
-.menu-glyph.top-left {
-    top: 2rem;
-    left: 2rem;
-}
-
-.menu-glyph.bottom-right {
-    bottom: 2rem;
-    right: 2rem;
 }
 
 /* Name header - top left */
@@ -434,17 +362,8 @@ body {
         text-align: right;
     }
 
-    .menu-glyph.top-left {
-        top: 2rem;
-        left: 2rem;
-    }
-
-    .menu-glyph.bottom-right {
-        bottom: 2rem;
-        right: 2rem;
-    }
-
-    .instagram-link {
+    .instagram-link,
+    .email-link {
         font-size: 1.2rem;
         color: #2a2a2a;
     }
@@ -522,17 +441,8 @@ body {
         text-align: right;
     }
 
-    .menu-glyph.top-left {
-        top: 2.5rem;
-        left: 1.5rem;
-    }
-
-    .menu-glyph.bottom-right {
-        bottom: 2.5rem;
-        right: 1.5rem;
-    }
-
-    .instagram-link {
+    .instagram-link,
+    .email-link {
         font-size: 1.2rem;
         color: #2a2a2a;
     }

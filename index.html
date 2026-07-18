@@ -10,6 +10,9 @@
     <meta property="og:description" content="Poet based in Brooklyn">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://willstokes.com">
+    <meta property="og:image" content="https://willstokes.com/wsphoto.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://willstokes.com/wsphoto.jpeg">
     <link rel="canonical" href="https://willstokes.com">
     <title>Will Stokes — Poet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +38,7 @@
         <div class="about-content">
             <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He is an MFA candidate in poetry & literature at Bennington College.</p>
             <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
+            <a href="mailto:wstokes92@gmail.com" class="email-link">wstokes92@gmail.com</a>
 
             <img src="wsphoto.jpeg" alt="Will Stokes" class="about-photo">
 
@@ -65,7 +69,6 @@
                 <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Middle Kingdom</a><sup>3</sup></li>
                 <li><a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer">Despite All The Conjuring, My Ancestors Refuse To Haunt Me</a><sup>4</sup></li>
                 <li><a href="Olneyscan.pdf" target="_blank" rel="noopener noreferrer">Susan (The Prairie School)</a><sup>5</sup></li>
-                <!-- antimemetic poetics unpublished: <li><a href="antimemetic-poetics.html">antimemetic poetics</a></li> -->
             </ul>
             <div class="footnotes">
                 <div class="footnote">1. Annulet, 2026</div>
@@ -178,7 +181,8 @@
         });
 
         // Click anywhere on about page to return home
-        aboutBackground.addEventListener('click', function() {
+        aboutBackground.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
             if (this.classList.contains('active')) {
                 menuOverlay.classList.add('active');
                 this.classList.remove('active');
@@ -186,8 +190,9 @@
                 }
             });
 
-        // Click anywhere on poems page to return home  
-        poemsPage.addEventListener('click', function() {
+        // Click anywhere on poems page to return home
+        poemsPage.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
             if (this.classList.contains('active')) {
                 menuOverlay.classList.add('active');
                 aboutBackground.classList.remove('active');
