@@ -8,7 +8,6 @@
 html, body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -16,13 +15,22 @@ body {
     background-color: #0a0a0a;
     color: #2a2a2a;
     line-height: 1.6;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Portrait container with black sides */
+a {
+    color: #2a2a2a;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* Cream portrait panel on black */
 .content-container {
     position: relative;
     width: 60vw;
@@ -30,288 +38,118 @@ body {
     height: 95vh;
     background-color: #f5f4ed;
     border: 1px solid #2a2a2a;
-    overflow: hidden;
-}
-
-/* About page (always in background) */
-.about-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 2rem 2rem 6rem 2rem;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 1;
     overflow-y: auto;
-    transition: opacity 0.3s ease;
 }
 
-.about-page.active {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 3;
-    cursor: pointer;
+.page-content {
+    padding: 2.5rem 2rem 2rem;
 }
 
-/* Dim about page further when viewing poems */
-.about-page.dimmed {
-    opacity: 0.1;
-}
-
-.about-content {
-    max-width: 100%;
-    font-size: 1.25rem;
-    line-height: 1.4;
-    padding-bottom: 4rem;
-    padding-top: calc(1.25rem * 1.4 * 5);
-}
-
-.about-content p {
-    margin-bottom: 1.5rem;
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1.5rem;
-}
-
-/* Literature-style indents for some paragraphs */
-.about-content p.indent {
-    text-indent: 2em;
-}
-
-.site-copyright {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    opacity: 0.6;
-}
-
-.site-copyright p {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin: 0;
-}
-
-/* Special spacing for centered sections */
-.about-content p.centered-spacing {
-    text-align: left;
-    position: relative;
-}
-
-.about-content p.centered-spacing .spacing {
-    display: inline-block;
-    width: 8em;
-}
-
-
-.instagram-link {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1.5rem;
-    color: #2a2a2a;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.instagram-link:hover {
-    opacity: 0.7;
-}
-
-.email-link {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1.5rem;
-    color: #2a2a2a;
-    text-decoration: none;
-    display: block;
-    margin-top: 0.5rem;
-}
-
-.email-link:hover {
-    opacity: 0.7;
-}
-
-.about-photo {
-    display: block;
-    width: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 0;
-}
-
-/* Menu overlay (home page) */
-.menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    display: none;
-    pointer-events: none;
-}
-
-.menu.active {
-    display: block;
-    pointer-events: auto;
-}
-
-/* Name header - top left */
+/* Name */
 .name-header {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    right: auto;
-    font-size: 3.5rem;
-    font-weight: normal;
     font-family: 'Averia Sans Libre', sans-serif;
-    color: #2a2a2a;
-    z-index: 10;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    line-height: 1.2;
-    text-align: left;
-}
-
-.name-header:hover {
-    opacity: 0.7;
-}
-
-/* Menu navigation - bottom right */
-.menu-nav {
-    position: absolute;
-    left: auto;
-    right: 2rem;
-    top: auto;
-    bottom: calc(2rem - 0.2rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    z-index: 10;
-    align-items: flex-end;
-}
-
-.menu-link {
     font-size: 3.5rem;
-    font-family: 'Crimson Pro', Georgia, serif;
-    color: #2a2a2a;
-    text-decoration: none;
     font-weight: normal;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
     line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+/* About */
+.about-section p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.contact-links a {
     display: block;
-    text-align: right;
+    font-size: 1.5rem;
 }
 
-.menu-link:hover {
-    opacity: 0.7;
+.contact-links .email-link {
+    margin-top: 0.25rem;
 }
 
-/* Poems page */
-.poems-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    padding: 4rem 2rem;
-    overflow-y: auto;
-    z-index: 3;
-    cursor: pointer;
+/* Writing */
+.writing-section {
+    margin-top: 3.5rem;
 }
 
-.poems-page.active {
-    display: block;
-}
-
-.poems-content {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 100%;
-    padding-bottom: 10rem;
+.section-heading {
+    font-family: 'Averia Sans Libre', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
 }
 
 .poems-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .poems-list li {
-    font-size: 2.5rem;
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-weight: normal;
-    line-height: 0.95;
-    margin-bottom: 1.5rem;
-}
-
-.poems-list li a {
-    color: #2a2a2a;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-
-.poems-list li a:hover {
-    opacity: 0.7;
+    font-size: 2rem;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
 }
 
 .poems-list sup {
-    font-size: 1.25rem;
+    font-size: 1rem;
     vertical-align: super;
 }
 
-/* Footnotes - bottom right */
 .footnotes {
-    position: absolute;
-    bottom: 3rem;
-    right: 4rem;
-    text-align: right;
-    font-size: 1.25rem;
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-weight: normal;
+    margin-top: 2rem;
+    font-size: 1.1rem;
     line-height: 1.4;
-    max-width: 350px;
 }
 
 .footnote {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
-/* Responsive design */
+/* Photo */
+.about-photo {
+    display: block;
+    width: 60%;
+    max-width: 320px;
+    margin-top: 2rem;
+}
+
+/* Footer */
+.site-copyright {
+    margin-top: 2rem;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.site-copyright .privacy-line {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* Privacy policy page */
+.page-content h2 {
+    font-family: 'Averia Sans Libre', sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.page-content > p,
+.page-content section > p {
+    margin-bottom: 1rem;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
     .content-container {
         width: 95vw;
         height: 90vh;
-    }
-
-    .about-content {
-        max-width: 90%;
-    }
-
-    .name-header {
-        right: 2rem;
-        top: 2rem;
-        font-size: 1.25rem;
-    }
-
-    .menu-nav {
-        left: 2rem;
-    }
-
-    .menu-link {
-        font-size: 2rem;
-    }
-
-    .poems-page {
-        padding: 3rem 2rem;
-    }
-
-    .footnotes {
-        right: 2rem;
-        bottom: 2rem;
     }
 }
 
@@ -323,140 +161,28 @@ body {
         border: none;
     }
 
-    .about-page {
-        padding: 2rem 2rem 6rem 2rem;
-    }
-
-    .about-content {
-        max-width: 100%;
-        font-size: 1rem;
-        padding-top: calc(1rem * 1.4 * 5);
-    }
-
-    .about-content p {
-        font-size: 1.2rem;
-        line-height: 1.4;
+    .page-content {
+        padding: 2rem 1.5rem;
     }
 
     .name-header {
-        left: 2rem;
-        right: auto;
-        top: 2rem;
-        font-size: 3.5rem;
-        line-height: 1.2;
-        text-align: left;
+        font-size: 2.75rem;
     }
 
-    .menu-nav {
-        left: auto;
-        right: 2rem;
-        top: auto;
-        bottom: calc(2rem - 0.2rem);
-        transform: none;
-        align-items: flex-end;
-    }
-
-    .menu-link {
-        font-size: 3.5rem;
-        line-height: 1.2;
-        text-align: right;
-    }
-
-    .instagram-link,
-    .email-link {
+    .about-section p,
+    .contact-links a {
         font-size: 1.2rem;
-        color: #2a2a2a;
-    }
-
-    .poems-page {
-        padding: 3rem 2rem;
     }
 
     .poems-list li {
-        font-size: 2.5rem;
-        line-height: 0.95;
+        font-size: 1.6rem;
     }
-    
+
     .poems-list sup {
-        font-size: 1.25rem;
+        font-size: 0.85rem;
     }
 
     .footnotes {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 3rem;
-        max-width: 100%;
-        text-align: left;
         font-size: 1rem;
-        line-height: 1.4;
-    }
-
-    .poems-content {
-        padding-bottom: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-page {
-        padding: 1.5rem 1.5rem 6rem 1.5rem;
-    }
-
-    .about-content {
-        max-width: 100%;
-        font-size: 1rem;
-        padding-top: calc(1rem * 1.4 * 5);
-    }
-
-    .about-content p {
-        font-size: 1.2rem;
-        line-height: 1.4;
-    }
-    
-    .about-content p.centered-spacing .spacing {
-        width: 4em;
-    }
-
-    .name-header {
-        left: 1.5rem;
-        right: auto;
-        top: 2.5rem;
-        font-size: 3.5rem;
-        line-height: 1.2;
-        text-align: left;
-    }
-
-    .menu-nav {
-        left: auto;
-        right: 1.5rem;
-        top: auto;
-        bottom: calc(2.5rem - 0.2rem);
-        transform: none;
-        align-items: flex-end;
-    }
-
-    .menu-link {
-        font-size: 3.5rem;
-        line-height: 1.2;
-        text-align: right;
-    }
-
-    .instagram-link,
-    .email-link {
-        font-size: 1.2rem;
-        color: #2a2a2a;
-    }
-
-    .poems-page {
-        padding: 3rem 1.5rem;
-    }
-
-    .poems-list li {
-        font-size: 2.5rem;
-        line-height: 0.95;
-    }
-    
-    .poems-list sup {
-        font-size: 1.25rem;
     }
 }

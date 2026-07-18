@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300;400;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ4TBKVZF7"></script>
     <script>
@@ -33,190 +33,58 @@
 </head>
 <body>
     <div class="content-container">
-    <!-- About page content (always in background) -->
-    <div id="about-background" class="about-page">
-        <div class="about-content">
-            <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He is an MFA candidate in poetry & literature at Bennington College.</p>
-            <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
-            <a href="mailto:wstokes92@gmail.com" class="email-link">wstokes92@gmail.com</a>
+        <div class="page-content">
+            <h1 class="name-header">Will Stokes</h1>
 
-            <img src="wsphoto.jpeg" alt="Will Stokes" class="about-photo">
+            <section class="about-section">
+                <p>Will Stokes lives in New York and grew up in Birmingham, Alabama. He is an MFA candidate in poetry &amp; literature at Bennington College.</p>
+                <p class="contact-links">
+                    <a href="https://instagram.com/willstks" target="_blank" rel="noopener noreferrer" class="instagram-link">@willstks</a>
+                    <a href="mailto:wstokes92@gmail.com" class="email-link">wstokes92@gmail.com</a>
+                </p>
+                <img src="wsphoto.jpeg" alt="Will Stokes" class="about-photo">
+            </section>
 
+            <section class="writing-section">
+                <h2 class="section-heading">Writing</h2>
+                <ul class="poems-list">
+                    <li><a href="https://annuletpoeticsjournal.com/Will-Stokes-The-Fugue-Poem-On-C-D-Wright-and-Paul-Celan" target="_blank" rel="noopener noreferrer">The Fugue Poem: On C.D. Wright and Paul Celan</a><sup>1</sup></li>
+                    <li><a href="https://volumepoetry.com/Ten-Miles-Will-Stokes" target="_blank" rel="noopener noreferrer">Ten Miles Upriver from the Browns Ferry Nuclear Facility</a><sup>2</sup></li>
+                    <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Koyaanisqatsi (or, Life out of Balance)</a><sup>3</sup></li>
+                    <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Middle Kingdom</a><sup>3</sup></li>
+                    <li><a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer">Despite All The Conjuring, My Ancestors Refuse To Haunt Me</a><sup>4</sup></li>
+                    <li><a href="Olneyscan.pdf" target="_blank" rel="noopener noreferrer">Susan (The Prairie School)</a><sup>5</sup></li>
+                </ul>
+                <div class="footnotes">
+                    <div class="footnote">1. Annulet, 2026</div>
+                    <div class="footnote">2. Volume Poetry</div>
+                    <div class="footnote">3. &amp; Change, Issue No. 5 (2024)</div>
+                    <div class="footnote">4. Frozen Sea, 2024</div>
+                    <div class="footnote">5. Olney Magazine, 2023</div>
+                </div>
+            </section>
 
-            <div class="site-copyright">
-                <p>© 2025 Will Stokes. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.75rem;"><a href="privacy-policy.html" style="color: inherit; text-decoration: none; opacity: 0.5;">privacy policy</a></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Menu overlay (home page) -->
-    <div id="menu-overlay" class="menu active">
-        <div class="name-header">Will Stokes</div>
-        <nav class="menu-nav">
-            <a href="#about" class="menu-link">About</a>
-            <a href="#poems" class="menu-link">Writing</a>
-        </nav>
-    </div>
-
-    <!-- Poems page -->
-    <div id="poems-page" class="poems-page">
-        <div class="poems-content">
-            <ul class="poems-list">
-                <li><a href="https://annuletpoeticsjournal.com/Will-Stokes-The-Fugue-Poem-On-C-D-Wright-and-Paul-Celan" target="_blank" rel="noopener noreferrer">The Fugue Poem: On C.D. Wright and Paul Celan</a><sup>1</sup></li>
-                <li><a href="https://volumepoetry.com/Ten-Miles-Will-Stokes" target="_blank" rel="noopener noreferrer">Ten Miles Upriver from the Browns Ferry Nuclear Facility</a><sup>2</sup></li>
-                <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Koyaanisqatsi (or, Life out of Balance)</a><sup>3</sup></li>
-                <li><a href="and-change-will-stokes-sample.pdf" target="_blank" rel="noopener noreferrer">Middle Kingdom</a><sup>3</sup></li>
-                <li><a href="https://frozensea.org/will-stokes" target="_blank" rel="noopener noreferrer">Despite All The Conjuring, My Ancestors Refuse To Haunt Me</a><sup>4</sup></li>
-                <li><a href="Olneyscan.pdf" target="_blank" rel="noopener noreferrer">Susan (The Prairie School)</a><sup>5</sup></li>
-            </ul>
-            <div class="footnotes">
-                <div class="footnote">1. Annulet, 2026</div>
-                <div class="footnote">2. Volume Poetry</div>
-                <div class="footnote">3. & Change, Issue No. 5 (2024)</div>
-                <div class="footnote">4. Frozen Sea, 2024</div>
-                <div class="footnote">5. Olney Magazine, 2023</div>
-            </div>
+            <footer class="site-copyright">
+                <p>© 2026 Will Stokes. All rights reserved.</p>
+                <p class="privacy-line"><a href="privacy-policy.html">privacy policy</a></p>
+            </footer>
         </div>
     </div>
 
     <script>
-        // Track initial page load
-        if (typeof gtag !== 'undefined') {
-            gtag('config', 'G-MJ4TBKVZF7', {
-                'page_path': '/',
-                'page_title': 'Home'
-            });
-        }
-
-        // Page navigation
-        const menuOverlay = document.getElementById('menu-overlay');
-        const aboutBackground = document.getElementById('about-background');
-        const poemsPage = document.getElementById('poems-page');
-        const menuLinks = document.querySelectorAll('.menu-link');
-
-        // Ensure initial state - only menu visible on load
-        window.addEventListener('DOMContentLoaded', function() {
-            menuOverlay.classList.add('active');
-            aboutBackground.classList.remove('active');
-            aboutBackground.classList.remove('dimmed');
-            poemsPage.classList.remove('active');
-        });
-
-        // Handle menu clicks
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const target = this.getAttribute('href');
-                
-                // If it's not a hash link (external link), allow normal navigation
-                if (!target.startsWith('#')) {
-                    return; // Allow default navigation
-                }
-                
-                e.preventDefault();
-                const pageName = target.substring(1) || 'home';
-                
-                if (target === '#about') {
-                    // Show About page (hide menu, keep about visible, remove dimming)
-                    menuOverlay.classList.remove('active');
-                    aboutBackground.classList.add('active');
-                    aboutBackground.classList.remove('dimmed');
-                    poemsPage.classList.remove('active');
-                    // Track pageview
-                    if (typeof gtag !== 'undefined') {
-                        gtag('config', 'G-MJ4TBKVZF7', {
-                            'page_path': '/about'
-                        });
-                        gtag('event', 'page_view', {
-                            'page_title': 'About',
-                            'page_location': window.location.href + '#about'
-                        });
-                    }
-                } else if (target === '#poems') {
-                    // Show Poems page (hide menu and dim about)
-                    menuOverlay.classList.remove('active');
-                    aboutBackground.classList.remove('active');
-                    aboutBackground.classList.add('dimmed');
-                    poemsPage.classList.add('active');
-                    // Track pageview
-                    if (typeof gtag !== 'undefined') {
-                        gtag('config', 'G-MJ4TBKVZF7', {
-                            'page_path': '/poems'
-                        });
-                        gtag('event', 'page_view', {
-                            'page_title': 'Writing',
-                            'page_location': window.location.href + '#poems'
-                        });
-                    }
-                }
-                
-                // Track navigation click event
+        // Track external link clicks (poems, Instagram, email)
+        document.querySelectorAll('a[href^="http"], a[href$=".pdf"], a[href^="mailto"]').forEach(link => {
+            link.addEventListener('click', function() {
                 if (typeof gtag !== 'undefined') {
-                    gtag('event', 'navigation_click', {
-                        'event_category': 'Navigation',
-                        'event_label': pageName,
-                        'link_url': target
-                    });
-                }
-            });
-        });
-
-        // Click on name to return to home
-        document.querySelector('.name-header').addEventListener('click', function() {
-            menuOverlay.classList.add('active');
-            aboutBackground.classList.remove('active');
-            aboutBackground.classList.remove('dimmed');
-            poemsPage.classList.remove('active');
-            // Track return to home
-            if (typeof gtag !== 'undefined') {
-                gtag('config', 'G-MJ4TBKVZF7', {
-                    'page_path': '/'
-                });
-                gtag('event', 'navigation_click', {
-                    'event_category': 'Navigation',
-                    'event_label': 'home',
-                    'link_url': '/'
-                });
-            }
-        });
-
-        // Click anywhere on about page to return home
-        aboutBackground.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            if (this.classList.contains('active')) {
-                menuOverlay.classList.add('active');
-                this.classList.remove('active');
-                this.classList.remove('dimmed');
-                }
-            });
-
-        // Click anywhere on poems page to return home
-        poemsPage.addEventListener('click', function(e) {
-            if (e.target.closest('a')) return;
-            if (this.classList.contains('active')) {
-                menuOverlay.classList.add('active');
-                aboutBackground.classList.remove('active');
-                aboutBackground.classList.remove('dimmed');
-                this.classList.remove('active');
-            }
-        });
-
-        // Track external link clicks (poems, Instagram, etc.)
-        document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (typeof gtag !== 'undefined') {
-                    const linkText = this.textContent.trim();
-                    const linkUrl = this.getAttribute('href');
                     gtag('event', 'outbound_click', {
                         'event_category': 'External Links',
-                        'event_label': linkText,
-                        'link_url': linkUrl,
+                        'event_label': this.textContent.trim(),
+                        'link_url': this.getAttribute('href'),
                         'transport_type': 'beacon'
                     });
                 }
             });
         });
     </script>
-    </div>
 </body>
 </html>
