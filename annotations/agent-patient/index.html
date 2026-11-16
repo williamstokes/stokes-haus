@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Agency in three machine poems</title>
+<style>
+:root{--bg:#0f1012;--panel:#15171a;--line:#26292d;--fg:#d9d6cf;--dim:#8d8a83;--faint:#5a5853;
+--a:#f0b35a;--v:#7cc4f5;--p:#ec8fae}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",system-ui,sans-serif}
+main{max-width:1320px;margin:0 auto;padding:36px 28px 90px}
+h1{font-weight:500;font-size:25px;margin:0 0 6px;letter-spacing:.01em}
+h2{font-weight:500;font-size:19px;margin:0}
+h3{font-weight:500;font-size:13px;margin:22px 0 8px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+p{margin:.4em 0}
+a{color:#9cc7ef}
+.lede{color:var(--dim);max-width:900px}
+nav{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0 6px;font-size:13px}
+nav a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
+nav a:hover{color:var(--fg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--dim);margin:8px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend i.bar{border-radius:2px;width:14px;height:3px;vertical-align:3px}
+.legend b{font-weight:500;color:var(--fg);margin-right:4px}
+section.poem{border-top:1px solid var(--line);margin-top:42px;padding-top:26px}
+.poem-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.poem-head .au{color:var(--dim)}
+.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;margin-top:14px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+svg.graph{width:100%;height:auto;display:block;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+.hint{font-size:12px;color:var(--faint);margin-top:6px}
+.text{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;font-size:16.5px;line-height:1.72;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px 14px 6px}
+.ln{display:grid;grid-template-columns:2.6em 1fr}
+.ln .no{color:var(--faint);font:10.5px ui-monospace,Menlo,monospace;text-align:right;padding:.55em .9em 0 0}
+.tok{border-radius:3px;padding:0 1px;margin:0 -1px}
+.tok.isv{cursor:pointer;text-decoration:underline dotted #555;text-underline-offset:4px}
+.tok.isp{cursor:pointer}
+.tok.rp{background:rgba(236,143,174,.30);color:#ffd2e0}
+.tok.ra{background:rgba(240,179,90,.32);color:#ffe0b0}
+.tok.rv{background:rgba(124,196,245,.34);color:#d2ecff}
+.showall .tok[data-r="p"]{color:#f2a9c1}
+.showall .tok[data-r="a"]{color:#f5c27a}
+.showall .tok[data-r="v"]{color:#9fd3f8}
+.textbar{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:var(--dim);margin:0 0 8px}
+.textbar label{cursor:pointer;user-select:none}
+.caption{min-height:2.6em;font-size:12.5px;color:var(--dim);margin-top:8px;font-family:-apple-system,system-ui,sans-serif;line-height:1.45}
+.k-a{color:var(--a)}.k-v{color:var(--v)}.k-p{color:var(--p)}
+.detail{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;min-height:52px}
+.detail .ttl{font-size:13px;color:var(--fg);margin-bottom:6px}
+.detail .empty{color:var(--faint);font-size:12.5px}
+.rel{display:grid;grid-template-columns:3.2em 1fr;gap:4px 10px;padding:8px 0;border-top:1px solid var(--line)}
+.rel:first-of-type{border-top:0}
+.rel .lno{font:11px ui-monospace,Menlo,monospace;color:var(--dim);padding-top:3px}
+.rel .sum{font-size:13px}
+.rel .q{grid-column:2;font-family:"Iowan Old Style",Georgia,serif;font-size:15px;color:#bdb9b0}
+.rel .meta{grid-column:2;font-size:11.5px;color:var(--dim)}
+.badge{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:9px;border:1px solid #444;color:#bbb;margin-right:4px;white-space:nowrap}
+.badge.corrected{border-color:#b46a4f;color:#f0a07a}
+.badge.added{border-color:#5d8f4b;color:#a8c97f}
+.badge.pronoun{border-color:#7b67a3;color:#c9b4f0}
+.badge.rejected{border-color:#666;color:#888}
+.badge.neg{border-color:#555;color:#d0d0d0}
+.ent{font-size:11px;color:var(--dim)}
+.cols{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px}
+@media (max-width:980px){.cols{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.pron td{font-size:12px}
+.pron code{font:11.5px ui-monospace,Menlo,monospace;color:#c9b4f0}
+#relations .tools{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:10px 0 10px;font-size:12.5px;color:var(--dim)}
+select,input[type=search]{background:#1b1d21;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:4px 7px;font:inherit}
+#reltable{font-size:12px}
+#reltable thead th{position:sticky;top:0;background:var(--bg);z-index:1}
+#reltable td.q{font-family:"Iowan Old Style",Georgia,serif;font-size:13.5px;min-width:16em;color:#c4c0b7}
+#reltable tr{cursor:pointer}
+#reltable tr:hover td{background:#16181b}
+#reltable tr.rej td{color:#666;text-decoration:line-through}
+#reltable tr.rej td.fl{text-decoration:none}
+#reltable td.fl{max-width:22em;color:#bbb}
+#reltable td.pr{color:var(--faint);max-width:16em}
+.tbl-wrap{max-height:760px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+.edge .vis{transition:stroke-opacity .1s}
+.edge:hover .vis,.edge.sel .vis{stroke-opacity:1}
+.edge:hover text,.edge.sel text{fill:#eee}
+.node{cursor:pointer}
+.node:hover circle{stroke:#fff}
+.node.sel circle{stroke:#fff;stroke-width:2}
+svg text{font-family:-apple-system,system-ui,sans-serif}
+.k-d{color:#a9cdb8;font-style:italic;font-family:"Iowan Old Style",Georgia,serif}
+.tok.isd{cursor:pointer;text-decoration:underline dotted rgba(169,205,184,.55);text-underline-offset:4px}
+.tok.rd{background:rgba(169,205,184,.22);color:#d6efe0}
+.tok.rt{outline:1px dashed rgba(169,205,184,.9);outline-offset:1px}
+.tok.ro{outline:1px dotted rgba(169,205,184,.45);outline-offset:1px}
+.showall .tok[data-r="d"]{color:#b9dcc7}
+.badge.desc{border-color:#5f8572;color:#a9cdb8}
+svg text.dlabel{font-family:"Iowan Old Style",Georgia,serif;font-style:italic}
+.desc:hover .dmark,.desc.sel .dmark{fill:#a9cdb8}
+.desc.sel text.dlabel,.desc:hover text.dlabel{fill:#e4f4ea}
+.graph.nodesc .desc{display:none!important}
+.graph.nobond .bond{display:none!important}
+.bond:hover path,.bond.sel path{stroke-width:2.6}
+.desc .dside{stroke-opacity:.16}
+.desc .dtag{display:none}
+.desc:hover .dside,.desc.sel .dside{stroke-opacity:.8}
+.desc:hover .dtag,.desc.sel .dtag{display:inline}
+#desctable td.q{font-family:"Iowan Old Style",Georgia,serif;font-size:13.5px;min-width:18em;color:#c4c0b7}
+#desctable tr{cursor:pointer}
+#desctable tr:hover td{background:#16181b}
+.timeline{margin:0 0 8px}
+.tl-row{display:flex;align-items:center;gap:10px}
+.tl-sub{margin-top:4px;min-height:1.5em;font-size:12px;color:var(--dim)}
+.tl-status{white-space:nowrap;font-variant-numeric:tabular-nums}
+.tl-line{font-family:"Iowan Old Style",Georgia,serif;font-size:14.5px;color:#d2ccc0;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+button.play{width:34px;height:28px;flex:none;border-radius:5px;background:#1b1d21;color:var(--fg);border:1px solid #33363b;cursor:pointer;font-size:12px}
+button.play:hover{border-color:#5a5d62}
+.timeline input[type=range]{flex:1;accent-color:#9cc7ef;cursor:pointer}
+.ln{transition:opacity .25s}
+.ln.future{opacity:.25}
+.ln.cur{background:rgba(124,196,245,.09);border-radius:3px}
+.ln .no{cursor:pointer}
+.ln .no:hover{color:#9cc7ef}
+@keyframes fresh{0%{opacity:0}35%{opacity:1;filter:drop-shadow(0 0 5px rgba(255,255,255,.85))}100%{opacity:1;filter:none}}
+.fresh{animation:fresh 1.2s ease-out}
+.method li{margin:.3em 0;color:#bdb9b0}
+.method{max-width:980px}
+</style>
+</head>
+<body>
+<main>
+<h1>Grammatical agency in three machine poems</h1>
+<p class="lede">Who or what acts, what is acted on, and how, in Jorie Graham's “The Way Things Work”, Eugenio Montale's
+“[I would have liked to feel rough, elemental…]” and Rilke's <i>Sonnets to Orpheus</i> II.10 (English translations).
+Clauses come from a dependency parse (<span id="modelname"></span>), checked and corrected by hand.</p>
+<nav id="nav"></nav>
+<div class="legend" id="typelegend"></div>
+<div class="legend" id="rolelegend"><b>In the poem texts:</b>
+<span><span class="k-a">■</span> agent / subject</span><span><span class="k-v">■</span> verb</span><span><span class="k-p">■</span> patient / object / complement</span></div>
+<div id="poems"></div>
+
+<section class="poem" id="balance">
+<div class="poem-head"><h2>Agent / patient balance</h2></div>
+<p class="lede">For each entity type and poem: how many times it is the agent of an action (right) and how many times it is acted on (left).
+Hatching marks negated clauses (“we <i>cannot</i> escape it”). Copular clauses (“existence … is a miracle”) are left out; reflexives count on both sides.</p>
+<div id="balancechart"></div>
+</section>
+
+<section class="poem" id="relations">
+<div class="poem-head"><h2>Every extracted relation</h2></div>
+<div class="tools">
+<label>Poem <select id="fpoem"><option value="">all</option></select></label>
+<label><input type="checkbox" id="fman"> only manual corrections / additions / pronoun links</label>
+<label><input type="checkbox" id="frej" checked> show rejected parser clauses</label>
+<input type="search" id="fq" placeholder="filter text…">
+<span id="fcount"></span>
+</div>
+<div class="tbl-wrap"><table id="reltable"><thead><tr>
+<th>#</th><th>Poem</th><th>Line</th><th>Quotation</th><th>Agent</th><th>Verb · kind</th><th>Patient / complement</th><th>Construction</th><th>Manual?</th><th>Parser's reading</th>
+</tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="poem" id="descriptions">
+<div class="poem-head"><h2>Descriptions, appositions and metaphors</h2></div>
+<p class="lede">Phrases with no clause of their own that characterise a participant: appositives (“a timeless shard, witness / to a cold, persistent will”), similes, catalogues, attributes. In the graphs they are the ◇ markers. Alternative attachments are kept where the grammar allows more than one.</p>
+<div class="tbl-wrap"><table id="desctable"><thead><tr>
+<th>Poem</th><th>Line</th><th>Quotation</th><th>Kind</th><th>Describes</th><th>Alternatives / comparison</th><th>Note</th>
+</tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="poem method" id="method">
+<div class="poem-head"><h2>Method</h2></div>
+<ul>
+<li>Each poem is parsed as one text with spaCy; line numbers are kept per token. Every verb, and every <i>be</i> that is not an auxiliary, becomes a relation.</li>
+<li><b>Agent</b> = grammatical subject of an active verb (actor or experiencer), or the <i>by</i>-phrase of a passive. <b>Patient</b> = direct object, passive subject, or prepositional object of <i>believe in, yearn for, gnaw at, open upon</i>. Other prepositional phrases are listed as obliques. Clausal objects (“thinks <i>it is life</i>”) are recorded as clauses, and the embedded clause becomes a relation of its own.</li>
+<li>Rules supply implicit subjects: infinitives take the subject of the governing verb (“dares <i>to exist</i>”); <i>-ing</i> participles take the noun they modify as agent (“blue <i>moving</i>”) and <i>-ed</i> participles take it as patient (“<i>deified</i> temple”); coordinated verbs share a subject; relative pronouns resolve to their antecedent; gapped relatives supply objects (“the pebbles you tumble about”). “self-guided, self-oiled” count as reflexive passives, and imperatives take the addressee as agent.</li>
+<li>Pronoun links that need interpretation, participant assignments, verb kinds and all corrections are tables in <code>build_agency.py</code> (<code>PRONOUNS</code>, <code>LEXICON</code>, <code>ENTITIES</code>, <code>VERB_KIND_OF</code>, <code>CORRECTIONS</code>, <code>ADDITIONS</code>, <code>AMBIGUITIES</code>). Edit and re-run to rebuild this page. Anything drawn from the hand tables carries a badge: <span class="badge pronoun">pronoun by hand</span><span class="badge corrected">corrected</span><span class="badge added">added</span><span class="badge rejected">rejected</span>.</li>
+<li>Descriptions (<code>DESCRIPTIONS</code>) record phrases that characterise a participant without being clauses: appositives, similes, metaphors, catalogues and attributes. Each links to what it describes, plus alternative attachments where the grammar allows them. They are not counted as agency. An agent noun such as “witness” is also entered as an action (<code>ADDITIONS</code>).</li>
+<li>Graph: nodes are entities (colour = type, size = participation). Arrows run from agent to patient, coloured by verb kind and thickened by frequency. Self-loops are reflexives. Short outward arrows are actions with no patient, and dashed arrows are copulas (<i>X is Y</i>). Click an arrow or node to see its lines.</li>
+</ul>
+</section>
+<pre id="selftest" style="display:none"></pre>
+</main>
+<script>const DATA = {"model": "en_core_web_trf", "spacy": "3.8.18", "types": {"speaker": {"label": "the speaker (I)", "color": "#f2d58a"}, "humans": {"label": "we / humans", "color": "#f0a07a"}, "machine": {"label": "the machine / mechanism", "color": "#8ab4f8"}, "tools": {"label": "tools & objects", "color": "#6fd3c0"}, "nature": {"label": "nature & matter", "color": "#a8c97f"}, "addressee": {"label": "the addressee (you)", "color": "#d4a5e8"}, "abstraction": {"label": "abstractions", "color": "#c4b8a2"}, "unstated": {"label": "unstated / indefinite", "color": "#6e6e6e"}}, "kinds": {"perceiving": {"label": "perceiving", "color": "#6fa8dc"}, "believing": {"label": "believing / thinking", "color": "#e6c36a"}, "desiring": {"label": "desiring / choosing", "color": "#e58fb0"}, "making": {"label": "making / doing", "color": "#79c99e"}, "destroying": {"label": "destroying / undoing", "color": "#e0675a"}, "ruling": {"label": "ruling / controlling", "color": "#b48ee0"}, "moving": {"label": "moving", "color": "#5fc4c4"}, "speaking": {"label": "speaking / showing", "color": "#d9a066"}, "opening": {"label": "opening / closing", "color": "#a7c957"}, "being": {"label": "being / existing", "color": "#8a8a8a"}}, "poems": [{"id": "graham", "author": "Jorie Graham", "title": "The Way Things Work", "lines": ["The way things work", "is by admitting", "or opening away.", "This is the simplest form", "of current: Blue", "moving through blue;", "blue through purple;", "the objects of desire", "opening upon themselves", "without us;", "the objects of faith.", "The way things work", "is by solution,", "resistance lessened or", "increased and taken", "advantage of.", "The way things work", "is that we finally believe", "they are there,", "common and able", "to illustrate themselves.", "Wheel, kinetic flow,", "rising and falling water,", "ingots, levers and keys,", "I believe in you,", "cylinder lock, pully,", "lifting tackle and", "Crane lift your small head—", "I believe in you—", "your head is the horizon to", "my hand. I believe", "forever in the hooks.", "The way things work", "is that eventually", "something catches."], "tokens": [{"t": "The", "ws": true, "ln": 1, "pos": "DET", "dep": "det"}, {"t": "way", "ws": true, "ln": 1, "pos": "NOUN", "dep": "nsubj"}, {"t": "things", "ws": true, "ln": 1, "pos": "NOUN", "dep": "nsubj"}, {"t": "work", "ws": false, "ln": 1, "pos": "VERB", "dep": "relcl"}, {"t": "is", "ws": true, "ln": 2, "pos": "AUX", "dep": "ROOT"}, {"t": "by", "ws": true, "ln": 2, "pos": "ADP", "dep": "prep"}, {"t": "admitting", "ws": false, "ln": 2, "pos": "VERB", "dep": "pcomp"}, {"t": "or", "ws": true, "ln": 3, "pos": "CCONJ", "dep": "cc"}, {"t": "opening", "ws": true, "ln": 3, "pos": "VERB", "dep": "conj"}, {"t": "away", "ws": false, "ln": 3, "pos": "ADV", "dep": "prt"}, {"t": ".", "ws": false, "ln": 3, "pos": "PUNCT", "dep": "punct"}, {"t": "This", "ws": true, "ln": 4, "pos": "PRON", "dep": "nsubj"}, {"t": "is", "ws": true, "ln": 4, "pos": "AUX", "dep": "ROOT"}, {"t": "the", "ws": true, "ln": 4, "pos": "DET", "dep": "det"}, {"t": "simplest", "ws": true, "ln": 4, "pos": "ADJ", "dep": "amod"}, {"t": "form", "ws": false, "ln": 4, "pos": "NOUN", "dep": "attr"}, {"t": "of", "ws": true, "ln": 5, "pos": "ADP", "dep": "prep"}, {"t": "current", "ws": false, "ln": 5, "pos": "NOUN", "dep": "pobj"}, {"t": ":", "ws": true, "ln": 5, "pos": "PUNCT", "dep": "punct"}, {"t": "Blue", "ws": false, "ln": 5, "pos": "ADJ", "dep": "attr"}, {"t": "moving", "ws": true, "ln": 6, "pos": "VERB", "dep": "acl"}, {"t": "through", "ws": true, "ln": 6, "pos": "ADP", "dep": "prep"}, {"t": "blue", "ws": false, "ln": 6, "pos": "NOUN", "dep": "pobj"}, {"t": ";", "ws": false, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "blue", "ws": true, "ln": 7, "pos": "NOUN", "dep": "appos"}, {"t": "through", "ws": true, "ln": 7, "pos": "ADP", "dep": "prep"}, {"t": "purple", "ws": false, "ln": 7, "pos": "NOUN", "dep": "pobj"}, {"t": ";", "ws": false, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "the", "ws": true, "ln": 8, "pos": "DET", "dep": "det"}, {"t": "objects", "ws": true, "ln": 8, "pos": "NOUN", "dep": "appos"}, {"t": "of", "ws": true, "ln": 8, "pos": "ADP", "dep": "prep"}, {"t": "desire", "ws": false, "ln": 8, "pos": "NOUN", "dep": "pobj"}, {"t": "opening", "ws": true, "ln": 9, "pos": "VERB", "dep": "acl"}, {"t": "upon", "ws": true, "ln": 9, "pos": "SCONJ", "dep": "prep"}, {"t": "themselves", "ws": false, "ln": 9, "pos": "PRON", "dep": "pobj"}, {"t": "without", "ws": true, "ln": 10, "pos": "ADP", "dep": "prep"}, {"t": "us", "ws": false, "ln": 10, "pos": "PRON", "dep": "pobj"}, {"t": ";", "ws": false, "ln": 10, "pos": "PUNCT", "dep": "punct"}, {"t": "the", "ws": true, "ln": 11, "pos": "DET", "dep": "det"}, {"t": "objects", "ws": true, "ln": 11, "pos": "NOUN", "dep": "appos"}, {"t": "of", "ws": true, "ln": 11, "pos": "ADP", "dep": "prep"}, {"t": "faith", "ws": false, "ln": 11, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 11, "pos": "PUNCT", "dep": "punct"}, {"t": "The", "ws": true, "ln": 12, "pos": "DET", "dep": "det"}, {"t": "way", "ws": true, "ln": 12, "pos": "NOUN", "dep": "nsubj"}, {"t": "things", "ws": true, "ln": 12, "pos": "NOUN", "dep": "nsubj"}, {"t": "work", "ws": false, "ln": 12, "pos": "VERB", "dep": "relcl"}, {"t": "is", "ws": true, "ln": 13, "pos": "AUX", "dep": "ROOT"}, {"t": "by", "ws": true, "ln": 13, "pos": "ADP", "dep": "prep"}, {"t": "solution", "ws": false, "ln": 13, "pos": "NOUN", "dep": "pobj"}, {"t": ",", "ws": false, "ln": 13, "pos": "PUNCT", "dep": "punct"}, {"t": "resistance", "ws": true, "ln": 14, "pos": "NOUN", "dep": "nsubj"}, {"t": "lessened", "ws": true, "ln": 14, "pos": "VERB", "dep": "ccomp"}, {"t": "or", "ws": false, "ln": 14, "pos": "CCONJ", "dep": "cc"}, {"t": "increased", "ws": true, "ln": 15, "pos": "VERB", "dep": "conj"}, {"t": "and", "ws": true, "ln": 15, "pos": "CCONJ", "dep": "cc"}, {"t": "taken", "ws": false, "ln": 15, "pos": "VERB", "dep": "conj"}, {"t": "advantage", "ws": true, "ln": 16, "pos": "NOUN", "dep": "dobj"}, {"t": "of", "ws": false, "ln": 16, "pos": "ADP", "dep": "prep"}, {"t": ".", "ws": false, "ln": 16, "pos": "PUNCT", "dep": "punct"}, {"t": "The", "ws": true, "ln": 17, "pos": "DET", "dep": "det"}, {"t": "way", "ws": true, "ln": 17, "pos": "NOUN", "dep": "nsubj"}, {"t": "things", "ws": true, "ln": 17, "pos": "NOUN", "dep": "nsubj"}, {"t": "work", "ws": false, "ln": 17, "pos": "VERB", "dep": "relcl"}, {"t": "is", "ws": true, "ln": 18, "pos": "AUX", "dep": "ROOT"}, {"t": "that", "ws": true, "ln": 18, "pos": "SCONJ", "dep": "mark"}, {"t": "we", "ws": true, "ln": 18, "pos": "PRON", "dep": "nsubj"}, {"t": "finally", "ws": true, "ln": 18, "pos": "ADV", "dep": "advmod"}, {"t": "believe", "ws": false, "ln": 18, "pos": "VERB", "dep": "ccomp"}, {"t": "they", "ws": true, "ln": 19, "pos": "PRON", "dep": "nsubj"}, {"t": "are", "ws": true, "ln": 19, "pos": "AUX", "dep": "ccomp"}, {"t": "there", "ws": false, "ln": 19, "pos": "ADV", "dep": "advmod"}, {"t": ",", "ws": false, "ln": 19, "pos": "PUNCT", "dep": "punct"}, {"t": "common", "ws": true, "ln": 20, "pos": "ADJ", "dep": "amod"}, {"t": "and", "ws": true, "ln": 20, "pos": "CCONJ", "dep": "cc"}, {"t": "able", "ws": false, "ln": 20, "pos": "ADJ", "dep": "conj"}, {"t": "to", "ws": true, "ln": 21, "pos": "PART", "dep": "aux"}, {"t": "illustrate", "ws": true, "ln": 21, "pos": "VERB", "dep": "xcomp"}, {"t": "themselves", "ws": false, "ln": 21, "pos": "PRON", "dep": "dobj"}, {"t": ".", "ws": false, "ln": 21, "pos": "PUNCT", "dep": "punct"}, {"t": "Wheel", "ws": false, "ln": 22, "pos": "NOUN", "dep": "dep"}, {"t": ",", "ws": true, "ln": 22, "pos": "PUNCT", "dep": "punct"}, {"t": "kinetic", "ws": true, "ln": 22, "pos": "ADJ", "dep": "amod"}, {"t": "flow", "ws": false, "ln": 22, "pos": "NOUN", "dep": "conj"}, {"t": ",", "ws": false, "ln": 22, "pos": "PUNCT", "dep": "punct"}, {"t": "rising", "ws": true, "ln": 23, "pos": "VERB", "dep": "amod"}, {"t": "and", "ws": true, "ln": 23, "pos": "CCONJ", "dep": "cc"}, {"t": "falling", "ws": true, "ln": 23, "pos": "VERB", "dep": "conj"}, {"t": "water", "ws": false, "ln": 23, "pos": "NOUN", "dep": "conj"}, {"t": ",", "ws": false, "ln": 23, "pos": "PUNCT", "dep": "punct"}, {"t": "ingots", "ws": false, "ln": 24, "pos": "NOUN", "dep": "appos"}, {"t": ",", "ws": true, "ln": 24, "pos": "PUNCT", "dep": "punct"}, {"t": "levers", "ws": true, "ln": 24, "pos": "NOUN", "dep": "conj"}, {"t": "and", "ws": true, "ln": 24, "pos": "CCONJ", "dep": "cc"}, {"t": "keys", "ws": false, "ln": 24, "pos": "NOUN", "dep": "conj"}, {"t": ",", "ws": false, "ln": 24, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 25, "pos": "PRON", "dep": "nsubj"}, {"t": "believe", "ws": true, "ln": 25, "pos": "VERB", "dep": "parataxis"}, {"t": "in", "ws": true, "ln": 25, "pos": "ADP", "dep": "prep"}, {"t": "you", "ws": false, "ln": 25, "pos": "PRON", "dep": "pobj"}, {"t": ",", "ws": false, "ln": 25, "pos": "PUNCT", "dep": "punct"}, {"t": "cylinder", "ws": true, "ln": 26, "pos": "NOUN", "dep": "punct"}, {"t": "lock", "ws": false, "ln": 26, "pos": "NOUN", "dep": "appos"}, {"t": ",", "ws": true, "ln": 26, "pos": "PUNCT", "dep": "punct"}, {"t": "pully", "ws": false, "ln": 26, "pos": "NOUN", "dep": "conj"}, {"t": ",", "ws": false, "ln": 26, "pos": "PUNCT", "dep": "punct"}, {"t": "lifting", "ws": true, "ln": 27, "pos": "VERB", "dep": "amod"}, {"t": "tackle", "ws": true, "ln": 27, "pos": "NOUN", "dep": "conj"}, {"t": "and", "ws": false, "ln": 27, "pos": "CCONJ", "dep": "cc"}, {"t": "Crane", "ws": true, "ln": 28, "pos": "PROPN", "dep": "conj"}, {"t": "lift", "ws": true, "ln": 28, "pos": "VERB", "dep": "conj"}, {"t": "your", "ws": true, "ln": 28, "pos": "PRON", "dep": "poss"}, {"t": "small", "ws": true, "ln": 28, "pos": "ADJ", "dep": "amod"}, {"t": "head", "ws": false, "ln": 28, "pos": "NOUN", "dep": "dobj"}, {"t": "—", "ws": false, "ln": 28, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 29, "pos": "PRON", "dep": "nsubj"}, {"t": "believe", "ws": true, "ln": 29, "pos": "VERB", "dep": "ccomp"}, {"t": "in", "ws": true, "ln": 29, "pos": "ADP", "dep": "prep"}, {"t": "you", "ws": false, "ln": 29, "pos": "PRON", "dep": "pobj"}, {"t": "—", "ws": false, "ln": 29, "pos": "PUNCT", "dep": "punct"}, {"t": "your", "ws": true, "ln": 30, "pos": "PRON", "dep": "poss"}, {"t": "head", "ws": true, "ln": 30, "pos": "NOUN", "dep": "nsubj"}, {"t": "is", "ws": true, "ln": 30, "pos": "AUX", "dep": "ROOT"}, {"t": "the", "ws": true, "ln": 30, "pos": "DET", "dep": "det"}, {"t": "horizon", "ws": true, "ln": 30, "pos": "NOUN", "dep": "attr"}, {"t": "to", "ws": false, "ln": 30, "pos": "ADP", "dep": "prep"}, {"t": "my", "ws": true, "ln": 31, "pos": "PRON", "dep": "poss"}, {"t": "hand", "ws": false, "ln": 31, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": true, "ln": 31, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 31, "pos": "PRON", "dep": "nsubj"}, {"t": "believe", "ws": false, "ln": 31, "pos": "VERB", "dep": "ROOT"}, {"t": "forever", "ws": true, "ln": 32, "pos": "ADV", "dep": "advmod"}, {"t": "in", "ws": true, "ln": 32, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 32, "pos": "DET", "dep": "det"}, {"t": "hooks", "ws": false, "ln": 32, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 32, "pos": "PUNCT", "dep": "punct"}, {"t": "The", "ws": true, "ln": 33, "pos": "DET", "dep": "det"}, {"t": "way", "ws": true, "ln": 33, "pos": "NOUN", "dep": "nsubj"}, {"t": "things", "ws": true, "ln": 33, "pos": "NOUN", "dep": "nsubj"}, {"t": "work", "ws": false, "ln": 33, "pos": "VERB", "dep": "relcl"}, {"t": "is", "ws": true, "ln": 34, "pos": "AUX", "dep": "ROOT"}, {"t": "that", "ws": true, "ln": 34, "pos": "SCONJ", "dep": "mark"}, {"t": "eventually", "ws": false, "ln": 34, "pos": "ADV", "dep": "advmod"}, {"t": "something", "ws": true, "ln": 35, "pos": "PRON", "dep": "nsubj"}, {"t": "catches", "ws": false, "ln": 35, "pos": "VERB", "dep": "ccomp"}, {"t": ".", "ws": false, "ln": 35, "pos": "PUNCT", "dep": "punct"}], "relations": [{"key": "L1:work", "verb": {"text": "work", "lemma": "work", "toks": [3], "kind": "making"}, "agent": {"text": "things", "entity": "things / objects", "toks": [2], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'The way things work' is a fixed idiom; 'things' are agents only in the faintest sense.", "flags": [], "lines": [1, 1], "vline": 1, "show": {"agent": 1, "target": null, "edge": 1}, "id": "graham-1", "n": 1, "poem": "graham"}, {"key": "L2:be", "verb": {"text": "is", "lemma": "be", "toks": [4], "kind": "being"}, "agent": {"text": "The way", "entity": "the way things work", "toks": [0, 1], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "by admitting or opening away", "entity": null, "toks": [], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [1, 2], "vline": 2, "show": {"agent": 1, "target": null, "edge": 2}, "id": "graham-2", "n": 2, "poem": "graham"}, {"key": "L2:admit", "verb": {"text": "admitting", "lemma": "admit", "toks": [6], "kind": "opening"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed (hand-checked)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "gerund", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "The way | admitting | ∅", "note": "Subjectless gerund. The parser's chain leads to 'the way' as admitter; grammatically no agent is given (the implied one may be 'things').", "ambiguity": null, "flags": ["corrected"], "lines": [2, 2], "vline": 2, "show": {"agent": 2, "target": null, "edge": 2}, "id": "graham-3", "n": 3, "poem": "graham"}, {"key": "L3:open", "verb": {"text": "opening away", "lemma": "open away", "toks": [8, 9], "kind": "opening"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed (hand-checked)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "gerund, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "The way | opening away | ∅", "note": "Coordinated with 'admitting'; same subjectless gerund.", "ambiguity": "Who opens away? The poem never says.", "flags": ["corrected"], "lines": [3, 3], "vline": 3, "show": {"agent": 3, "target": null, "edge": 3}, "id": "graham-4", "n": 4, "poem": "graham"}, {"key": "L4:be", "verb": {"text": "is", "lemma": "be", "toks": [12], "kind": "being"}, "agent": {"text": "This [= the way things work]", "entity": "the way things work", "toks": [11], "manual": true, "how": "resolved by hand (L4:this)"}, "patient": null, "complement": {"text": "the simplest form of current", "entity": "blue / current", "toks": [13, 14, 15, 16, 17], "manual": false, "how": "lexicon"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [4, 5], "vline": 4, "show": {"agent": 4, "target": 4, "edge": 4}, "id": "graham-5", "n": 5, "poem": "graham"}, {"key": "L6:move", "verb": {"text": "moving", "lemma": "move", "toks": [20], "kind": "moving"}, "agent": {"text": "Blue", "entity": "blue / current", "toks": [19], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": ["through blue"], "voice": "active", "construction": "participle (-ing)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [5, 6], "vline": 6, "show": {"agent": 5, "target": null, "edge": 6}, "id": "graham-6", "n": 6, "poem": "graham"}, {"key": "L7:move", "verb": {"text": "(moving) through", "lemma": "move", "toks": [25], "kind": "moving"}, "agent": {"text": "blue", "entity": "blue / current", "toks": [24], "manual": false, "how": "set by hand; lexicon"}, "patient": null, "complement": null, "clause": null, "obliques": ["through purple"], "voice": "active", "construction": "gapped verb", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "'blue through purple' repeats 'moving' by ellipsis; the parser found no verb.", "ambiguity": null, "flags": ["added"], "lines": [7, 7], "vline": 7, "show": {"agent": 7, "target": null, "edge": 7}, "id": "graham-7", "n": 7, "poem": "graham"}, {"key": "L9:open", "verb": {"text": "opening", "lemma": "open", "toks": [32], "kind": "opening"}, "agent": {"text": "the objects of desire", "entity": "things / objects", "toks": [28, 29, 30, 31], "manual": false, "how": "implicit subject (rule)"}, "patient": {"text": "themselves [= things / objects]", "entity": "things / objects", "toks": [34], "manual": false, "how": "reflexive (= agent)"}, "complement": null, "clause": null, "obliques": ["without us"], "voice": "active", "construction": "participle (-ing), reflexive", "copula": false, "reflexive": true, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Reflexive: the objects act on themselves, 'without us'.", "flags": [], "lines": [8, 9], "vline": 9, "show": {"agent": 8, "target": 9, "edge": 9}, "id": "graham-8", "n": 8, "poem": "graham"}, {"key": "L11:open", "verb": {"text": "(opening upon themselves)", "lemma": "open", "toks": [], "kind": "opening"}, "agent": {"text": "the objects of faith", "entity": "things / objects", "toks": [38, 39, 40, 41], "manual": false, "how": "set by hand; lexicon"}, "patient": {"text": "(themselves) [= things / objects]", "entity": "things / objects", "toks": [], "manual": false, "how": "reflexive (= agent)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "gapped verb, reflexive", "copula": false, "reflexive": true, "negated": false, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "'the objects of faith' parallels 'the objects of desire / opening upon themselves'; the gapped participle is a reading, not a certainty.", "ambiguity": "Is 'the objects of faith' a further subject of 'opening', or an appositive gloss?", "flags": ["added"], "lines": [11, 11], "vline": 11, "show": {"agent": 11, "target": 11, "edge": 11}, "id": "graham-9", "n": 9, "poem": "graham"}, {"key": "L12:work", "verb": {"text": "work", "lemma": "work", "toks": [46], "kind": "making"}, "agent": {"text": "things", "entity": "things / objects", "toks": [45], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [12, 12], "vline": 12, "show": {"agent": 12, "target": null, "edge": 12}, "id": "graham-10", "n": 10, "poem": "graham"}, {"key": "L13:be", "verb": {"text": "is", "lemma": "be", "toks": [47], "kind": "being"}, "agent": {"text": "The way", "entity": "the way things work", "toks": [43, 44], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "by solution, resistance lessened or increased and…", "entity": null, "toks": [], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [12, 13], "vline": 13, "show": {"agent": 12, "target": null, "edge": 13}, "id": "graham-11", "n": 11, "poem": "graham"}, {"key": "L14:lessen", "verb": {"text": "lessened", "lemma": "lessen", "toks": [52], "kind": "ruling"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed (hand-checked)"}, "patient": {"text": "resistance", "entity": "resistance", "toks": [51], "manual": false, "how": "set by hand; lexicon"}, "complement": null, "clause": null, "obliques": ["by solution"], "voice": "passive", "construction": "elliptical passive participle", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "resistance | lessened | ∅", "note": "Parsed as active 'resistance lessened'. The series ends 'taken advantage of', which forces the passive: resistance [is] lessened, increased, taken advantage of.", "ambiguity": null, "flags": ["corrected"], "lines": [14, 14], "vline": 14, "show": {"agent": 14, "target": 14, "edge": 14}, "id": "graham-12", "n": 12, "poem": "graham"}, {"key": "L15:increase", "verb": {"text": "increased", "lemma": "increase", "toks": [54], "kind": "ruling"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed (hand-checked)"}, "patient": {"text": "resistance", "entity": "resistance", "toks": [51], "manual": false, "how": "set by hand; lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "elliptical passive participle", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "resistance | increased | ∅", "note": "As 'lessened': passive, no agent named.", "ambiguity": null, "flags": ["corrected"], "lines": [14, 15], "vline": 15, "show": {"agent": 15, "target": 14, "edge": 15}, "id": "graham-13", "n": 13, "poem": "graham"}, {"key": "L15:take", "verb": {"text": "taken advantage of", "lemma": "take", "toks": [56, 57, 58], "kind": "ruling"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed (hand-checked)"}, "patient": {"text": "resistance", "entity": "resistance", "toks": [51], "manual": false, "how": "set by hand; lexicon"}, "complement": null, "clause": null, "obliques": ["of"], "voice": "passive", "construction": "elliptical prepositional passive", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "resistance | taken | advantage", "note": "Parser made 'advantage' a direct object; this is the prepositional passive 'resistance [is] taken advantage of'.", "ambiguity": null, "flags": ["corrected"], "lines": [14, 16], "vline": 15, "show": {"agent": 15, "target": 14, "edge": 15}, "id": "graham-14", "n": 14, "poem": "graham"}, {"key": "L17:work", "verb": {"text": "work", "lemma": "work", "toks": [63], "kind": "making"}, "agent": {"text": "things", "entity": "things / objects", "toks": [62], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [17, 17], "vline": 17, "show": {"agent": 17, "target": null, "edge": 17}, "id": "graham-15", "n": 15, "poem": "graham"}, {"key": "L18:be", "verb": {"text": "is", "lemma": "be", "toks": [64], "kind": "being"}, "agent": {"text": "The way", "entity": "the way things work", "toks": [60, 61], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "that we finally believe they are there, common an…", "entity": null, "toks": [], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [17, 18], "vline": 18, "show": {"agent": 17, "target": null, "edge": 18}, "id": "graham-16", "n": 16, "poem": "graham"}, {"key": "L18:believe", "verb": {"text": "believe", "lemma": "believe", "toks": [68], "kind": "believing"}, "agent": {"text": "we", "entity": "we", "toks": [66], "manual": true, "how": "resolved by hand (L18:we)"}, "patient": null, "complement": null, "clause": "they are there, common and able to illustrate themselves", "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [18, 18], "vline": 18, "show": {"agent": 18, "target": null, "edge": 18}, "id": "graham-17", "n": 17, "poem": "graham"}, {"key": "L19:be", "verb": {"text": "are", "lemma": "be", "toks": [70], "kind": "being"}, "agent": {"text": "they [= things / objects]", "entity": "things / objects", "toks": [69], "manual": true, "how": "resolved by hand (L19:they)"}, "patient": null, "complement": {"text": "there", "entity": null, "toks": [71], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [19, 19], "vline": 19, "show": {"agent": 19, "target": null, "edge": 19}, "id": "graham-18", "n": 18, "poem": "graham"}, {"key": "L21:illustrate", "verb": {"text": "to illustrate", "lemma": "illustrate", "toks": [76, 77], "kind": "speaking"}, "agent": {"text": "they [= things / objects]", "entity": "things / objects", "toks": [69], "manual": true, "how": "resolved by hand (L19:they)"}, "patient": {"text": "themselves [= things / objects]", "entity": "things / objects", "toks": [78], "manual": true, "how": "reflexive (= agent)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, reflexive, subject shared/elided", "copula": false, "reflexive": true, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Reflexive: the things represent themselves; human belief only lets them.", "flags": ["pronoun"], "lines": [19, 21], "vline": 21, "show": {"agent": 19, "target": 21, "edge": 21}, "id": "graham-19", "n": 19, "poem": "graham"}, {"key": "L23:rise", "verb": {"text": "rising", "lemma": "rise", "toks": [85], "kind": "moving"}, "agent": {"text": "rising water", "entity": "water", "toks": [85, 88], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "participle (-ing)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [23, 23], "vline": 23, "show": {"agent": 23, "target": null, "edge": 23}, "id": "graham-20", "n": 20, "poem": "graham"}, {"key": "L23:fall", "verb": {"text": "falling", "lemma": "fall", "toks": [87], "kind": "moving"}, "agent": {"text": "rising water", "entity": "water", "toks": [85, 88], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "participle (-ing), subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [23, 23], "vline": 23, "show": {"agent": 23, "target": null, "edge": 23}, "id": "graham-21", "n": 21, "poem": "graham"}, {"key": "L25:believe", "verb": {"text": "believe", "lemma": "believe", "toks": [97], "kind": "believing"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [96], "manual": false, "how": "explicit subject"}, "patient": {"text": "you [= the tools (you)]", "entity": "the tools (you)", "toks": [99], "manual": true, "how": "resolved by hand (L25:you)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [25, 25], "vline": 25, "show": {"agent": 25, "target": 25, "edge": 25}, "id": "graham-22", "n": 22, "poem": "graham"}, {"key": "L27:lift", "verb": {"text": "lifting", "lemma": "lift", "toks": [106], "kind": "moving"}, "agent": {"text": "lifting tackle", "entity": "the tools (you)", "toks": [106, 107], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "participle (-ing)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'lifting tackle' is a compound noun (tackle for lifting); the participle gives the tool latent agency.", "flags": [], "lines": [27, 27], "vline": 27, "show": {"agent": 27, "target": null, "edge": 27}, "id": "graham-23", "n": 23, "poem": "graham"}, {"key": "L28:lift", "verb": {"text": "lift", "lemma": "lift", "toks": [110], "kind": "moving"}, "agent": {"text": "Crane", "entity": "the crane", "toks": [109], "manual": false, "how": "set by hand; lexicon"}, "patient": {"text": "your [= the crane] small head", "entity": "the crane", "toks": [111, 112, 113], "manual": true, "how": "lexicon; possessive resolved by hand (L28:your)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "imperative, vocative subject", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "(addressee) | lift | your [= the crane] small head", "note": "Parser absorbed 'Crane' into the list of tools; it is the vocative addressee of the imperative 'lift'.", "ambiguity": "'and Crane / lift your small head' is ambiguous: 'Crane' can close the catalogue, or open an imperative addressed to the crane (or to all the tools).", "flags": ["corrected", "pronoun"], "lines": [28, 28], "vline": 28, "show": {"agent": 28, "target": 28, "edge": 28}, "id": "graham-24", "n": 24, "poem": "graham"}, {"key": "L29:believe", "verb": {"text": "believe", "lemma": "believe", "toks": [116], "kind": "believing"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [115], "manual": false, "how": "explicit subject"}, "patient": {"text": "you [= the tools (you)]", "entity": "the tools (you)", "toks": [118], "manual": true, "how": "resolved by hand (L29:you)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [29, 29], "vline": 29, "show": {"agent": 29, "target": 29, "edge": 29}, "id": "graham-25", "n": 25, "poem": "graham"}, {"key": "L30:be", "verb": {"text": "is", "lemma": "be", "toks": [122], "kind": "being"}, "agent": {"text": "your [= the crane] head", "entity": "the crane", "toks": [120, 121], "manual": true, "how": "lexicon; possessive resolved by hand (L30:your)"}, "patient": null, "complement": {"text": "the horizon", "entity": "the horizon", "toks": [123, 124], "manual": false, "how": "lexicon"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [30, 30], "vline": 30, "show": {"agent": 30, "target": 30, "edge": 30}, "id": "graham-26", "n": 26, "poem": "graham"}, {"key": "L31:believe", "verb": {"text": "believe", "lemma": "believe", "toks": [130], "kind": "believing"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [129], "manual": false, "how": "explicit subject"}, "patient": {"text": "the hooks", "entity": "the hooks", "toks": [133, 134], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [31, 32], "vline": 31, "show": {"agent": 31, "target": 32, "edge": 32}, "id": "graham-27", "n": 27, "poem": "graham"}, {"key": "L33:work", "verb": {"text": "work", "lemma": "work", "toks": [139], "kind": "making"}, "agent": {"text": "things", "entity": "things / objects", "toks": [138], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [33, 33], "vline": 33, "show": {"agent": 33, "target": null, "edge": 33}, "id": "graham-28", "n": 28, "poem": "graham"}, {"key": "L34:be", "verb": {"text": "is", "lemma": "be", "toks": [140], "kind": "being"}, "agent": {"text": "The way", "entity": "the way things work", "toks": [136, 137], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "that eventually something catches", "entity": null, "toks": [], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [33, 34], "vline": 34, "show": {"agent": 33, "target": null, "edge": 34}, "id": "graham-29", "n": 29, "poem": "graham"}, {"key": "L35:catch", "verb": {"text": "catches", "lemma": "catch", "toks": [144], "kind": "opening"}, "agent": {"text": "something", "entity": "something", "toks": [143], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'something' is the only agent of the final clause, and it is indefinite. 'Catches' can mean a latch engaging, a fire catching, or a mind grasping.", "flags": [], "lines": [35, 35], "vline": 35, "show": {"agent": 35, "target": null, "edge": 35}, "id": "graham-30", "n": 30, "poem": "graham"}], "entities": [{"name": "I (speaker)", "type": "speaker", "agent": 3, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 3}, {"name": "we", "type": "humans", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "things / objects", "type": "tools", "agent": 7, "patient": 3, "copula": 1, "negA": 0, "negP": 0, "complement": 0, "total": 11}, {"name": "the tools (you)", "type": "tools", "agent": 1, "patient": 2, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 3}, {"name": "the crane", "type": "tools", "agent": 1, "patient": 1, "copula": 1, "negA": 0, "negP": 0, "complement": 0, "total": 3}, {"name": "the hooks", "type": "tools", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the way things work", "type": "abstraction", "agent": 0, "patient": 0, "copula": 5, "negA": 0, "negP": 0, "complement": 0, "total": 5}, {"name": "blue / current", "type": "nature", "agent": 2, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 1, "total": 3}, {"name": "water", "type": "nature", "agent": 2, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "resistance", "type": "abstraction", "agent": 0, "patient": 3, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 3}, {"name": "the horizon", "type": "nature", "agent": 0, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 1, "total": 1}, {"name": "something", "type": "unstated", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "(unstated)", "type": "unstated", "agent": 5, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 5}], "pronouns": [{"key": "L4:this", "entity": "the way things work", "used": true}, {"key": "L10:us", "entity": "we", "used": false}, {"key": "L18:we", "entity": "we", "used": true}, {"key": "L19:they", "entity": "things / objects", "used": true}, {"key": "L25:you", "entity": "the tools (you)", "used": true}, {"key": "L28:your", "entity": "the crane", "used": true}, {"key": "L29:you", "entity": "the tools (you)", "used": true}, {"key": "L30:your", "entity": "the crane", "used": true}], "descriptions": [{"id": "graham-d1", "poem": "graham", "text": "Wheel, kinetic flow, rising and falling water, ingots, levers and keys", "kind": "vocative catalogue", "toks": [80, 82, 83, 85, 86, 87, 88, 90, 92, 93, 94], "lines": [22, 24], "links": [{"entity": "the tools (you)", "role": "tenor", "anchor": [99]}], "note": "The catalogue names 'you' before the pronoun arrives: the tools are addressed and named, not used."}, {"id": "graham-d2", "poem": "graham", "text": "cylinder lock, pully, lifting tackle and Crane", "kind": "vocative catalogue", "toks": [101, 102, 104, 106, 107, 108, 109], "lines": [26, 28], "links": [{"entity": "the tools (you)", "role": "tenor", "anchor": [118]}, {"entity": "the crane", "role": "tenor", "anchor": [109]}], "note": "The second run of the catalogue ends on 'Crane', which becomes the addressee of 'lift'."}, {"id": "graham-d3", "poem": "graham", "text": "common and able", "kind": "attribute (predicate adjectives)", "toks": [73, 74, 75], "lines": [20, 20], "links": [{"entity": "things / objects", "role": "tenor", "anchor": [69]}], "note": "What belief grants the things: to be common, and able."}], "bonds": [], "stanzas": null}, {"id": "montale", "author": "Eugenio Montale", "title": "[I would have liked to feel rough, elemental…]", "lines": ["I would have liked to feel rough, elemental", "as the pebbles you tumble about,", "pocked by salt,", "a timeless shard, witness", "to a cold, persistent will. I was", "anything but: a man intent", "on observing, in himself, and others, the furor", "of fleeting life; a man who defers", "doing, which therefore can never be undone.", "I chose to search out the evil", "gnawing at the world, the little warp", "in the lever that locks", "the universal gears; and I saw", "all the events of the instant", "as though poised to collapse and crumble.", "I walked the road in one direction, while my heart", "yearned for the other; and maybe", "I needed the knife that slices through,", "the mind that decides and determines.", "I needed other", "texts, not your thundering page.", "But I have no regrets: once more", "your song undoes my inward knots.", "And now your frenzy rises to the stars."], "tokens": [{"t": "I", "ws": true, "ln": 1, "pos": "PRON", "dep": "nsubj"}, {"t": "would", "ws": true, "ln": 1, "pos": "AUX", "dep": "aux"}, {"t": "have", "ws": true, "ln": 1, "pos": "AUX", "dep": "aux"}, {"t": "liked", "ws": true, "ln": 1, "pos": "VERB", "dep": "ROOT"}, {"t": "to", "ws": true, "ln": 1, "pos": "PART", "dep": "aux"}, {"t": "feel", "ws": true, "ln": 1, "pos": "VERB", "dep": "xcomp"}, {"t": "rough", "ws": false, "ln": 1, "pos": "ADJ", "dep": "amod"}, {"t": ",", "ws": true, "ln": 1, "pos": "PUNCT", "dep": "punct"}, {"t": "elemental", "ws": false, "ln": 1, "pos": "ADJ", "dep": "acomp"}, {"t": "as", "ws": true, "ln": 2, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 2, "pos": "DET", "dep": "det"}, {"t": "pebbles", "ws": true, "ln": 2, "pos": "NOUN", "dep": "pobj"}, {"t": "you", "ws": true, "ln": 2, "pos": "PRON", "dep": "nsubj"}, {"t": "tumble", "ws": true, "ln": 2, "pos": "VERB", "dep": "relcl"}, {"t": "about", "ws": false, "ln": 2, "pos": "ADP", "dep": "prep"}, {"t": ",", "ws": false, "ln": 2, "pos": "PUNCT", "dep": "punct"}, {"t": "pocked", "ws": true, "ln": 3, "pos": "VERB", "dep": "advcl"}, {"t": "by", "ws": true, "ln": 3, "pos": "ADP", "dep": "agent"}, {"t": "salt", "ws": false, "ln": 3, "pos": "NOUN", "dep": "pobj"}, {"t": ",", "ws": false, "ln": 3, "pos": "PUNCT", "dep": "punct"}, {"t": "a", "ws": true, "ln": 4, "pos": "DET", "dep": "det"}, {"t": "timeless", "ws": true, "ln": 4, "pos": "ADJ", "dep": "amod"}, {"t": "shard", "ws": false, "ln": 4, "pos": "NOUN", "dep": "appos"}, {"t": ",", "ws": true, "ln": 4, "pos": "PUNCT", "dep": "punct"}, {"t": "witness", "ws": false, "ln": 4, "pos": "NOUN", "dep": "dep"}, {"t": "to", "ws": true, "ln": 5, "pos": "ADP", "dep": "prep"}, {"t": "a", "ws": true, "ln": 5, "pos": "DET", "dep": "det"}, {"t": "cold", "ws": false, "ln": 5, "pos": "ADJ", "dep": "amod"}, {"t": ",", "ws": true, "ln": 5, "pos": "PUNCT", "dep": "punct"}, {"t": "persistent", "ws": true, "ln": 5, "pos": "ADJ", "dep": "amod"}, {"t": "will", "ws": false, "ln": 5, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": true, "ln": 5, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 5, "pos": "PRON", "dep": "nsubj"}, {"t": "was", "ws": false, "ln": 5, "pos": "AUX", "dep": "ROOT"}, {"t": "anything", "ws": true, "ln": 6, "pos": "PRON", "dep": "attr"}, {"t": "but", "ws": false, "ln": 6, "pos": "SCONJ", "dep": "prep"}, {"t": ":", "ws": true, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "a", "ws": true, "ln": 6, "pos": "DET", "dep": "det"}, {"t": "man", "ws": true, "ln": 6, "pos": "NOUN", "dep": "appos"}, {"t": "intent", "ws": false, "ln": 6, "pos": "ADJ", "dep": "amod"}, {"t": "on", "ws": true, "ln": 7, "pos": "ADP", "dep": "prep"}, {"t": "observing", "ws": false, "ln": 7, "pos": "VERB", "dep": "pcomp"}, {"t": ",", "ws": true, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "in", "ws": true, "ln": 7, "pos": "ADP", "dep": "prep"}, {"t": "himself", "ws": false, "ln": 7, "pos": "PRON", "dep": "pobj"}, {"t": ",", "ws": true, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "and", "ws": true, "ln": 7, "pos": "CCONJ", "dep": "cc"}, {"t": "others", "ws": false, "ln": 7, "pos": "NOUN", "dep": "conj"}, {"t": ",", "ws": true, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "the", "ws": true, "ln": 7, "pos": "DET", "dep": "det"}, {"t": "furor", "ws": false, "ln": 7, "pos": "NOUN", "dep": "dobj"}, {"t": "of", "ws": true, "ln": 8, "pos": "ADP", "dep": "prep"}, {"t": "fleeting", "ws": true, "ln": 8, "pos": "ADJ", "dep": "amod"}, {"t": "life", "ws": false, "ln": 8, "pos": "NOUN", "dep": "pobj"}, {"t": ";", "ws": true, "ln": 8, "pos": "PUNCT", "dep": "punct"}, {"t": "a", "ws": true, "ln": 8, "pos": "DET", "dep": "det"}, {"t": "man", "ws": true, "ln": 8, "pos": "NOUN", "dep": "appos"}, {"t": "who", "ws": true, "ln": 8, "pos": "PRON", "dep": "nsubj"}, {"t": "defers", "ws": false, "ln": 8, "pos": "VERB", "dep": "relcl"}, {"t": "doing", "ws": false, "ln": 9, "pos": "VERB", "dep": "dobj"}, {"t": ",", "ws": true, "ln": 9, "pos": "PUNCT", "dep": "punct"}, {"t": "which", "ws": true, "ln": 9, "pos": "PRON", "dep": "nsubjpass"}, {"t": "therefore", "ws": true, "ln": 9, "pos": "ADV", "dep": "advmod"}, {"t": "can", "ws": true, "ln": 9, "pos": "AUX", "dep": "aux"}, {"t": "never", "ws": true, "ln": 9, "pos": "ADV", "dep": "neg"}, {"t": "be", "ws": true, "ln": 9, "pos": "AUX", "dep": "auxpass"}, {"t": "undone", "ws": false, "ln": 9, "pos": "VERB", "dep": "advcl"}, {"t": ".", "ws": false, "ln": 9, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 10, "pos": "PRON", "dep": "nsubj"}, {"t": "chose", "ws": true, "ln": 10, "pos": "VERB", "dep": "ROOT"}, {"t": "to", "ws": true, "ln": 10, "pos": "PART", "dep": "aux"}, {"t": "search", "ws": true, "ln": 10, "pos": "VERB", "dep": "xcomp"}, {"t": "out", "ws": true, "ln": 10, "pos": "ADP", "dep": "prt"}, {"t": "the", "ws": true, "ln": 10, "pos": "DET", "dep": "det"}, {"t": "evil", "ws": false, "ln": 10, "pos": "ADJ", "dep": "dobj"}, {"t": "gnawing", "ws": true, "ln": 11, "pos": "VERB", "dep": "amod"}, {"t": "at", "ws": true, "ln": 11, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 11, "pos": "DET", "dep": "det"}, {"t": "world", "ws": false, "ln": 11, "pos": "NOUN", "dep": "pobj"}, {"t": ",", "ws": true, "ln": 11, "pos": "PUNCT", "dep": "punct"}, {"t": "the", "ws": true, "ln": 11, "pos": "DET", "dep": "det"}, {"t": "little", "ws": true, "ln": 11, "pos": "ADJ", "dep": "amod"}, {"t": "warp", "ws": false, "ln": 11, "pos": "NOUN", "dep": "appos"}, {"t": "in", "ws": true, "ln": 12, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 12, "pos": "DET", "dep": "det"}, {"t": "lever", "ws": true, "ln": 12, "pos": "NOUN", "dep": "pobj"}, {"t": "that", "ws": true, "ln": 12, "pos": "PRON", "dep": "nsubj"}, {"t": "locks", "ws": false, "ln": 12, "pos": "VERB", "dep": "relcl"}, {"t": "the", "ws": true, "ln": 13, "pos": "DET", "dep": "det"}, {"t": "universal", "ws": true, "ln": 13, "pos": "ADJ", "dep": "amod"}, {"t": "gears", "ws": false, "ln": 13, "pos": "NOUN", "dep": "dobj"}, {"t": ";", "ws": true, "ln": 13, "pos": "PUNCT", "dep": "punct"}, {"t": "and", "ws": true, "ln": 13, "pos": "CCONJ", "dep": "cc"}, {"t": "I", "ws": true, "ln": 13, "pos": "PRON", "dep": "nsubj"}, {"t": "saw", "ws": false, "ln": 13, "pos": "VERB", "dep": "conj"}, {"t": "all", "ws": true, "ln": 14, "pos": "DET", "dep": "predet"}, {"t": "the", "ws": true, "ln": 14, "pos": "DET", "dep": "det"}, {"t": "events", "ws": true, "ln": 14, "pos": "NOUN", "dep": "dobj"}, {"t": "of", "ws": true, "ln": 14, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 14, "pos": "DET", "dep": "det"}, {"t": "instant", "ws": false, "ln": 14, "pos": "NOUN", "dep": "pobj"}, {"t": "as", "ws": true, "ln": 15, "pos": "SCONJ", "dep": "mark"}, {"t": "though", "ws": true, "ln": 15, "pos": "SCONJ", "dep": "mark"}, {"t": "poised", "ws": true, "ln": 15, "pos": "VERB", "dep": "advcl"}, {"t": "to", "ws": true, "ln": 15, "pos": "PART", "dep": "aux"}, {"t": "collapse", "ws": true, "ln": 15, "pos": "VERB", "dep": "xcomp"}, {"t": "and", "ws": true, "ln": 15, "pos": "CCONJ", "dep": "cc"}, {"t": "crumble", "ws": false, "ln": 15, "pos": "VERB", "dep": "conj"}, {"t": ".", "ws": false, "ln": 15, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 16, "pos": "PRON", "dep": "nsubj"}, {"t": "walked", "ws": true, "ln": 16, "pos": "VERB", "dep": "ROOT"}, {"t": "the", "ws": true, "ln": 16, "pos": "DET", "dep": "det"}, {"t": "road", "ws": true, "ln": 16, "pos": "NOUN", "dep": "dobj"}, {"t": "in", "ws": true, "ln": 16, "pos": "ADP", "dep": "prep"}, {"t": "one", "ws": true, "ln": 16, "pos": "NUM", "dep": "nummod"}, {"t": "direction", "ws": false, "ln": 16, "pos": "NOUN", "dep": "pobj"}, {"t": ",", "ws": true, "ln": 16, "pos": "PUNCT", "dep": "punct"}, {"t": "while", "ws": true, "ln": 16, "pos": "SCONJ", "dep": "mark"}, {"t": "my", "ws": true, "ln": 16, "pos": "PRON", "dep": "poss"}, {"t": "heart", "ws": false, "ln": 16, "pos": "NOUN", "dep": "nsubj"}, {"t": "yearned", "ws": true, "ln": 17, "pos": "VERB", "dep": "advcl"}, {"t": "for", "ws": true, "ln": 17, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 17, "pos": "DET", "dep": "det"}, {"t": "other", "ws": false, "ln": 17, "pos": "ADJ", "dep": "pobj"}, {"t": ";", "ws": true, "ln": 17, "pos": "PUNCT", "dep": "punct"}, {"t": "and", "ws": true, "ln": 17, "pos": "CCONJ", "dep": "cc"}, {"t": "maybe", "ws": false, "ln": 17, "pos": "ADV", "dep": "advmod"}, {"t": "I", "ws": true, "ln": 18, "pos": "PRON", "dep": "nsubj"}, {"t": "needed", "ws": true, "ln": 18, "pos": "VERB", "dep": "conj"}, {"t": "the", "ws": true, "ln": 18, "pos": "DET", "dep": "det"}, {"t": "knife", "ws": true, "ln": 18, "pos": "NOUN", "dep": "dobj"}, {"t": "that", "ws": true, "ln": 18, "pos": "PRON", "dep": "nsubj"}, {"t": "slices", "ws": true, "ln": 18, "pos": "VERB", "dep": "relcl"}, {"t": "through", "ws": false, "ln": 18, "pos": "ADP", "dep": "prep"}, {"t": ",", "ws": false, "ln": 18, "pos": "PUNCT", "dep": "punct"}, {"t": "the", "ws": true, "ln": 19, "pos": "DET", "dep": "det"}, {"t": "mind", "ws": true, "ln": 19, "pos": "NOUN", "dep": "appos"}, {"t": "that", "ws": true, "ln": 19, "pos": "PRON", "dep": "nsubj"}, {"t": "decides", "ws": true, "ln": 19, "pos": "VERB", "dep": "relcl"}, {"t": "and", "ws": true, "ln": 19, "pos": "CCONJ", "dep": "cc"}, {"t": "determines", "ws": false, "ln": 19, "pos": "VERB", "dep": "conj"}, {"t": ".", "ws": false, "ln": 19, "pos": "PUNCT", "dep": "punct"}, {"t": "I", "ws": true, "ln": 20, "pos": "PRON", "dep": "nsubj"}, {"t": "needed", "ws": true, "ln": 20, "pos": "VERB", "dep": "ROOT"}, {"t": "other", "ws": false, "ln": 20, "pos": "ADJ", "dep": "amod"}, {"t": "texts", "ws": false, "ln": 21, "pos": "NOUN", "dep": "dobj"}, {"t": ",", "ws": true, "ln": 21, "pos": "PUNCT", "dep": "punct"}, {"t": "not", "ws": true, "ln": 21, "pos": "PART", "dep": "neg"}, {"t": "your", "ws": true, "ln": 21, "pos": "PRON", "dep": "poss"}, {"t": "thundering", "ws": true, "ln": 21, "pos": "VERB", "dep": "amod"}, {"t": "page", "ws": false, "ln": 21, "pos": "NOUN", "dep": "appos"}, {"t": ".", "ws": false, "ln": 21, "pos": "PUNCT", "dep": "punct"}, {"t": "But", "ws": true, "ln": 22, "pos": "CCONJ", "dep": "cc"}, {"t": "I", "ws": true, "ln": 22, "pos": "PRON", "dep": "nsubj"}, {"t": "have", "ws": true, "ln": 22, "pos": "VERB", "dep": "ccomp"}, {"t": "no", "ws": true, "ln": 22, "pos": "DET", "dep": "det"}, {"t": "regrets", "ws": false, "ln": 22, "pos": "NOUN", "dep": "dobj"}, {"t": ":", "ws": true, "ln": 22, "pos": "PUNCT", "dep": "punct"}, {"t": "once", "ws": true, "ln": 22, "pos": "ADV", "dep": "advmod"}, {"t": "more", "ws": false, "ln": 22, "pos": "ADV", "dep": "advmod"}, {"t": "your", "ws": true, "ln": 23, "pos": "PRON", "dep": "poss"}, {"t": "song", "ws": true, "ln": 23, "pos": "NOUN", "dep": "nsubj"}, {"t": "undoes", "ws": true, "ln": 23, "pos": "VERB", "dep": "ROOT"}, {"t": "my", "ws": true, "ln": 23, "pos": "PRON", "dep": "poss"}, {"t": "inward", "ws": true, "ln": 23, "pos": "ADJ", "dep": "amod"}, {"t": "knots", "ws": false, "ln": 23, "pos": "NOUN", "dep": "dobj"}, {"t": ".", "ws": false, "ln": 23, "pos": "PUNCT", "dep": "punct"}, {"t": "And", "ws": true, "ln": 24, "pos": "CCONJ", "dep": "cc"}, {"t": "now", "ws": true, "ln": 24, "pos": "ADV", "dep": "advmod"}, {"t": "your", "ws": true, "ln": 24, "pos": "PRON", "dep": "poss"}, {"t": "frenzy", "ws": true, "ln": 24, "pos": "NOUN", "dep": "nsubj"}, {"t": "rises", "ws": true, "ln": 24, "pos": "VERB", "dep": "ROOT"}, {"t": "to", "ws": true, "ln": 24, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 24, "pos": "DET", "dep": "det"}, {"t": "stars", "ws": false, "ln": 24, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 24, "pos": "PUNCT", "dep": "punct"}], "relations": [{"key": "L1:like", "verb": {"text": "would have liked", "lemma": "like", "toks": [1, 2, 3], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [0], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": "to feel rough, elemental as the pebbles you tumble about, p…", "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": "would", "rejected": false, "parser": null, "note": null, "ambiguity": "Counterfactual desire: the speaker wanted to be a patient of the sea, like the pebbles.", "flags": [], "lines": [1, 1], "vline": 1, "show": {"agent": 1, "target": null, "edge": 1}, "id": "montale-1", "n": 1, "poem": "montale"}, {"key": "L1:feel", "verb": {"text": "to feel", "lemma": "feel", "toks": [4, 5], "kind": "perceiving"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [0], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": {"text": "rough, elemental as the pebbles you tum…", "entity": null, "toks": [8], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [1, 1], "vline": 1, "show": {"agent": 1, "target": null, "edge": 1}, "id": "montale-2", "n": 2, "poem": "montale"}, {"key": "L2:tumble", "verb": {"text": "tumble", "lemma": "tumble", "toks": [13], "kind": "moving"}, "agent": {"text": "you [= the sea (you)]", "entity": "the sea (you)", "toks": [12], "manual": true, "how": "resolved by hand (L2:you)"}, "patient": {"text": "the pebbles", "entity": "the pebbles", "toks": [10, 11], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": ["about"], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [2, 2], "vline": 2, "show": {"agent": 2, "target": 2, "edge": 2}, "id": "montale-3", "n": 3, "poem": "montale"}, {"key": "L3:pock", "verb": {"text": "pocked", "lemma": "pock", "toks": [16], "kind": "destroying"}, "agent": {"text": "salt", "entity": "salt", "toks": [18], "manual": false, "how": "implicit subject (rule)"}, "patient": {"text": "the pebbles", "entity": "the pebbles", "toks": [10, 11], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "passive participle", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'pocked by salt' attaches to the pebbles, but could also describe the self the speaker wished to be.", "flags": [], "lines": [2, 3], "vline": 3, "show": {"agent": 3, "target": 2, "edge": 3}, "id": "montale-4", "n": 4, "poem": "montale"}, {"key": "L4:witness", "verb": {"text": "witness to", "lemma": "witness", "toks": [24, 25], "kind": "perceiving"}, "agent": {"text": "a timeless shard [= the sea (you), on this reading]", "entity": "the sea (you)", "toks": [22], "manual": false, "how": "set by hand"}, "patient": {"text": "a cold persistent will", "entity": "a cold, persistent will", "toks": [26, 27, 29, 30], "manual": false, "how": "set by hand; lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "agent noun in apposition", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "'witness' is a noun, but an agentive one: an act of seeing with no verb. The agent follows the reading chosen in DESCRIPTIONS.", "ambiguity": "'a timeless shard, witness' is singular and fits the wished-for 'I' best; it also reads as a figure for the sea or the pebbles. If the sea is the witness, the cold will lies beyond it.", "flags": ["added"], "lines": [4, 5], "vline": 4, "show": {"agent": 4, "target": 5, "edge": 5}, "id": "montale-5", "n": 5, "poem": "montale"}, {"key": "L5:be", "verb": {"text": "was", "lemma": "be", "toks": [33], "kind": "being"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [32], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "anything but: a man intent on observing, in himse…", "entity": null, "toks": [34], "manual": false, "how": "complement"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [5, 6], "vline": 5, "show": {"agent": 5, "target": null, "edge": 5}, "id": "montale-6", "n": 6, "poem": "montale"}, {"key": "L7:observe", "verb": {"text": "observing", "lemma": "observe", "toks": [41], "kind": "perceiving"}, "agent": {"text": "a man [= I (speaker)] intent", "entity": "I (speaker)", "toks": [37, 38, 39], "manual": true, "how": "resolved by hand (L6:man)"}, "patient": {"text": "the furor of fleeting life", "entity": "the furor of life", "toks": [49, 50, 51, 52, 53], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": ["in himself, and others"], "voice": "active", "construction": "gerund", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [6, 8], "vline": 7, "show": {"agent": 6, "target": 7, "edge": 7}, "id": "montale-7", "n": 7, "poem": "montale"}, {"key": "L8:defer", "verb": {"text": "defers", "lemma": "defer", "toks": [58], "kind": "desiring"}, "agent": {"text": "who [→ a man [= I (speaker)]]", "entity": "I (speaker)", "toks": [55, 56, 57], "manual": true, "how": "relative pronoun → antecedent; resolved by hand (L8:man)"}, "patient": {"text": "doing", "entity": "the deed (doing)", "toks": [59], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Agency turned into deferral: the patient is an action that never takes place.", "flags": ["pronoun"], "lines": [8, 9], "vline": 8, "show": {"agent": 8, "target": 9, "edge": 9}, "id": "montale-8", "n": 8, "poem": "montale"}, {"key": "L9:do", "verb": {"text": "doing", "lemma": "do", "toks": [59], "kind": "making"}, "agent": {"text": "who [→ a man [= I (speaker)]]", "entity": "I (speaker)", "toks": [55, 56, 57], "manual": true, "how": "relative pronoun → antecedent; resolved by hand (L8:man)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "gerund", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": true, "parser": "who [→ a man [= I (speaker)]] | doing | ∅", "note": "'doing' is the gerund object of 'defers', an act deferred, not performed; kept only as the patient 'the deed'.", "ambiguity": null, "flags": ["rejected"], "lines": [8, 9], "vline": 9, "show": {"agent": 8, "target": null, "edge": 9}, "id": "montale-9", "n": 9, "poem": "montale"}, {"key": "L9:undo", "verb": {"text": "can never be undone", "lemma": "undo", "toks": [63, 64, 65, 66], "kind": "destroying"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed"}, "patient": {"text": "which [= the deed (doing)]", "entity": "the deed (doing)", "toks": [61], "manual": true, "how": "resolved by hand (L9:which)"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "passive", "copula": false, "reflexive": false, "negated": true, "modal": "can", "rejected": false, "parser": null, "note": null, "ambiguity": "Agentless passive, negated: no one can undo what was never done. Echoed by L23 'undoes'.", "flags": ["pronoun"], "lines": [9, 9], "vline": 9, "show": {"agent": 9, "target": 9, "edge": 9}, "id": "montale-10", "n": 10, "poem": "montale"}, {"key": "L10:choose", "verb": {"text": "chose", "lemma": "choose", "toks": [69], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [68], "manual": false, "how": "explicit subject"}, "patient": null, "complement": null, "clause": "to search out the evil gnawing at the world, the little war…", "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [10, 10], "vline": 10, "show": {"agent": 10, "target": null, "edge": 10}, "id": "montale-11", "n": 11, "poem": "montale"}, {"key": "L10:search", "verb": {"text": "to search out", "lemma": "search out", "toks": [70, 71, 72], "kind": "perceiving"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [68], "manual": false, "how": "implicit subject (rule)"}, "patient": {"text": "the evil gnawing", "entity": "the evil", "toks": [73, 74, 75], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [10, 11], "vline": 10, "show": {"agent": 10, "target": 10, "edge": 10}, "id": "montale-12", "n": 12, "poem": "montale"}, {"key": "L11:gnaw", "verb": {"text": "gnawing", "lemma": "gnaw", "toks": [75], "kind": "destroying"}, "agent": {"text": "the evil gnawing", "entity": "the evil", "toks": [73, 74, 75], "manual": false, "how": "implicit subject (rule)"}, "patient": {"text": "the world", "entity": "the world", "toks": [77, 78], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "participle (-ing)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [10, 11], "vline": 11, "show": {"agent": 10, "target": 11, "edge": 11}, "id": "montale-13", "n": 13, "poem": "montale"}, {"key": "L12:lock", "verb": {"text": "locks", "lemma": "lock", "toks": [87], "kind": "opening"}, "agent": {"text": "that [→ the lever]", "entity": "the lever", "toks": [84, 85, 86], "manual": false, "how": "relative pronoun → antecedent"}, "patient": {"text": "the universal gears", "entity": "the universal gears", "toks": [88, 89, 90], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The mechanism is cosmic: a lever locking the 'universal gears'.", "flags": [], "lines": [12, 13], "vline": 12, "show": {"agent": 12, "target": 13, "edge": 13}, "id": "montale-14", "n": 14, "poem": "montale"}, {"key": "L13:see", "verb": {"text": "saw", "lemma": "see", "toks": [94], "kind": "perceiving"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [93], "manual": false, "how": "explicit subject"}, "patient": {"text": "all the events of the instant", "entity": "the events of the instant", "toks": [95, 96, 97, 98, 99, 100], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [13, 14], "vline": 13, "show": {"agent": 13, "target": 14, "edge": 14}, "id": "montale-15", "n": 15, "poem": "montale"}, {"key": "L15:poise", "verb": {"text": "poised", "lemma": "poise", "toks": [103], "kind": "being"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed"}, "patient": {"text": "all the events of the instant", "entity": "the events of the instant", "toks": [95, 96, 97, 98, 99, 100], "manual": false, "how": "lexicon"}, "complement": null, "clause": "to collapse and crumble", "obliques": [], "voice": "passive", "construction": "passive participle", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [14, 15], "vline": 15, "show": {"agent": 15, "target": 14, "edge": 15}, "id": "montale-16", "n": 16, "poem": "montale"}, {"key": "L15:collapse", "verb": {"text": "to collapse", "lemma": "collapse", "toks": [104, 105], "kind": "destroying"}, "agent": {"text": "all the events of the instant", "entity": "the events of the instant", "toks": [95, 96, 97, 98, 99, 100], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [14, 15], "vline": 15, "show": {"agent": 14, "target": null, "edge": 15}, "id": "montale-17", "n": 17, "poem": "montale"}, {"key": "L15:crumble", "verb": {"text": "crumble", "lemma": "crumble", "toks": [107], "kind": "destroying"}, "agent": {"text": "all the events of the instant", "entity": "the events of the instant", "toks": [95, 96, 97, 98, 99, 100], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [14, 15], "vline": 15, "show": {"agent": 14, "target": null, "edge": 15}, "id": "montale-18", "n": 18, "poem": "montale"}, {"key": "L16:walk", "verb": {"text": "walked", "lemma": "walk", "toks": [110], "kind": "moving"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [109], "manual": false, "how": "explicit subject"}, "patient": {"text": "the road", "entity": "the road", "toks": [111, 112], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": ["in one direction"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [16, 16], "vline": 16, "show": {"agent": 16, "target": 16, "edge": 16}, "id": "montale-19", "n": 19, "poem": "montale"}, {"key": "L17:yearn", "verb": {"text": "yearned", "lemma": "yearn", "toks": [120], "kind": "desiring"}, "agent": {"text": "my heart", "entity": "my heart", "toks": [118, 119], "manual": false, "how": "explicit subject"}, "patient": {"text": "the other", "entity": "the other direction", "toks": [122, 123], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [16, 17], "vline": 17, "show": {"agent": 16, "target": 17, "edge": 17}, "id": "montale-20", "n": 20, "poem": "montale"}, {"key": "L18:need", "verb": {"text": "needed", "lemma": "need", "toks": [128], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [127], "manual": false, "how": "explicit subject"}, "patient": {"text": "the knife", "entity": "the knife", "toks": [129, 130], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [18, 18], "vline": 18, "show": {"agent": 18, "target": 18, "edge": 18}, "id": "montale-21", "n": 21, "poem": "montale"}, {"key": "L18:need", "verb": {"text": "needed", "lemma": "need", "toks": [128], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [127], "manual": false, "how": "set by hand; lexicon"}, "patient": {"text": "the mind", "entity": "the mind that decides", "toks": [135, 136], "manual": false, "how": "set by hand; lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite, second object (asyndetic list)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "The parser attached 'the mind' to 'the knife' as an appositive. It is a second thing the speaker needed: the knife that slices through, the mind that decides and determines.", "ambiguity": null, "flags": ["added"], "lines": [18, 19], "vline": 18, "show": {"agent": 18, "target": 19, "edge": 19}, "id": "montale-22", "n": 22, "poem": "montale"}, {"key": "L18:slice", "verb": {"text": "slices", "lemma": "slice", "toks": [132], "kind": "destroying"}, "agent": {"text": "that [→ the knife]", "entity": "the knife", "toks": [129, 130, 131], "manual": false, "how": "relative pronoun → antecedent"}, "patient": null, "complement": null, "clause": null, "obliques": ["through"], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Intransitive 'slices through': the knife acts, but on nothing named.", "flags": [], "lines": [18, 18], "vline": 18, "show": {"agent": 18, "target": null, "edge": 18}, "id": "montale-23", "n": 23, "poem": "montale"}, {"key": "L19:decide", "verb": {"text": "decides", "lemma": "decide", "toks": [138], "kind": "desiring"}, "agent": {"text": "that [→ the mind]", "entity": "the mind that decides", "toks": [135, 136, 137], "manual": false, "how": "relative pronoun → antecedent"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The mind is a second thing the speaker needed, beside the knife; like the knife, it acts.", "flags": [], "lines": [19, 19], "vline": 19, "show": {"agent": 19, "target": null, "edge": 19}, "id": "montale-24", "n": 24, "poem": "montale"}, {"key": "L19:determine", "verb": {"text": "determines", "lemma": "determine", "toks": [140], "kind": "desiring"}, "agent": {"text": "that [→ the mind]", "entity": "the mind that decides", "toks": [135, 136, 137], "manual": false, "how": "relative pronoun → antecedent"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [19, 19], "vline": 19, "show": {"agent": 19, "target": null, "edge": 19}, "id": "montale-25", "n": 25, "poem": "montale"}, {"key": "L20:need", "verb": {"text": "needed", "lemma": "need", "toks": [143], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [142], "manual": false, "how": "explicit subject"}, "patient": {"text": "other texts", "entity": "other texts", "toks": [144, 145], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [20, 21], "vline": 20, "show": {"agent": 20, "target": 20, "edge": 20}, "id": "montale-26", "n": 26, "poem": "montale"}, {"key": "L20:need", "verb": {"text": "needed … not", "lemma": "need", "toks": [143, 147], "kind": "desiring"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [142], "manual": false, "how": "set by hand; lexicon"}, "patient": {"text": "your [= the sea (you)] thundering page", "entity": "the sea (you)", "toks": [148, 149, 150], "manual": true, "how": "set by hand; lexicon; possessive resolved by hand (L21:your)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "negated coordinate (ellipsis)", "copula": false, "reflexive": false, "negated": true, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "'not your thundering page' is a second, negated object of 'needed'.", "ambiguity": null, "flags": ["added", "pronoun"], "lines": [20, 21], "vline": 20, "show": {"agent": 20, "target": 21, "edge": 21}, "id": "montale-27", "n": 27, "poem": "montale"}, {"key": "L21:thunder", "verb": {"text": "thundering", "lemma": "thunder", "toks": [149], "kind": "speaking"}, "agent": {"text": "your [= the sea (you)] thundering page", "entity": "the sea (you)", "toks": [148, 149, 150], "manual": true, "how": "lexicon; possessive resolved by hand (L21:your)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "participle (-ing)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [21, 21], "vline": 21, "show": {"agent": 21, "target": null, "edge": 21}, "id": "montale-28", "n": 28, "poem": "montale"}, {"key": "L22:have", "verb": {"text": "have", "lemma": "have", "toks": [154], "kind": "believing"}, "agent": {"text": "I", "entity": "I (speaker)", "toks": [153], "manual": false, "how": "explicit subject"}, "patient": {"text": "no regrets", "entity": "regrets", "toks": [155, 156], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": true, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [22, 22], "vline": 22, "show": {"agent": 22, "target": 22, "edge": 22}, "id": "montale-29", "n": 29, "poem": "montale"}, {"key": "L23:undo", "verb": {"text": "undoes", "lemma": "undo", "toks": [162], "kind": "destroying"}, "agent": {"text": "your [= the sea (you)] song", "entity": "the sea (you)", "toks": [160, 161], "manual": true, "how": "lexicon; possessive resolved by hand (L23:your)"}, "patient": {"text": "my [= I (speaker)] inward knots", "entity": "my inward knots", "toks": [163, 164, 165], "manual": true, "how": "lexicon; possessive resolved by hand (L23:my)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The only successful undoing in the poem, and the sea does it to the speaker.", "flags": ["pronoun"], "lines": [23, 23], "vline": 23, "show": {"agent": 23, "target": 23, "edge": 23}, "id": "montale-30", "n": 30, "poem": "montale"}, {"key": "L24:rise", "verb": {"text": "rises", "lemma": "rise", "toks": [171], "kind": "moving"}, "agent": {"text": "your [= the sea (you)] frenzy", "entity": "the sea (you)", "toks": [169, 170], "manual": true, "how": "lexicon; possessive resolved by hand (L24:your)"}, "patient": null, "complement": null, "clause": null, "obliques": ["to the stars"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [24, 24], "vline": 24, "show": {"agent": 24, "target": null, "edge": 24}, "id": "montale-31", "n": 31, "poem": "montale"}], "entities": [{"name": "I (speaker)", "type": "speaker", "agent": 13, "patient": 0, "copula": 1, "negA": 2, "negP": 0, "complement": 0, "total": 14}, {"name": "my heart", "type": "speaker", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "my inward knots", "type": "speaker", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the sea (you)", "type": "addressee", "agent": 5, "patient": 1, "copula": 0, "negA": 0, "negP": 1, "complement": 0, "total": 6}, {"name": "the pebbles", "type": "nature", "agent": 0, "patient": 2, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "salt", "type": "nature", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the world", "type": "nature", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the stars", "type": "nature", "agent": 0, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 0}, {"name": "the lever", "type": "machine", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the universal gears", "type": "machine", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the knife", "type": "tools", "agent": 1, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "the furor of life", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the deed (doing)", "type": "abstraction", "agent": 0, "patient": 2, "copula": 0, "negA": 0, "negP": 1, "complement": 0, "total": 2}, {"name": "the evil", "type": "abstraction", "agent": 1, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "the events of the instant", "type": "abstraction", "agent": 2, "patient": 2, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 4}, {"name": "the road", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the other direction", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "the mind that decides", "type": "abstraction", "agent": 2, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 3}, {"name": "other texts", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "regrets", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 1, "complement": 0, "total": 1}, {"name": "a cold, persistent will", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "(unstated)", "type": "unstated", "agent": 2, "patient": 0, "copula": 0, "negA": 1, "negP": 0, "complement": 0, "total": 2}], "pronouns": [{"key": "L2:you", "entity": "the sea (you)", "used": true}, {"key": "L6:man", "entity": "I (speaker)", "used": true}, {"key": "L8:man", "entity": "I (speaker)", "used": true}, {"key": "L9:which", "entity": "the deed (doing)", "used": true}, {"key": "L21:your", "entity": "the sea (you)", "used": true}, {"key": "L23:your", "entity": "the sea (you)", "used": true}, {"key": "L23:my", "entity": "I (speaker)", "used": true}, {"key": "L24:your", "entity": "the sea (you)", "used": true}], "descriptions": [{"id": "montale-d1", "poem": "montale", "text": "rough, elemental as the pebbles", "kind": "simile (wished-for)", "toks": [6, 8, 9, 10, 11], "lines": [1, 2], "links": [{"entity": "I (speaker)", "role": "tenor", "anchor": [0]}, {"entity": "the pebbles", "role": "vehicle", "anchor": [11]}], "note": "The speaker wishes to feel like the pebbles, which are things the sea acts on."}, {"id": "montale-d2", "poem": "montale", "text": "a timeless shard", "kind": "apposition / metaphor", "toks": [20, 21, 22], "lines": [4, 4], "links": [{"entity": "the sea (you)", "role": "tenor", "anchor": [12]}, {"entity": "I (speaker)", "role": "alt", "anchor": [0]}, {"entity": "the pebbles", "role": "alt", "anchor": [11]}], "note": "Read here as a figure for the sea. Grammatically the singular 'shard' fits the wished-for 'I' best; it can also gloss the pebbles."}, {"id": "montale-d3", "poem": "montale", "text": "witness to a cold, persistent will", "kind": "apposition / agent noun", "toks": [24, 25, 26, 27, 29, 30], "lines": [4, 5], "links": [{"entity": "the sea (you)", "role": "tenor", "anchor": [12]}, {"entity": "I (speaker)", "role": "alt", "anchor": [0]}, {"entity": "the pebbles", "role": "alt", "anchor": [11]}], "note": "'witness' implies an act of seeing with no verb. On this reading it is what the sea sees: a cold, persistent will. If the witness is the wished-for 'I', the will is the sea's own."}, {"id": "montale-d4", "poem": "montale", "text": "anything but: a man intent on observing", "kind": "apposition (self-description)", "toks": [34, 35, 37, 38, 39, 40, 41], "lines": [6, 7], "links": [{"entity": "I (speaker)", "role": "tenor", "anchor": [32]}], "note": "'I was anything but': the speaker is defined by negation, then as a watcher."}, {"id": "montale-d5", "poem": "montale", "text": "the little warp in the lever", "kind": "apposition / metaphor", "toks": [80, 81, 82, 83, 84, 85], "lines": [11, 12], "links": [{"entity": "the evil", "role": "tenor", "anchor": [74]}], "note": "Evil pictured as a mechanical defect in the machinery of the world."}, {"id": "montale-d6", "poem": "montale", "text": "your thundering page", "kind": "metaphor", "toks": [148, 149, 150], "lines": [21, 21], "links": [{"entity": "the sea (you)", "role": "tenor", "anchor": [148]}, {"entity": "other texts", "role": "contrast", "anchor": [145]}], "note": "The sea as a text, a 'thundering page', set against the 'other texts' the speaker needed."}], "bonds": [{"id": "montale-b1", "a": "the evil", "b": "the lever", "kind": "location", "label": "in", "note": "The evil is ‘the little warp / in the lever that locks / the universal gears’: the flaw the speaker hunts sits inside the mechanism that locks the world.", "toks": [83, 85], "line": 12}, {"id": "montale-b2", "a": "I (speaker)", "b": "my heart", "kind": "possession", "label": "my", "note": "The heart is the speaker's own, but it acts against him: he walks one way while it yearns the other.", "toks": [118, 119], "line": 16}, {"id": "montale-b3", "a": "the road", "b": "the other direction", "kind": "contrast", "label": "≠", "note": "‘in one direction … for the other’: the road the speaker walks and the direction the heart wants.", "toks": [114, 123], "line": 17}, {"id": "montale-b4", "a": "I (speaker)", "b": "my inward knots", "kind": "possession", "label": "my", "note": "The knots are the speaker's; the sea's song undoes them.", "toks": [163, 165], "line": 23}], "stanzas": null}, {"id": "rilke", "author": "Rainer Maria Rilke", "title": "Sonnets to Orpheus II.10", "lines": ["All we have gained the machine threatens, as long", "as it dares to exist in the mind and not in obedience.", "To dim the masterful hand's more glorious lingering,", "for the determined structure it more rigidly cuts the stones.", "Nowhere does it stay behind; we cannot escape it at last", "as it rules, self-guided, self-oiled, from its silent factory.", "It thinks it is life: thinks it does everything best,", "though with equal determination it can create or destroy.", "But still, existence for us is a miracle; in a hundred", "places it is still the source. A playing of absolute", "forces that no one can touch who has not knelt down in wonder.", "Still there are words that can calmly approach the unsayable ...", "And from the most tremulous stones music, forever new,", "builds in unusable space her deified temple."], "tokens": [{"t": "All", "ws": true, "ln": 1, "pos": "PRON", "dep": "nsubj"}, {"t": "we", "ws": true, "ln": 1, "pos": "PRON", "dep": "nsubj"}, {"t": "have", "ws": true, "ln": 1, "pos": "AUX", "dep": "aux"}, {"t": "gained", "ws": true, "ln": 1, "pos": "VERB", "dep": "relcl"}, {"t": "the", "ws": true, "ln": 1, "pos": "DET", "dep": "det"}, {"t": "machine", "ws": true, "ln": 1, "pos": "NOUN", "dep": "nsubj"}, {"t": "threatens", "ws": false, "ln": 1, "pos": "VERB", "dep": "ROOT"}, {"t": ",", "ws": true, "ln": 1, "pos": "PUNCT", "dep": "punct"}, {"t": "as", "ws": true, "ln": 1, "pos": "ADV", "dep": "advmod"}, {"t": "long", "ws": false, "ln": 1, "pos": "ADV", "dep": "advmod"}, {"t": "as", "ws": true, "ln": 2, "pos": "SCONJ", "dep": "mark"}, {"t": "it", "ws": true, "ln": 2, "pos": "PRON", "dep": "nsubj"}, {"t": "dares", "ws": true, "ln": 2, "pos": "VERB", "dep": "advcl"}, {"t": "to", "ws": true, "ln": 2, "pos": "PART", "dep": "aux"}, {"t": "exist", "ws": true, "ln": 2, "pos": "VERB", "dep": "xcomp"}, {"t": "in", "ws": true, "ln": 2, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 2, "pos": "DET", "dep": "det"}, {"t": "mind", "ws": true, "ln": 2, "pos": "NOUN", "dep": "pobj"}, {"t": "and", "ws": true, "ln": 2, "pos": "CCONJ", "dep": "cc"}, {"t": "not", "ws": true, "ln": 2, "pos": "PART", "dep": "neg"}, {"t": "in", "ws": true, "ln": 2, "pos": "ADP", "dep": "conj"}, {"t": "obedience", "ws": false, "ln": 2, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 2, "pos": "PUNCT", "dep": "punct"}, {"t": "To", "ws": true, "ln": 3, "pos": "PART", "dep": "aux"}, {"t": "dim", "ws": true, "ln": 3, "pos": "VERB", "dep": "advcl"}, {"t": "the", "ws": true, "ln": 3, "pos": "DET", "dep": "det"}, {"t": "masterful", "ws": true, "ln": 3, "pos": "ADJ", "dep": "amod"}, {"t": "hand", "ws": false, "ln": 3, "pos": "NOUN", "dep": "poss"}, {"t": "'s", "ws": true, "ln": 3, "pos": "PART", "dep": "case"}, {"t": "more", "ws": true, "ln": 3, "pos": "ADV", "dep": "advmod"}, {"t": "glorious", "ws": true, "ln": 3, "pos": "ADJ", "dep": "amod"}, {"t": "lingering", "ws": false, "ln": 3, "pos": "NOUN", "dep": "dobj"}, {"t": ",", "ws": false, "ln": 3, "pos": "PUNCT", "dep": "punct"}, {"t": "for", "ws": true, "ln": 4, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 4, "pos": "DET", "dep": "det"}, {"t": "determined", "ws": true, "ln": 4, "pos": "ADJ", "dep": "amod"}, {"t": "structure", "ws": true, "ln": 4, "pos": "NOUN", "dep": "pobj"}, {"t": "it", "ws": true, "ln": 4, "pos": "PRON", "dep": "nsubj"}, {"t": "more", "ws": true, "ln": 4, "pos": "ADV", "dep": "advmod"}, {"t": "rigidly", "ws": true, "ln": 4, "pos": "ADV", "dep": "advmod"}, {"t": "cuts", "ws": true, "ln": 4, "pos": "VERB", "dep": "ROOT"}, {"t": "the", "ws": true, "ln": 4, "pos": "DET", "dep": "det"}, {"t": "stones", "ws": false, "ln": 4, "pos": "NOUN", "dep": "dobj"}, {"t": ".", "ws": false, "ln": 4, "pos": "PUNCT", "dep": "punct"}, {"t": "Nowhere", "ws": true, "ln": 5, "pos": "ADV", "dep": "advmod"}, {"t": "does", "ws": true, "ln": 5, "pos": "AUX", "dep": "aux"}, {"t": "it", "ws": true, "ln": 5, "pos": "PRON", "dep": "nsubj"}, {"t": "stay", "ws": true, "ln": 5, "pos": "VERB", "dep": "ccomp"}, {"t": "behind", "ws": false, "ln": 5, "pos": "ADV", "dep": "advmod"}, {"t": ";", "ws": true, "ln": 5, "pos": "PUNCT", "dep": "punct"}, {"t": "we", "ws": true, "ln": 5, "pos": "PRON", "dep": "nsubj"}, {"t": "can", "ws": false, "ln": 5, "pos": "AUX", "dep": "aux"}, {"t": "not", "ws": true, "ln": 5, "pos": "PART", "dep": "neg"}, {"t": "escape", "ws": true, "ln": 5, "pos": "VERB", "dep": "ROOT"}, {"t": "it", "ws": true, "ln": 5, "pos": "PRON", "dep": "dobj"}, {"t": "at", "ws": true, "ln": 5, "pos": "ADP", "dep": "advmod"}, {"t": "last", "ws": false, "ln": 5, "pos": "ADV", "dep": "advmod"}, {"t": "as", "ws": true, "ln": 6, "pos": "SCONJ", "dep": "mark"}, {"t": "it", "ws": true, "ln": 6, "pos": "PRON", "dep": "nsubj"}, {"t": "rules", "ws": false, "ln": 6, "pos": "VERB", "dep": "advcl"}, {"t": ",", "ws": true, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "self", "ws": false, "ln": 6, "pos": "NOUN", "dep": "npadvmod"}, {"t": "-", "ws": false, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "guided", "ws": false, "ln": 6, "pos": "VERB", "dep": "amod"}, {"t": ",", "ws": true, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "self", "ws": false, "ln": 6, "pos": "NOUN", "dep": "npadvmod"}, {"t": "-", "ws": false, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "oiled", "ws": false, "ln": 6, "pos": "VERB", "dep": "advcl"}, {"t": ",", "ws": true, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "from", "ws": true, "ln": 6, "pos": "ADP", "dep": "prep"}, {"t": "its", "ws": true, "ln": 6, "pos": "PRON", "dep": "poss"}, {"t": "silent", "ws": true, "ln": 6, "pos": "ADJ", "dep": "amod"}, {"t": "factory", "ws": false, "ln": 6, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 6, "pos": "PUNCT", "dep": "punct"}, {"t": "It", "ws": true, "ln": 7, "pos": "PRON", "dep": "nsubj"}, {"t": "thinks", "ws": true, "ln": 7, "pos": "VERB", "dep": "ROOT"}, {"t": "it", "ws": true, "ln": 7, "pos": "PRON", "dep": "nsubj"}, {"t": "is", "ws": true, "ln": 7, "pos": "AUX", "dep": "ccomp"}, {"t": "life", "ws": false, "ln": 7, "pos": "NOUN", "dep": "attr"}, {"t": ":", "ws": true, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "thinks", "ws": true, "ln": 7, "pos": "VERB", "dep": "dep"}, {"t": "it", "ws": true, "ln": 7, "pos": "PRON", "dep": "nsubj"}, {"t": "does", "ws": true, "ln": 7, "pos": "VERB", "dep": "ccomp"}, {"t": "everything", "ws": true, "ln": 7, "pos": "PRON", "dep": "dobj"}, {"t": "best", "ws": false, "ln": 7, "pos": "ADV", "dep": "advmod"}, {"t": ",", "ws": false, "ln": 7, "pos": "PUNCT", "dep": "punct"}, {"t": "though", "ws": true, "ln": 8, "pos": "SCONJ", "dep": "mark"}, {"t": "with", "ws": true, "ln": 8, "pos": "ADP", "dep": "prep"}, {"t": "equal", "ws": true, "ln": 8, "pos": "ADJ", "dep": "amod"}, {"t": "determination", "ws": true, "ln": 8, "pos": "NOUN", "dep": "pobj"}, {"t": "it", "ws": true, "ln": 8, "pos": "PRON", "dep": "nsubj"}, {"t": "can", "ws": true, "ln": 8, "pos": "AUX", "dep": "aux"}, {"t": "create", "ws": true, "ln": 8, "pos": "VERB", "dep": "advcl"}, {"t": "or", "ws": true, "ln": 8, "pos": "CCONJ", "dep": "cc"}, {"t": "destroy", "ws": false, "ln": 8, "pos": "VERB", "dep": "conj"}, {"t": ".", "ws": false, "ln": 8, "pos": "PUNCT", "dep": "punct"}, {"t": "But", "ws": true, "ln": 9, "pos": "CCONJ", "dep": "cc"}, {"t": "still", "ws": false, "ln": 9, "pos": "ADV", "dep": "advmod"}, {"t": ",", "ws": true, "ln": 9, "pos": "PUNCT", "dep": "punct"}, {"t": "existence", "ws": true, "ln": 9, "pos": "NOUN", "dep": "nsubj"}, {"t": "for", "ws": true, "ln": 9, "pos": "ADP", "dep": "prep"}, {"t": "us", "ws": true, "ln": 9, "pos": "PRON", "dep": "pobj"}, {"t": "is", "ws": true, "ln": 9, "pos": "AUX", "dep": "ccomp"}, {"t": "a", "ws": true, "ln": 9, "pos": "DET", "dep": "det"}, {"t": "miracle", "ws": false, "ln": 9, "pos": "NOUN", "dep": "attr"}, {"t": ";", "ws": true, "ln": 9, "pos": "PUNCT", "dep": "punct"}, {"t": "in", "ws": true, "ln": 9, "pos": "ADP", "dep": "prep"}, {"t": "a", "ws": true, "ln": 9, "pos": "DET", "dep": "quantmod"}, {"t": "hundred", "ws": false, "ln": 9, "pos": "NUM", "dep": "nummod"}, {"t": "places", "ws": true, "ln": 10, "pos": "NOUN", "dep": "pobj"}, {"t": "it", "ws": true, "ln": 10, "pos": "PRON", "dep": "nsubj"}, {"t": "is", "ws": true, "ln": 10, "pos": "AUX", "dep": "ROOT"}, {"t": "still", "ws": true, "ln": 10, "pos": "ADV", "dep": "advmod"}, {"t": "the", "ws": true, "ln": 10, "pos": "DET", "dep": "det"}, {"t": "source", "ws": false, "ln": 10, "pos": "NOUN", "dep": "attr"}, {"t": ".", "ws": true, "ln": 10, "pos": "PUNCT", "dep": "punct"}, {"t": "A", "ws": true, "ln": 10, "pos": "DET", "dep": "det"}, {"t": "playing", "ws": true, "ln": 10, "pos": "NOUN", "dep": "ROOT"}, {"t": "of", "ws": true, "ln": 10, "pos": "ADP", "dep": "prep"}, {"t": "absolute", "ws": false, "ln": 10, "pos": "ADJ", "dep": "amod"}, {"t": "forces", "ws": true, "ln": 11, "pos": "NOUN", "dep": "pobj"}, {"t": "that", "ws": true, "ln": 11, "pos": "PRON", "dep": "dobj"}, {"t": "no", "ws": true, "ln": 11, "pos": "DET", "dep": "det"}, {"t": "one", "ws": true, "ln": 11, "pos": "NOUN", "dep": "nsubj"}, {"t": "can", "ws": true, "ln": 11, "pos": "AUX", "dep": "aux"}, {"t": "touch", "ws": true, "ln": 11, "pos": "VERB", "dep": "relcl"}, {"t": "who", "ws": true, "ln": 11, "pos": "PRON", "dep": "nsubj"}, {"t": "has", "ws": true, "ln": 11, "pos": "AUX", "dep": "aux"}, {"t": "not", "ws": true, "ln": 11, "pos": "PART", "dep": "neg"}, {"t": "knelt", "ws": true, "ln": 11, "pos": "VERB", "dep": "relcl"}, {"t": "down", "ws": true, "ln": 11, "pos": "ADP", "dep": "prt"}, {"t": "in", "ws": true, "ln": 11, "pos": "ADP", "dep": "prep"}, {"t": "wonder", "ws": false, "ln": 11, "pos": "NOUN", "dep": "pobj"}, {"t": ".", "ws": false, "ln": 11, "pos": "PUNCT", "dep": "punct"}, {"t": "Still", "ws": true, "ln": 12, "pos": "ADV", "dep": "advmod"}, {"t": "there", "ws": true, "ln": 12, "pos": "PRON", "dep": "expl"}, {"t": "are", "ws": true, "ln": 12, "pos": "VERB", "dep": "ROOT"}, {"t": "words", "ws": true, "ln": 12, "pos": "NOUN", "dep": "attr"}, {"t": "that", "ws": true, "ln": 12, "pos": "PRON", "dep": "nsubj"}, {"t": "can", "ws": true, "ln": 12, "pos": "AUX", "dep": "aux"}, {"t": "calmly", "ws": true, "ln": 12, "pos": "ADV", "dep": "advmod"}, {"t": "approach", "ws": true, "ln": 12, "pos": "VERB", "dep": "relcl"}, {"t": "the", "ws": true, "ln": 12, "pos": "DET", "dep": "det"}, {"t": "unsayable", "ws": true, "ln": 12, "pos": "ADJ", "dep": "dobj"}, {"t": "...", "ws": false, "ln": 12, "pos": "PUNCT", "dep": "punct"}, {"t": "And", "ws": true, "ln": 13, "pos": "CCONJ", "dep": "cc"}, {"t": "from", "ws": true, "ln": 13, "pos": "ADP", "dep": "prep"}, {"t": "the", "ws": true, "ln": 13, "pos": "DET", "dep": "det"}, {"t": "most", "ws": true, "ln": 13, "pos": "ADV", "dep": "advmod"}, {"t": "tremulous", "ws": true, "ln": 13, "pos": "ADJ", "dep": "amod"}, {"t": "stones", "ws": true, "ln": 13, "pos": "NOUN", "dep": "pobj"}, {"t": "music", "ws": false, "ln": 13, "pos": "NOUN", "dep": "nsubj"}, {"t": ",", "ws": true, "ln": 13, "pos": "PUNCT", "dep": "punct"}, {"t": "forever", "ws": true, "ln": 13, "pos": "ADV", "dep": "advmod"}, {"t": "new", "ws": false, "ln": 13, "pos": "ADJ", "dep": "amod"}, {"t": ",", "ws": false, "ln": 13, "pos": "PUNCT", "dep": "punct"}, {"t": "builds", "ws": true, "ln": 14, "pos": "VERB", "dep": "ROOT"}, {"t": "in", "ws": true, "ln": 14, "pos": "ADP", "dep": "prep"}, {"t": "unusable", "ws": true, "ln": 14, "pos": "ADJ", "dep": "amod"}, {"t": "space", "ws": true, "ln": 14, "pos": "NOUN", "dep": "pobj"}, {"t": "her", "ws": true, "ln": 14, "pos": "PRON", "dep": "poss"}, {"t": "deified", "ws": true, "ln": 14, "pos": "VERB", "dep": "amod"}, {"t": "temple", "ws": false, "ln": 14, "pos": "PROPN", "dep": "dobj"}, {"t": ".", "ws": false, "ln": 14, "pos": "PUNCT", "dep": "punct"}], "relations": [{"key": "L1:gain", "verb": {"text": "have gained", "lemma": "gain", "toks": [2, 3], "kind": "making"}, "agent": {"text": "we", "entity": "we", "toks": [1], "manual": true, "how": "resolved by hand (L1:we)"}, "patient": {"text": "All", "entity": "all we have gained", "toks": [0], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [1, 1], "vline": 1, "show": {"agent": 1, "target": 1, "edge": 1}, "id": "rilke-1", "n": 1, "poem": "rilke"}, {"key": "L1:threaten", "verb": {"text": "threatens", "lemma": "threaten", "toks": [6], "kind": "destroying"}, "agent": {"text": "the machine", "entity": "the machine", "toks": [4, 5], "manual": false, "how": "set by hand; lexicon"}, "patient": {"text": "All we have gained", "entity": "all we have gained", "toks": [0, 1, 2, 3], "manual": false, "how": "set by hand"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite, object fronted (OSV)", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "All | threatens | ∅", "note": "Inversion: the parser made both 'All' and 'the machine' subjects. 'All we have gained' is the fronted object.", "ambiguity": null, "flags": ["corrected"], "lines": [1, 1], "vline": 1, "show": {"agent": 1, "target": 1, "edge": 1}, "id": "rilke-2", "n": 2, "poem": "rilke"}, {"key": "L2:dare", "verb": {"text": "dares", "lemma": "dare", "toks": [12], "kind": "desiring"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [11], "manual": true, "how": "resolved by hand (L2:it)"}, "patient": null, "complement": null, "clause": "to exist in the mind and not in obedience", "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [2, 2], "vline": 2, "show": {"agent": 2, "target": null, "edge": 2}, "id": "rilke-3", "n": 3, "poem": "rilke"}, {"key": "L2:exist", "verb": {"text": "to exist", "lemma": "exist", "toks": [13, 14], "kind": "being"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [11], "manual": true, "how": "resolved by hand (L2:it)"}, "patient": null, "complement": null, "clause": null, "obliques": ["in the mind and not in obedience"], "voice": "active", "construction": "infinitive, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The negation sits on the adjunct ('not in obedience'), not the verb.", "flags": ["pronoun"], "lines": [2, 2], "vline": 2, "show": {"agent": 2, "target": null, "edge": 2}, "id": "rilke-4", "n": 4, "poem": "rilke"}, {"key": "L3:dim", "verb": {"text": "To dim", "lemma": "dim", "toks": [23, 24], "kind": "destroying"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [37], "manual": true, "how": "resolved by hand (L4:it)"}, "patient": {"text": "the masterful hand's glorious lingering", "entity": "the masterful hand", "toks": [25, 26, 27, 28, 30, 31], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "infinitive, purpose", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Purpose infinitive with no subject; the controller is 'it', the machine.", "flags": ["pronoun"], "lines": [3, 4], "vline": 3, "show": {"agent": 4, "target": 3, "edge": 4}, "id": "rilke-5", "n": 5, "poem": "rilke"}, {"key": "L4:cut", "verb": {"text": "cuts", "lemma": "cut", "toks": [40], "kind": "making"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [37], "manual": true, "how": "resolved by hand (L4:it)"}, "patient": {"text": "the stones", "entity": "the stones", "toks": [41, 42], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": ["for the determined structure"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Counted as making (shaping stone for structure), though the clause reads as violence.", "flags": ["pronoun"], "lines": [4, 4], "vline": 4, "show": {"agent": 4, "target": 4, "edge": 4}, "id": "rilke-6", "n": 6, "poem": "rilke"}, {"key": "L5:stay", "verb": {"text": "does … stay", "lemma": "stay", "toks": [45, 47], "kind": "moving"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [46], "manual": true, "how": "resolved by hand (L5:it)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": true, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [5, 5], "vline": 5, "show": {"agent": 5, "target": null, "edge": 5}, "id": "rilke-7", "n": 7, "poem": "rilke"}, {"key": "L5:escape", "verb": {"text": "cannot escape", "lemma": "escape", "toks": [51, 52, 53], "kind": "moving"}, "agent": {"text": "we", "entity": "we", "toks": [50], "manual": true, "how": "resolved by hand (L5:we)"}, "patient": {"text": "it [= the machine]", "entity": "the machine", "toks": [54], "manual": true, "how": "resolved by hand (L5:it)"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": true, "modal": "can", "rejected": false, "parser": null, "note": null, "ambiguity": "Humans' one act toward the machine is negated: 'we cannot escape it'.", "flags": ["pronoun"], "lines": [5, 5], "vline": 5, "show": {"agent": 5, "target": 5, "edge": 5}, "id": "rilke-8", "n": 8, "poem": "rilke"}, {"key": "L6:rule", "verb": {"text": "rules", "lemma": "rule", "toks": [59], "kind": "ruling"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [58], "manual": true, "how": "resolved by hand (L6:it)"}, "patient": null, "complement": null, "clause": null, "obliques": ["from its silent factory"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [6, 6], "vline": 6, "show": {"agent": 6, "target": null, "edge": 6}, "id": "rilke-9", "n": 9, "poem": "rilke"}, {"key": "L6:guide", "verb": {"text": "guided", "lemma": "guide", "toks": [63], "kind": "ruling"}, "agent": {"text": "self-", "entity": "the machine", "toks": [61], "manual": true, "how": "reflexive passive ('self-')"}, "patient": {"text": "it [= the machine]", "entity": "the machine", "toks": [58], "manual": true, "how": "resolved by hand (L6:it)"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "passive participle, reflexive", "copula": false, "reflexive": true, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'self-guided, self-oiled': passive in form, reflexive in sense. The machine is its own agent and patient.", "flags": ["pronoun"], "lines": [6, 6], "vline": 6, "show": {"agent": 6, "target": 6, "edge": 6}, "id": "rilke-10", "n": 10, "poem": "rilke"}, {"key": "L6:oil", "verb": {"text": "oiled", "lemma": "oil", "toks": [67], "kind": "making"}, "agent": {"text": "self-", "entity": "the machine", "toks": [65], "manual": true, "how": "reflexive passive ('self-')"}, "patient": {"text": "it [= the machine]", "entity": "the machine", "toks": [58], "manual": true, "how": "resolved by hand (L6:it)"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "passive participle, reflexive", "copula": false, "reflexive": true, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [6, 6], "vline": 6, "show": {"agent": 6, "target": 6, "edge": 6}, "id": "rilke-11", "n": 11, "poem": "rilke"}, {"key": "L7:think", "verb": {"text": "thinks", "lemma": "think", "toks": [75], "kind": "believing"}, "agent": {"text": "It [= the machine]", "entity": "the machine", "toks": [74], "manual": true, "how": "resolved by hand (L7:it)"}, "patient": null, "complement": null, "clause": "it is life", "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The machine thinks itself life. Its belief is about itself (clausal object).", "flags": ["pronoun"], "lines": [7, 7], "vline": 7, "show": {"agent": 7, "target": null, "edge": 7}, "id": "rilke-12", "n": 12, "poem": "rilke"}, {"key": "L7:be", "verb": {"text": "is", "lemma": "be", "toks": [77], "kind": "being"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [76], "manual": true, "how": "resolved by hand (L7:it)"}, "patient": null, "complement": {"text": "life", "entity": "life", "toks": [78], "manual": false, "how": "lexicon"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [7, 7], "vline": 7, "show": {"agent": 7, "target": 7, "edge": 7}, "id": "rilke-13", "n": 13, "poem": "rilke"}, {"key": "L7:think", "verb": {"text": "thinks", "lemma": "think", "toks": [80], "kind": "believing"}, "agent": {"text": "It [= the machine]", "entity": "the machine", "toks": [74], "manual": true, "how": "resolved by hand (L7:it)"}, "patient": null, "complement": null, "clause": "it does everything best, though with equal determination it…", "obliques": [], "voice": "active", "construction": "finite, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "The machine thinks itself life. Its belief is about itself (clausal object).", "flags": ["pronoun"], "lines": [7, 7], "vline": 7, "show": {"agent": 7, "target": null, "edge": 7}, "id": "rilke-14", "n": 14, "poem": "rilke"}, {"key": "L7:do", "verb": {"text": "does", "lemma": "do", "toks": [82], "kind": "making"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [81], "manual": true, "how": "resolved by hand (L7:it)"}, "patient": {"text": "everything", "entity": "everything", "toks": [83], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [7, 7], "vline": 7, "show": {"agent": 7, "target": 7, "edge": 7}, "id": "rilke-15", "n": 15, "poem": "rilke"}, {"key": "L8:create", "verb": {"text": "can create", "lemma": "create", "toks": [91, 92], "kind": "making"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [90], "manual": true, "how": "resolved by hand (L8:it)"}, "patient": null, "complement": null, "clause": null, "obliques": ["with equal determination"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": "can", "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [8, 8], "vline": 8, "show": {"agent": 8, "target": null, "edge": 8}, "id": "rilke-16", "n": 16, "poem": "rilke"}, {"key": "L8:destroy", "verb": {"text": "destroy", "lemma": "destroy", "toks": [94], "kind": "destroying"}, "agent": {"text": "it [= the machine]", "entity": "the machine", "toks": [90], "manual": true, "how": "resolved by hand (L8:it)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "finite, subject shared/elided", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [8, 8], "vline": 8, "show": {"agent": 8, "target": null, "edge": 8}, "id": "rilke-17", "n": 17, "poem": "rilke"}, {"key": "L9:be", "verb": {"text": "is", "lemma": "be", "toks": [102], "kind": "being"}, "agent": {"text": "existence", "entity": "existence", "toks": [99], "manual": false, "how": "explicit subject"}, "patient": null, "complement": {"text": "a miracle", "entity": "a miracle", "toks": [103, 104], "manual": false, "how": "lexicon"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [9, 9], "vline": 9, "show": {"agent": 9, "target": 9, "edge": 9}, "id": "rilke-18", "n": 18, "poem": "rilke"}, {"key": "L10:be", "verb": {"text": "is", "lemma": "be", "toks": [111], "kind": "being"}, "agent": {"text": "it [= existence]", "entity": "existence", "toks": [110], "manual": true, "how": "resolved by hand (L10:it)"}, "patient": null, "complement": {"text": "the source", "entity": "the source", "toks": [113, 114], "manual": false, "how": "lexicon"}, "clause": null, "obliques": [], "voice": "active", "construction": "copula", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "'it' is easily misread as the machine; it is existence (resolved by hand).", "flags": ["pronoun"], "lines": [10, 10], "vline": 10, "show": {"agent": 10, "target": 10, "edge": 10}, "id": "rilke-19", "n": 19, "poem": "rilke"}, {"key": "L10:play", "verb": {"text": "A playing of", "lemma": "play", "toks": [117], "kind": "moving"}, "agent": {"text": "absolute forces", "entity": "absolute forces", "toks": [119, 120], "manual": false, "how": "set by hand; lexicon"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "nominalisation", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": "— (no clause found by the parser)", "note": "'A playing of absolute / forces' is a noun phrase; the forces are the underlying agents.", "ambiguity": "Verbless: agency is converted into a noun, attributed to no grammatical subject.", "flags": ["added"], "lines": [10, 11], "vline": 10, "show": {"agent": 10, "target": null, "edge": 10}, "id": "rilke-20", "n": 20, "poem": "rilke"}, {"key": "L11:touch", "verb": {"text": "can touch", "lemma": "touch", "toks": [124, 125], "kind": "perceiving"}, "agent": {"text": "no one", "entity": "no one", "toks": [122, 123], "manual": false, "how": "explicit subject"}, "patient": {"text": "that [→ absolute forces]", "entity": "absolute forces", "toks": [119, 120, 121], "manual": false, "how": "relative pronoun → antecedent"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": true, "modal": "can", "rejected": false, "parser": null, "note": null, "ambiguity": "Double negative ('no one ... who has not knelt'): only those who kneel can touch.", "flags": [], "lines": [10, 11], "vline": 11, "show": {"agent": 11, "target": 10, "edge": 11}, "id": "rilke-21", "n": 21, "poem": "rilke"}, {"key": "L11:kneel", "verb": {"text": "has not knelt down", "lemma": "kneel down", "toks": [127, 128, 129, 130], "kind": "believing"}, "agent": {"text": "who [= no one]", "entity": "no one", "toks": [126], "manual": true, "how": "resolved by hand (L11:who)"}, "patient": null, "complement": null, "clause": null, "obliques": ["in wonder"], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": true, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [11, 11], "vline": 11, "show": {"agent": 11, "target": null, "edge": 11}, "id": "rilke-22", "n": 22, "poem": "rilke"}, {"key": "L12:be", "verb": {"text": "are", "lemma": "be", "toks": [136], "kind": "being"}, "agent": {"text": "words", "entity": "words", "toks": [137], "manual": false, "how": "implicit subject (rule)"}, "patient": null, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "existential (there is)", "copula": true, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [12, 12], "vline": 12, "show": {"agent": 12, "target": null, "edge": 12}, "id": "rilke-23", "n": 23, "poem": "rilke"}, {"key": "L12:approach", "verb": {"text": "can … approach", "lemma": "approach", "toks": [139, 141], "kind": "moving"}, "agent": {"text": "that [→ words]", "entity": "words", "toks": [137, 138], "manual": false, "how": "relative pronoun → antecedent"}, "patient": {"text": "the unsayable", "entity": "the unsayable", "toks": [142, 143], "manual": false, "how": "lexicon"}, "complement": null, "clause": null, "obliques": [], "voice": "active", "construction": "relative clause", "copula": false, "reflexive": false, "negated": false, "modal": "can", "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": [], "lines": [12, 12], "vline": 12, "show": {"agent": 12, "target": 12, "edge": 12}, "id": "rilke-24", "n": 24, "poem": "rilke"}, {"key": "L14:build", "verb": {"text": "builds", "lemma": "build", "toks": [156], "kind": "making"}, "agent": {"text": "music new", "entity": "music", "toks": [151, 154], "manual": false, "how": "explicit subject"}, "patient": {"text": "her [= music] deified temple", "entity": "her temple", "toks": [160, 161, 162], "manual": true, "how": "lexicon; possessive resolved by hand (L14:her)"}, "complement": null, "clause": null, "obliques": ["from the most tremulous stones", "in unusable space"], "voice": "active", "construction": "finite", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": null, "flags": ["pronoun"], "lines": [13, 14], "vline": 14, "show": {"agent": 13, "target": 14, "edge": 14}, "id": "rilke-25", "n": 25, "poem": "rilke"}, {"key": "L14:deify", "verb": {"text": "deified", "lemma": "deify", "toks": [161], "kind": "believing"}, "agent": {"text": "—", "entity": "(unstated)", "toks": [], "manual": false, "how": "no agent expressed"}, "patient": {"text": "her [= music] deified temple", "entity": "her temple", "toks": [160, 161, 162], "manual": true, "how": "lexicon; possessive resolved by hand (L14:her)"}, "complement": null, "clause": null, "obliques": [], "voice": "passive", "construction": "passive participle", "copula": false, "reflexive": false, "negated": false, "modal": null, "rejected": false, "parser": null, "note": null, "ambiguity": "Agentless participle: who deified the temple? Music, by building it, is the likeliest reading.", "flags": ["pronoun"], "lines": [14, 14], "vline": 14, "show": {"agent": 14, "target": 14, "edge": 14}, "id": "rilke-26", "n": 26, "poem": "rilke"}], "entities": [{"name": "we", "type": "humans", "agent": 2, "patient": 0, "copula": 0, "negA": 1, "negP": 0, "complement": 0, "total": 2}, {"name": "all we have gained", "type": "humans", "agent": 0, "patient": 2, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "the masterful hand", "type": "humans", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "no one", "type": "humans", "agent": 2, "patient": 0, "copula": 0, "negA": 2, "negP": 0, "complement": 0, "total": 2}, {"name": "the machine", "type": "machine", "agent": 14, "patient": 3, "copula": 1, "negA": 1, "negP": 1, "complement": 0, "total": 18}, {"name": "the stones", "type": "nature", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "everything", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "life", "type": "abstraction", "agent": 0, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 1, "total": 1}, {"name": "existence", "type": "abstraction", "agent": 0, "patient": 0, "copula": 2, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "a miracle", "type": "abstraction", "agent": 0, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 1, "total": 1}, {"name": "the source", "type": "abstraction", "agent": 0, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 1, "total": 1}, {"name": "absolute forces", "type": "abstraction", "agent": 1, "patient": 1, "copula": 0, "negA": 0, "negP": 1, "complement": 0, "total": 2}, {"name": "words", "type": "abstraction", "agent": 1, "patient": 0, "copula": 1, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "the unsayable", "type": "abstraction", "agent": 0, "patient": 1, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "music", "type": "abstraction", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}, {"name": "her temple", "type": "abstraction", "agent": 0, "patient": 2, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 2}, {"name": "(unstated)", "type": "unstated", "agent": 1, "patient": 0, "copula": 0, "negA": 0, "negP": 0, "complement": 0, "total": 1}], "pronouns": [{"key": "L1:we", "entity": "we", "used": true}, {"key": "L2:it", "entity": "the machine", "used": true}, {"key": "L4:it", "entity": "the machine", "used": true}, {"key": "L5:it", "entity": "the machine", "used": true}, {"key": "L5:we", "entity": "we", "used": true}, {"key": "L6:it", "entity": "the machine", "used": true}, {"key": "L6:its", "entity": "the machine", "used": false}, {"key": "L7:it", "entity": "the machine", "used": true}, {"key": "L8:it", "entity": "the machine", "used": true}, {"key": "L9:us", "entity": "we", "used": false}, {"key": "L10:it", "entity": "existence", "used": true}, {"key": "L11:who", "entity": "no one", "used": true}, {"key": "L14:her", "entity": "music", "used": true}], "descriptions": [{"id": "rilke-d1", "poem": "rilke", "text": "from its silent factory", "kind": "attribute (setting)", "toks": [69, 70, 71, 72], "lines": [6, 6], "links": [{"entity": "the machine", "role": "tenor", "anchor": [70]}], "note": "The machine is given a home and a silence: 'its silent factory'."}, {"id": "rilke-d2", "poem": "rilke", "text": "A playing of absolute forces", "kind": "apposition (verbless fragment)", "toks": [116, 117, 118, 119, 120], "lines": [10, 11], "links": [{"entity": "existence", "role": "tenor", "anchor": [110]}], "note": "Existence redescribed as a play of forces, with no verb and no subject."}, {"id": "rilke-d3", "poem": "rilke", "text": "forever new", "kind": "attribute", "toks": [153, 154], "lines": [13, 13], "links": [{"entity": "music", "role": "tenor", "anchor": [151]}], "note": "Music is 'forever new', against the machine's relentless progress ('nowhere does it stay behind')."}], "bonds": [{"id": "rilke-b1", "a": "music", "b": "her temple", "kind": "possession", "label": "her", "note": "‘her deified temple’: the temple is music's own, and music builds it.", "toks": [160, 162], "line": 14}], "stanzas": [[1, 4], [5, 8], [9, 11], [12, 14]]}]};</script>
+<script>
+"use strict";
+const ERRORS=[]; window.addEventListener('error',e=>ERRORS.push(String(e.message||e)));
+const NS='http://www.w3.org/2000/svg';
+function h(tag,attrs,...kids){const e=document.createElement(tag);for(const k in attrs||{}){const v=attrs[k];if(v==null)continue;
+ if(k==='class')e.className=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else if(k==='html')e.innerHTML=v;else e.setAttribute(k,v);}
+ for(const c of kids.flat()){if(c==null||c===false)continue;e.append(c.nodeType?c:document.createTextNode(String(c)));}return e;}
+function s(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs||{}){if(attrs[k]!=null)e.setAttribute(k,attrs[k]);}if(text!=null)e.textContent=text;return e;}
+const TYPES=DATA.types, KINDS=DATA.kinds;
+const REL=new Map(); const STATE={};
+const poemById=Object.fromEntries(DATA.poems.map(p=>[p.id,p]));
+const shortName={graham:'Graham',montale:'Montale',rilke:'Rilke'};
+document.getElementById('modelname').textContent=`spaCy ${DATA.spacy}, ${DATA.model}`;
+
+function entType(p,name){const e=p.entities.find(x=>x.name===name);return e?e.type:'abstraction';}
+function entColor(p,name){return TYPES[entType(p,name)].color;}
+function lineLabel(r){return r.lines[0]===r.lines[1]?`L${r.lines[0]}`:`L${r.lines[0]}–${r.lines[1]}`;}
+function target(r){return r.patient||r.complement||null;}
+
+function summaryNode(r,p){
+  const t=target(r);
+  const tgt = t ? t.text : (r.clause ? `[${r.clause}]` : '∅');
+  const wrap=h('span',{},
+    h('span',{class:'k-a'},r.agent.text),' ',
+    h('span',{class:'k-v'},`—${r.verb.text}→`),' ',
+    h('span',{class:'k-p'},tgt));
+  const ae=r.agent.entity, te=t&&t.entity;
+  wrap.append(h('span',{class:'ent'},`  (${ae}${te?' → '+te:''})`));
+  return wrap;
+}
+function badges(r){
+  const out=[];
+  const lab={corrected:'corrected',added:'added by hand',pronoun:'pronoun by hand',rejected:'rejected'};
+  for(const f of r.flags) out.push(h('span',{class:'badge '+f},lab[f]||f));
+  if(r.negated) out.push(h('span',{class:'badge neg'},'negated'));
+  return out;
+}
+function roleMap(rels){
+  const m=new Map();
+  const put=(i,c)=>{if(!m.has(i))m.set(i,new Set());m.get(i).add(c);};
+  for(const r of rels){
+    const t=target(r); if(t) t.toks.forEach(i=>put(i,'rp'));
+    r.agent.toks.forEach(i=>put(i,'ra'));
+    r.verb.toks.forEach(i=>put(i,'rv'));
+  }
+  return m;
+}
+function quoteFrom(p,L0,L1,m){
+  const span=h('span',{});
+  for(let L=L0;L<=L1;L++){
+    if(L>L0) span.append(h('span',{style:'color:#555'},' / '));
+    p.tokens.forEach((t,i)=>{ if(t.ln!==L) return;
+      const cls=m.has(i)?[...m.get(i)].sort((a,b)=>'pav'.indexOf(a[1])-'pav'.indexOf(b[1])).join(' '):'';
+      span.append(h('span',{class:'tok '+cls},t.t)); if(t.ws) span.append(' ');});
+  }
+  return span;
+}
+function quoteNode(p,r){ return quoteFrom(p,r.lines[0],r.lines[1],roleMap([r])); }
+
+/* ---------------- descriptions (appositions, similes, metaphors) ---------------- */
+const DESC_COLOR='#a9cdb8';
+const ROLE_TAG={alt:'?',vehicle:'as',contrast:'not'};
+function descMap(ds){
+  const m=new Map(); const put=(i,c)=>{if(!m.has(i))m.set(i,new Set());m.get(i).add(c);};
+  ds.forEach(d=>{d.links.forEach(l=>l.anchor.forEach(i=>put(i,l.role==='tenor'?'rt':'ro'))); d.toks.forEach(i=>put(i,'rd'));});
+  return m;
+}
+function descSpan(p,d){
+  const ls=[...d.toks,...d.links.flatMap(l=>l.anchor)].map(i=>p.tokens[i].ln);
+  return [Math.min(...ls),Math.max(...ls)];
+}
+function descSummary(d){
+  const by=r=>d.links.filter(l=>l.role===r).map(l=>l.entity).join(', ');
+  const parts=[`describes ${by('tenor')}`];
+  if(by('alt')) parts.push(`or ${by('alt')}`);
+  if(by('vehicle')) parts.push(`as ${by('vehicle')}`);
+  if(by('contrast')) parts.push(`set against ${by('contrast')}`);
+  return h('span',{},h('span',{class:'k-d'},'◇ '+d.text),h('span',{class:'ent'},'  '+parts.join(' · ')));
+}
+function descRow(p,d){
+  const [L0,L1]=descSpan(p,d);
+  return h('div',{class:'rel'},
+    h('div',{class:'lno'},lineLabel(d)),
+    h('div',{class:'sum'},descSummary(d),' ',h('span',{class:'badge desc'},d.kind)),
+    h('div',{class:'q'},quoteFrom(p,L0,L1,descMap([d]))),
+    d.note?h('div',{class:'meta'},'✎ '+d.note):null);
+}
+const STANZA_TINT=['#7f9cc9','#c9a27f','#8fbf9a','#b99ad0'];
+const BOND_COLOR='#d6c08a', BOND_LABEL={possession:'possession / part of',location:'location: inside',contrast:'contrast'};
+function selectBond(st,b){
+  st.pinned=null;
+  paint(st,[],[{toks:b.toks,links:[]}]);
+  st.svg.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const g=st.svg.querySelector(`[data-key="${CSS.escape('bond|'+b.id)}"]`); if(g) g.classList.add('sel');
+  const p=st.poem, ln=b.toks.map(i=>p.tokens[i].ln), L0=Math.min(...ln), L1=Math.max(...ln);
+  const map=new Map(b.toks.map(i=>[i,new Set(['rd'])]));
+  const box=st.detail; box.innerHTML='';
+  box.append(h('div',{class:'ttl'},'Tie (not an action)',h('span',{class:'ent'},'  '+BOND_LABEL[b.kind])));
+  box.append(h('div',{class:'rel'},
+    h('div',{class:'lno'},L0===L1?`L${L0}`:`L${L0}–${L1}`),
+    h('div',{class:'sum'},`${b.a} — “${b.label}” — ${b.b}`),
+    h('div',{class:'q'},quoteFrom(p,L0,L1,map)),
+    h('div',{class:'meta'},'✎ '+b.note)));
+  const rel=p.relations.filter(r=>!r.rejected&&[r.agent.entity,graphTarget(r)].some(e=>e===b.a||e===b.b));
+  if(rel.length){ box.append(h('div',{class:'ttl',style:'margin-top:8px'},'Clauses on either side')); rel.forEach(r=>box.append(relRow(p,r))); }
+}
+function bondToggle(st){
+  if(!(st.poem.bonds||[]).length) return null;
+  const cb=h('input',{type:'checkbox',checked:'checked'});
+  cb.addEventListener('change',()=>st.svg.classList.toggle('nobond',!cb.checked));
+  return h('div',{class:'legend'},h('label',{style:'cursor:pointer'},cb,' ',h('span',{style:`color:${BOND_COLOR}`},'⋯ ties that are not actions')),
+    h('span',{},'“my” / “her” → belongs to · “in” → located inside · “≠” → set against'));
+}
+function selectDesc(st,d,graphKey){
+  st.pinned=[d];
+  paint(st,[],[d]); setCaption(st,null,[d]);
+  st.svg.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  const g=st.svg.querySelector(`[data-key="${CSS.escape(graphKey||'desc|'+d.id)}"]`); if(g) g.classList.add('sel');
+  const box=st.detail; box.innerHTML='';
+  box.append(h('div',{class:'ttl'},'Description',h('span',{class:'ent'},'  '+d.kind)));
+  box.append(descRow(st.poem,d));
+  const rel=st.poem.relations.filter(r=>!r.rejected&&r.verb.toks.some(i=>d.toks.includes(i)));
+  if(rel.length){ box.append(h('div',{class:'ttl',style:'margin-top:8px'},'Action inside the description')); rel.forEach(r=>box.append(relRow(st.poem,r))); }
+}
+function relRow(p,r){
+  const meta=[r.construction, KINDS[r.verb.kind].label];
+  if(r.obliques&&r.obliques.length) meta.push('obliques: '+r.obliques.join('; '));
+  if(r.clause) meta.push('clausal object: '+r.clause);
+  const d=h('div',{class:'rel'},
+    h('div',{class:'lno'},lineLabel(r)),
+    h('div',{class:'sum'},summaryNode(r,p),' ',...badges(r)),
+    h('div',{class:'q'},quoteNode(p,r)),
+    h('div',{class:'meta'},meta.join(' · ')),
+    r.note?h('div',{class:'meta'},'✎ '+r.note):null,
+    r.ambiguity?h('div',{class:'meta',style:'color:#b9a6d8'},'≈ '+r.ambiguity):null,
+    r.parser?h('div',{class:'meta',style:'color:#6d6a64'},'parser: '+r.parser):null);
+  return d;
+}
+
+/* ---------------- poem text ---------------- */
+function buildText(st){
+  const p=st.poem;
+  const box=h('div',{class:'text'});
+  st.tokEls=[];
+  const byLine={};
+  p.tokens.forEach((t,i)=>{(byLine[t.ln]=byLine[t.ln]||[]).push(i);});
+  st.relsByVerbTok=new Map(); st.relsByTok=new Map(); st.baseRole=new Map();
+  const add=(m,i,r)=>{if(!m.has(i))m.set(i,[]);m.get(i).push(r);};
+  for(const r of p.relations){ if(r.rejected) continue;
+    r.verb.toks.forEach(i=>{add(st.relsByVerbTok,i,r);st.baseRole.set(i,'v');});
+    const t=target(r);
+    r.agent.toks.forEach(i=>{add(st.relsByTok,i,r); if(st.baseRole.get(i)!=='v') st.baseRole.set(i,'a');});
+    if(t) t.toks.forEach(i=>{add(st.relsByTok,i,r); if(!st.baseRole.has(i)) st.baseRole.set(i,'p');});
+  }
+  st.descByTok=new Map();
+  (p.descriptions||[]).forEach(d=>d.toks.forEach(i=>{add(st.descByTok,i,d); if(!st.baseRole.has(i)) st.baseRole.set(i,'d');}));
+  st.lineEls=[];
+  p.lines.forEach((line,li)=>{
+    const L=li+1;
+    const no=h('span',{class:'no',title:'Build the graph up to this line'},L);
+    no.addEventListener('click',ev=>{ev.stopPropagation();stopPlay(st);setTime(st,L);});
+    const row=h('div',{class:'ln'},no); st.lineEls[L]=row;
+    const sk=(p.stanzas||[]).findIndex(s=>s[0]===L);
+    if(sk>=0){ row.style.borderLeft=`2px solid ${STANZA_TINT[sk%STANZA_TINT.length]}55`; if(sk>0) row.style.marginTop='12px'; }
+    else if(p.stanzas){ const k=p.stanzas.findIndex(s=>L>=s[0]&&L<=s[1]); row.style.borderLeft=`2px solid ${STANZA_TINT[k%STANZA_TINT.length]}55`; }
+    const body=h('span',{});
+    (byLine[L]||[]).forEach(i=>{
+      const t=p.tokens[i];
+      const isv=st.relsByVerbTok.has(i), isp=st.relsByTok.has(i), isd=st.descByTok.has(i);
+      const e=h('span',{class:'tok'+(isv?' isv':'')+(isp&&!isv?' isp':'')+(isd&&!isv&&!isp?' isd':''),'data-i':i,'data-r':st.baseRole.get(i)||null},t.t);
+      st.tokEls[i]=e; body.append(e); if(t.ws) body.append(' ');
+    });
+    row.append(body); box.append(row);
+  });
+  const cap=h('div',{class:'caption'},'Hover a dotted verb, or any participant, to see its clause. Click to pin it.');
+  st.caption=cap;
+  const relsFor=i=>st.relsByVerbTok.get(i)||st.relsByTok.get(i)||[];
+  box.addEventListener('mouseover',ev=>{
+    const e=ev.target.closest('.tok'); if(!e||st.pinned) return;
+    const rels=relsFor(+e.dataset.i);
+    if(!rels.length){ const ds=st.descByTok.get(+e.dataset.i); if(ds){paint(st,[],ds);setCaption(st,null,ds);} return; }
+    paint(st,rels); setCaption(st,rels);
+  });
+  box.addEventListener('mouseout',ev=>{ if(st.pinned) return; const e=ev.target.closest('.tok'); if(!e) return; paint(st,[]); setCaption(st,null);});
+  box.addEventListener('click',ev=>{
+    const e=ev.target.closest('.tok'); const rels=e?relsFor(+e.dataset.i):[];
+    if(!rels.length){ const ds=e&&st.descByTok.get(+e.dataset.i); if(ds) selectDesc(st,ds[0]); else select(st,null); return; }
+    select(st,rels,`Clause${rels.length>1?'s':''} at “${p.tokens[+e.dataset.i].t}”`);
+  });
+  const cb=h('input',{type:'checkbox'});
+  cb.addEventListener('change',()=>box.classList.toggle('showall',cb.checked));
+  const bar=h('div',{class:'textbar'},h('span',{},'Poem text'),h('label',{},cb,' colour every subject / verb / object'));
+  return h('div',{},bar,box,cap);
+}
+function paint(st,rels,descs){
+  st.tokEls.forEach(e=>e&&e.classList.remove('ra','rv','rp','rd','rt','ro'));
+  for(const m of [descMap(descs||[]),roleMap(rels)])
+    for(const [i,set] of m){ const e=st.tokEls[i]; if(e) set.forEach(c=>e.classList.add(c)); }
+}
+function setCaption(st,rels,descs){
+  const c=st.caption; c.innerHTML='';
+  if(descs&&descs.length){ descs.forEach(d=>c.append(h('div',{},h('span',{style:'color:#666;font:11px ui-monospace,monospace'},lineLabel(d)+'  '),descSummary(d)))); return; }
+  if(!rels){c.textContent='Hover a dotted verb, or any participant, to see its clause. Click to pin it.';return;}
+  rels.slice(0,4).forEach(r=>c.append(h('div',{},h('span',{style:'color:#666;font:11px ui-monospace,monospace'},lineLabel(r)+'  '),summaryNode(r,st.poem))));
+  if(rels.length>4) c.append(h('div',{},`+ ${rels.length-4} more`));
+}
+function select(st,rels,title,graphKey){
+  st.pinned=rels&&rels.length?rels:null;
+  paint(st,rels||[]); setCaption(st,st.pinned);
+  st.svg.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+  if(graphKey){ const g=st.svg.querySelector(`[data-key="${CSS.escape(graphKey)}"]`); if(g) g.classList.add('sel'); }
+  const d=st.detail; d.innerHTML='';
+  if(!st.pinned){ d.append(h('div',{class:'empty'},'Click an arrow or a node in the graph, or a word in the poem, to list the clauses and their lines here.')); return; }
+  d.append(h('div',{class:'ttl'},title||'Selected clauses',h('span',{class:'ent'},`  ${rels.length} clause${rels.length>1?'s':''}`)));
+  rels.forEach(r=>d.append(relRow(st.poem,r)));
+}
+
+/* ---------------- graph ---------------- */
+function layout(nodes,links,W,H){
+  const n=nodes.length;
+  const banded=nodes.some(d=>d.ylo!=null);
+  const yc=d=>d.ylo!=null?(d.ylo+d.yhi)/2:H/2;
+  nodes.forEach((d,i)=>{const a=2*Math.PI*i/n+0.3;d.x=W/2+Math.cos(a)*W*0.32;d.y=banded?yc(d):H/2+Math.sin(a)*H*0.32;d.vx=0;d.vy=0;});
+  const N=900;
+  for(let it=0;it<N;it++){
+    const alpha=0.08+0.92*(1-it/N);
+    for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){
+      const a=nodes[i],b=nodes[j];let dx=b.x-a.x,dy=b.y-a.y;let d2=dx*dx+dy*dy;if(d2<1){dx=Math.random()-.5;dy=Math.random()-.5;d2=1;}
+      const d=Math.sqrt(d2);let f=34000*(1+0.12*a.deg)*(1+0.12*b.deg)/d2;
+      if(a.band!=null&&b.band!=null&&a.band!==b.band) f*=0.2;
+      const fx=dx/d*f,fy=dy/d*f;
+      a.vx-=fx;a.vy-=fy;b.vx+=fx;b.vy+=fy;
+      const minD=a.r+b.r+70; if(d<minD){const k=(minD-d)*0.5;a.vx-=dx/d*k;a.vy-=dy/d*k;b.vx+=dx/d*k;b.vy+=dy/d*k;}
+    }
+    for(const l of links){const a=nodes[l.s],b=nodes[l.t];const dx=b.x-a.x,dy=b.y-a.y;const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const f=(d-(l.len||200))*0.03*l.w;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f;}
+    for(const d of nodes){const gk=1+0.35*d.deg;d.vx+=(W/2-d.x)*0.010*gk;d.vy+=(yc(d)-d.y)*0.014*gk;
+      d.x+=Math.max(-30,Math.min(30,d.vx*alpha));d.y+=Math.max(-30,Math.min(30,d.vy*alpha));d.vx*=0.5;d.vy*=0.5;
+      if(d.ylo!=null) d.y=Math.max(d.ylo,Math.min(d.yhi,d.y));}
+  }
+  const pad=105, padT=75;
+  if(banded){
+    const xs=nodes.map(d=>d.x), x0=Math.min(...xs), x1=Math.max(...xs);
+    const sc=Math.min((W-2*pad)/Math.max(1,x1-x0),1.6), cx=(x0+x1)/2;
+    nodes.forEach(d=>{d.x=W/2+(d.x-cx)*sc;});
+    return;
+  }
+  const xs=nodes.map(d=>d.x),ys=nodes.map(d=>d.y);
+  const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  const sx=(W-2*pad)/Math.max(1,x1-x0), sy=(H-2*padT)/Math.max(1,y1-y0);
+  const sc=Math.min(sx,sy,1.6);
+  const cx=(x0+x1)/2, cy=(y0+y1)/2;
+  nodes.forEach(d=>{d.x=W/2+(d.x-cx)*sc;d.y=H/2+(d.y-cy)*sc;});
+}
+function buildGraph(st){
+  const p=st.poem, SZ=p.stanzas, W=780, H=SZ?900:620;
+  const stanzaOf=L=>SZ?SZ.findIndex(s=>L>=s[0]&&L<=s[1]):null;
+  const groups=new Map();
+  for(const r of p.relations){ if(r.rejected) continue;
+    const a=r.agent.entity;
+    const b=r.copula?(r.complement&&r.complement.entity)||null:(r.patient?r.patient.entity:null);
+    const type=r.copula?(b?'cop':'copstub'):(b==null?'stub':(a===b?'loop':'edge'));
+    const sk=SZ&&b==null||SZ&&a===b?stanzaOf(r.show.edge):null;
+    const key=[a,b,r.verb.kind,type].join('|')+(sk!=null?'|s'+sk:'');
+    if(!groups.has(key)) groups.set(key,{key,a,b,kind:r.verb.kind,type,stanza:sk,rels:[]});
+    groups.get(key).rels.push(r);
+  }
+  let G=[...groups.values()];
+  const stubsBy=new Map();
+  G.filter(g=>g.type==='stub').forEach(g=>{const k=g.a+'|'+g.stanza;if(!stubsBy.has(k))stubsBy.set(k,[]);stubsBy.get(k).push(g);});
+  for(const [k,list] of stubsBy){ if(list.length<=3) continue;
+    const a=list[0].a, sk=list[0].stanza;
+    const merged={key:`${a}||mixed|stubmulti`+(sk!=null?'|s'+sk:''),a,b:null,kind:'mixed',type:'stub',stanza:sk,parts:list,rels:list.flatMap(g=>g.rels)};
+    G=G.filter(g=>!list.includes(g)); G.push(merged); }
+  const D=p.descriptions||[];
+  const names=new Set(); G.forEach(g=>{names.add(g.a); if(g.b) names.add(g.b);});
+  D.forEach(d=>d.links.forEach(l=>names.add(l.entity)));
+  (p.bonds||[]).forEach(b=>{names.add(b.a);names.add(b.b);});
+  const ents=p.entities.filter(e=>names.has(e.name));
+  const idx=new Map(ents.map((e,i)=>[e.name,i]));
+  const nodes=ents.map(e=>({e,r:9+4.2*Math.sqrt(e.agent+e.patient+e.copula+e.complement)}));
+  const lk=new Map();
+  G.filter(g=>g.b&&g.a!==g.b).forEach(g=>{const k=[idx.get(g.a),idx.get(g.b)].sort().join(',');
+    if(!lk.has(k))lk.set(k,{s:idx.get(g.a),t:idx.get(g.b),w:0});lk.get(k).w=Math.min(2,lk.get(k).w+0.6);});
+  nodes.forEach(n=>n.deg=0);
+  G.forEach(g=>{nodes[idx.get(g.a)].deg++; if(g.b&&g.b!==g.a) nodes[idx.get(g.b)].deg++;});
+  const dnodes=D.map(d=>({desc:d,r:6,deg:0}));
+  const all=nodes.concat(dnodes);
+  const dlinks=[];
+  dnodes.forEach((dn,k)=>dn.desc.links.forEach(l=>dlinks.push({s:nodes.length+k,t:idx.get(l.entity),w:l.role==='tenor'?1.6:0.35,len:l.role==='tenor'?95:220})));
+  (p.bonds||[]).forEach(b=>dlinks.push({s:idx.get(b.a),t:idx.get(b.b),w:1.2,len:b.kind==='contrast'?130:95}));
+  let bands=null;
+  if(SZ){
+    const top=30, bot=H-14, tot=SZ.reduce((n,s)=>n+s[1]-s[0]+1,0);
+    let y=top; bands=SZ.map((s,k)=>{const h=(bot-top)*(s[1]-s[0]+1)/tot;const b={k,lines:s,y0:y,y1:y+h};y+=h;return b;});
+    const where=new Map(nodes.map(n=>[n.e.name,new Set()]));
+    const put=(e,L)=>{if(e&&where.has(e)&&L!=null)where.get(e).add(stanzaOf(L));};
+    p.relations.forEach(r=>{if(r.rejected)return; put(r.agent.entity,r.show.agent); put(graphTarget(r),r.show.target);});
+    D.forEach(d=>d.links.forEach(l=>put(l.entity,d.lines[0])));
+    (p.bonds||[]).forEach(b=>{put(b.a,b.line);put(b.b,b.line);});
+    nodes.forEach(n=>{const ks=[...where.get(n.e.name)].sort((a,b)=>a-b); if(!ks.length) return;
+      const k0=ks[0], k1=ks[ks.length-1];
+      if(k0===k1){ n.ylo=bands[k0].y0+n.r+30; n.yhi=bands[k0].y1-n.r-26; n.stz=[k0,k0]; n.band=k0; }
+      else if(k1===k0+1){ n.ylo=n.yhi=bands[k0].y1; n.stz=[k0,k1]; }
+      else { n.ylo=n.yhi=(bands[k0].y0+bands[k1].y1)/2; n.stz=[k0,k1]; }});
+    dnodes.forEach(dn=>{const b=bands[stanzaOf(dn.desc.lines[0])]; dn.ylo=b.y0+34; dn.yhi=b.y1-20; dn.band=b.k;});
+  }
+  layout(all,[...lk.values(),...dlinks],W,H);
+  const svg=s('svg',{class:'graph',viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':`Agency network for ${p.title}`});
+  st.svg=svg;
+  const defs=s('defs'); svg.append(defs);
+  const markers=new Map();
+  const marker=(color,size)=>{const k=color+size;if(markers.has(k))return markers.get(k);const id='m'+p.id+markers.size;
+    const m=s('marker',{id,viewBox:'0 0 10 10',refX:'1',refY:'5',markerWidth:size,markerHeight:size,markerUnits:'userSpaceOnUse',orient:'auto'});
+    m.append(s('path',{d:'M0,0 L10,5 L0,10 z',fill:color}));defs.append(m);markers.set(k,id);return id;};
+  const layerE=s('g'),layerP=s('g'),layerD=s('g'),layerN=s('g'),layerL=s('g',{class:'labels'});
+  if(bands){
+    const layerB=s('g',{class:'stanzas'});
+    bands.forEach(b=>{
+      layerB.append(s('rect',{x:0,y:b.y0.toFixed(1),width:W,height:(b.y1-b.y0).toFixed(1),fill:STANZA_TINT[b.k%STANZA_TINT.length],'fill-opacity':0.13}));
+      if(b.k) layerB.append(s('line',{x1:0,x2:W,y1:b.y0.toFixed(1),y2:b.y0.toFixed(1),stroke:'#6d6a64','stroke-width':1,'stroke-dasharray':'2 5'}));
+      layerB.append(s('text',{x:12,y:(b.y0+16).toFixed(1),'font-size':11,fill:STANZA_TINT[b.k%STANZA_TINT.length],'fill-opacity':0.9,'letter-spacing':'.06em'},
+        `STANZA ${b.k+1} · L${b.lines[0]}–${b.lines[1]}`));
+    });
+    svg.append(layerB);
+  }
+  svg.append(layerE,layerP,layerD,layerN,layerL);
+  const C={x:W/2,y:H/2};
+  st.marker=marker; st.items=[]; st.nodeItems=[]; st.layerP=layerP;
+  st.nodePos=new Map(nodes.map(n=>[n.e.name,n]));
+  const widthN=(type,n)=>type.startsWith('cop')?1.4:1.3+2.3*(n-1);
+  const width=g=>widthN(g.type,g.rels.length);
+  const label=g=>labelR(g.rels);
+  const onPick=(g,title)=>ev=>{ev.stopPropagation();select(st,g.rels,title,g.key);};
+  const kindLabel=k=>k==='mixed'?'several kinds':KINDS[k].label;
+  const kindColor=k=>k==='mixed'?'#9a978f':KINDS[k].color;
+  const titleOf=g=>{const k=kindLabel(g.kind);
+    if(g.parts) return `${g.a} — actions with no patient: ${g.parts.map(label).join('; ')}`;
+    if(g.type==='stub'||g.type==='copstub') return `${g.a} — ${label(g)} (no patient) · ${k}`;
+    if(g.type==='loop') return `${g.a} → itself · ${label(g)} · ${k}`;
+    return `${g.a} → ${g.b} · ${label(g)} · ${k}`;};
+  const textBg=(t)=>{t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#15171a');t.setAttribute('stroke-width','4');t.setAttribute('stroke-linejoin','round');return t;};
+  // pairs for curvature
+  const pairs=new Map();
+  G.filter(g=>g.b&&g.a!==g.b).forEach(g=>{const i=idx.get(g.a),j=idx.get(g.b);const k=i<j?i+','+j:j+','+i;if(!pairs.has(k))pairs.set(k,[]);pairs.get(k).push(g);});
+  for(const [k,list] of pairs){
+    const [i,j]=k.split(',').map(Number);const A=nodes[i],B=nodes[j];
+    list.forEach((g,n)=>{
+      const off=list.length===1?0:(n-(list.length-1)/2)*38;
+      const from=nodes[idx.get(g.a)],to=nodes[idx.get(g.b)];
+      const mx=(A.x+B.x)/2,my=(A.y+B.y)/2;let nx=-(B.y-A.y),ny=B.x-A.x;const nl=Math.hypot(nx,ny)||1;nx/=nl;ny/=nl;
+      const cxp=mx+nx*off, cyp=my+ny*off;
+      const w=width(g), aw=8+w*1.6;
+      const u=(P,Q)=>{const dx=Q.x-P.x,dy=Q.y-P.y,l=Math.hypot(dx,dy)||1;return{x:dx/l,y:dy/l};};
+      const u1=u(from,{x:cxp,y:cyp}),u2=u(to,{x:cxp,y:cyp});
+      const sx=from.x+u1.x*(from.r+2),sy=from.y+u1.y*(from.r+2);
+      const geom=aw=>{const ex=to.x+u2.x*(to.r+2+aw*0.9),ey=to.y+u2.y*(to.r+2+aw*0.9);
+        return `M${sx.toFixed(1)},${sy.toFixed(1)} Q${cxp.toFixed(1)},${cyp.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;};
+      const d=geom(aw);
+      const ex=to.x+u2.x*(to.r+2+aw*0.9),ey=to.y+u2.y*(to.r+2+aw*0.9);
+      const color=KINDS[g.kind].color;
+      const grp=s('g',{class:'edge','data-key':g.key,style:'cursor:pointer'});
+      grp.append(s('title',{},titleOf(g)));
+      const vis=s('path',{d,class:'vis',fill:'none',stroke:color,'stroke-width':w,'stroke-opacity':g.type==='cop'?0.55:0.78,'stroke-dasharray':g.type==='cop'?'5 4':null,'marker-end':`url(#${marker(color,aw)})`});
+      const hit=s('path',{d,class:'edge-hit',fill:'none',stroke:'transparent','stroke-width':Math.max(14,w+8)});
+      grp.append(vis,hit);
+      const lx=0.25*sx+0.5*cxp+0.25*ex, ly=0.25*sy+0.5*cyp+0.25*ey;
+      const txt=textBg(s('text',{x:lx,y:ly-4,'text-anchor':'middle','font-size':10.5,fill:'#a9a59c'},label(g)));
+      grp.append(txt);
+      grp.addEventListener('click',onPick(g,titleOf(g)));
+      layerE.append(grp);
+      st.items.push({g,grp,vis,hit,txt,geom,color,suffix:'',wfn:n=>widthN(g.type,n),awfn:w=>8+w*1.6});
+    });
+  }
+  // outward items: loops & stubs
+  const outward=new Map();
+  G.filter(g=>g.type==='loop'||g.type==='stub'||g.type==='copstub').forEach(g=>{const i=idx.get(g.a);if(!outward.has(i))outward.set(i,[]);outward.get(i).push(g);});
+  for(const [i,list] of outward){
+    const N=nodes[i];
+    // pick the direction with the fewest neighbouring edges
+    const angs=[];G.filter(g=>g.b&&g.a!==g.b&&(g.a===N.e.name||g.b===N.e.name)).forEach(g=>{const o=nodes[idx.get(g.a===N.e.name?g.b:g.a)];angs.push(Math.atan2(o.y-N.y,o.x-N.x));});
+    let base=Math.atan2(N.y-C.y,N.x-C.x); if(Math.hypot(N.x-C.x,N.y-C.y)<20) base=-Math.PI/2;
+    const adist=(a,b)=>Math.abs(Math.atan2(Math.sin(a-b),Math.cos(a-b)));
+    all.forEach(o=>{if(o!==N&&Math.hypot(o.x-N.x,o.y-N.y)<N.r+o.r+150)angs.push(Math.atan2(o.y-N.y,o.x-N.x));});
+    const taken=[...angs,Math.PI/2,Math.PI/2-0.25,Math.PI/2+0.25];
+    const chosen=list.map(g=>{
+      const lw=(g.parts?Math.max(...g.parts.map(x=>label(x).length)):label(g).length)*6+10;
+      let best=base,bestScore=-1e9;
+      for(let k=0;k<36;k++){const a=base+(k%2?1:-1)*Math.ceil(k/2)*Math.PI/18;
+        let sc=taken.length?Math.min(...taken.map(b=>adist(a,b))):Math.PI;
+        sc+=0.15*Math.cos(a-base);
+        const reach=N.r+50, ox=N.x+Math.cos(a)*reach, oy=N.y+Math.sin(a)*reach;
+        const ca=Math.cos(a), xl=ca>0.35?ox:ca<-0.35?ox-lw:ox-lw/2, xr=xl+lw;
+        if(xl<6||xr>W-6||oy<14||oy>H-14) sc-=2;
+        if(bands&&N.stz&&g.stanza!=null){
+          const sa=Math.sin(a);
+          if(N.stz[0]!==N.stz[1]){ if(g.stanza===N.stz[0]&&sa>-0.35) sc-=6; if(g.stanza===N.stz[1]&&sa<0.35) sc-=6; }
+          const b=bands[g.stanza]; if(oy<b.y0+8||oy>b.y1-8) sc-=3;
+        }
+        if(sc>bestScore+0.01){bestScore=sc;best=a;}}
+      taken.push(best); return best;});
+    list.forEach((g,n)=>{
+      const a=chosen[n];
+      const color=kindColor(g.kind);const w=g.parts?1.6+0.35*g.rels.length:width(g);const aw=7+w*1.4;
+      const grp=s('g',{class:'edge','data-key':g.key,style:'cursor:pointer'});
+      grp.append(s('title',{},titleOf(g)));
+      let lx,ly,geom;
+      if(g.type==='loop'){
+        const a1=a-0.3,a2=a+0.3,R=N.r,L=R+48;
+        const p1={x:N.x+Math.cos(a1)*R,y:N.y+Math.sin(a1)*R};
+        const c1={x:N.x+Math.cos(a1-0.12)*L,y:N.y+Math.sin(a1-0.12)*L},c2={x:N.x+Math.cos(a2+0.12)*L,y:N.y+Math.sin(a2+0.12)*L};
+        geom=aw=>{const p2={x:N.x+Math.cos(a2)*(R+aw*0.9),y:N.y+Math.sin(a2)*(R+aw*0.9)};
+          return `M${p1.x.toFixed(1)},${p1.y.toFixed(1)} C${c1.x.toFixed(1)},${c1.y.toFixed(1)} ${c2.x.toFixed(1)},${c2.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;};
+        lx=N.x+Math.cos(a)*(L+4);ly=N.y+Math.sin(a)*(L+4);
+      } else {
+        const R=N.r+3,L=N.r+30+Math.min(16,list.length*2);
+        const p1={x:N.x+Math.cos(a)*R,y:N.y+Math.sin(a)*R},p2={x:N.x+Math.cos(a)*L,y:N.y+Math.sin(a)*L};
+        geom=()=>`M${p1.x.toFixed(1)},${p1.y.toFixed(1)} L${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+        lx=N.x+Math.cos(a)*(L+aw+5);ly=N.y+Math.sin(a)*(L+aw+5);
+      }
+      const d=geom(aw);
+      const dash=g.type==='copstub'?'4 3':null;
+      const vis=s('path',{d,class:'vis',fill:'none',stroke:color,'stroke-width':w,'stroke-opacity':g.type==='copstub'?0.55:0.78,'stroke-dasharray':dash,'marker-end':`url(#${marker(color,aw)})`});
+      const hit=s('path',{d,class:'edge-hit',fill:'none',stroke:'transparent','stroke-width':Math.max(14,w+8)});
+      grp.append(vis,hit);
+      const ca=Math.cos(a);const anchor=ca>0.35?'start':ca<-0.35?'end':'middle';
+      let txt,tspans=null;
+      if(g.parts){
+        const lh=12.5, y0=ly+3.5-(g.parts.length-1)*lh/2-(Math.sin(a)<-0.5?(g.parts.length-1)*lh/2:0)+(Math.sin(a)>0.5?(g.parts.length-1)*lh/2:0);
+        txt=textBg(s('text',{x:lx.toFixed(1),y:y0.toFixed(1),'text-anchor':anchor,'font-size':10.5}));
+        tspans=g.parts.map((pt,k)=>{const ts=s('tspan',{x:lx.toFixed(1),dy:k?lh:0,fill:kindColor(pt.kind)},label(pt));txt.append(ts);return ts;});
+      } else {
+        const lab=g.type==='copstub'?`${label(g)} …`:label(g);
+        txt=textBg(s('text',{x:lx.toFixed(1),y:(ly+3.5).toFixed(1),'text-anchor':anchor,'font-size':10.5,fill:'#a9a59c'},lab));
+      }
+      grp.append(txt);
+      grp.addEventListener('click',onPick(g,titleOf(g)));
+      layerE.append(grp);
+      st.items.push({g,grp,vis,hit,txt,tspans,geom,color,suffix:g.type==='copstub'?' …':'',
+        wfn:g.parts?(n=>1.6+0.35*n):(n=>widthN(g.type,n)),awfn:w=>7+w*1.4});
+    });
+  }
+  st.descItems=[];
+  const dash={tenor:'1.5 3.5',alt:'1.5 3.5',vehicle:'6 3',contrast:'6 3'}, op={tenor:.9,alt:.35,vehicle:.6,contrast:.5};
+  dnodes.forEach(dn=>{
+    const d=dn.desc;
+    const grp=s('g',{class:'desc','data-key':'desc|'+d.id,style:'cursor:pointer'});
+    grp.append(s('title',{},`${d.kind}: “${d.text}”`));
+    d.links.forEach(l=>{
+      const N=nodes[idx.get(l.entity)];
+      const dx=N.x-dn.x, dy=N.y-dn.y, L=Math.hypot(dx,dy)||1;
+      const sx=dn.x+dx/L*8, sy=dn.y+dy/L*8, ex=N.x-dx/L*(N.r+5), ey=N.y-dy/L*(N.r+5);
+      const side=l.role!=='tenor';
+      grp.append(s('path',{d:`M${sx.toFixed(1)},${sy.toFixed(1)} L${ex.toFixed(1)},${ey.toFixed(1)}`,fill:'none',stroke:DESC_COLOR,
+        'stroke-width':1.4,'stroke-dasharray':dash[l.role],'stroke-opacity':op[l.role],'stroke-linecap':'round',class:side?'dside':null}));
+      if(ROLE_TAG[l.role]) grp.append(textBg(s('text',{x:((sx+ex)/2).toFixed(1),y:((sy+ey)/2+3).toFixed(1),'text-anchor':'middle','font-size':10,fill:DESC_COLOR,class:'dtag'},ROLE_TAG[l.role])));
+    });
+    grp.append(s('path',{d:`M${dn.x},${dn.y-6.5} L${dn.x+6.5},${dn.y} L${dn.x},${dn.y+6.5} L${dn.x-6.5},${dn.y} Z`,fill:'#15171a',stroke:DESC_COLOR,'stroke-width':1.4,class:'dmark'}));
+    const short=d.text.length>34?d.text.slice(0,33).trimEnd()+'…':d.text;
+    grp.append(textBg(s('text',{x:dn.x.toFixed(1),y:(dn.y-11).toFixed(1),'text-anchor':'middle','font-size':12,fill:DESC_COLOR,class:'dlabel'},short)));
+    grp.addEventListener('click',ev=>{ev.stopPropagation();selectDesc(st,d);});
+    layerD.append(grp); st.descItems.push({d,grp,shown:true});
+  });
+  st.bondItems=[];
+  (p.bonds||[]).forEach(b=>{
+    const A=nodes[idx.get(b.a)], B=nodes[idx.get(b.b)];
+    const dx=B.x-A.x, dy=B.y-A.y, L=Math.hypot(dx,dy)||1, ux=dx/L, uy=dy/L;
+    const shared=G.some(g=>g.b&&((g.a===b.a&&g.b===b.b)||(g.a===b.b&&g.b===b.a)));
+    const off=shared?(uy<0?-1:1)*30:0, nx=-uy, ny=ux;
+    const cx=(A.x+B.x)/2+nx*off, cy=(A.y+B.y)/2+ny*off;
+    const toC=(P,R)=>{const qx=cx-P.x,qy=cy-P.y,ql=Math.hypot(qx,qy)||1;return [P.x+qx/ql*R,P.y+qy/ql*R];};
+    const [sx,sy]=toC(A,A.r+4), [ex,ey]=toC(B,B.r+4);
+    const grp=s('g',{class:'bond','data-key':'bond|'+b.id,style:'cursor:pointer'});
+    grp.append(s('title',{},`${b.a} — ${b.label} — ${b.b} (${BOND_LABEL[b.kind]}, not an action)`));
+    const d=`M${sx.toFixed(1)},${sy.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
+    grp.append(s('path',{d,fill:'none',stroke:BOND_COLOR,'stroke-width':1.6,'stroke-dasharray':b.kind==='contrast'?'7 4':'0.1 4.5','stroke-linecap':'round','stroke-opacity':0.9}));
+    grp.append(s('path',{d,fill:'none',stroke:'transparent','stroke-width':14}));
+    const mx=0.25*sx+0.5*cx+0.25*ex, my=0.25*sy+0.5*cy+0.25*ey;
+    grp.append(textBg(s('text',{x:mx.toFixed(1),y:(my+3.5).toFixed(1),'text-anchor':'middle','font-size':11,fill:BOND_COLOR,'font-style':'italic'},b.label)));
+    grp.addEventListener('click',ev=>{ev.stopPropagation();selectBond(st,b);});
+    layerD.append(grp); st.bondItems.push({b,grp,shown:true});
+  });
+  nodes.forEach(N=>{
+    const e=N.e;const g=s('g',{class:'node','data-key':'node|'+e.name});
+    g.append(s('title',{},`${e.name} (${TYPES[e.type].label}) · agent ${e.agent}, patient ${e.patient}${e.copula?`, subject of “be” ${e.copula}`:''}`));
+    g.append(s('circle',{cx:N.x.toFixed(1),cy:N.y.toFixed(1),r:N.r.toFixed(1),fill:TYPES[e.type].color,'fill-opacity':0.9,stroke:'#0f1012','stroke-width':1.5}));
+    const ring=s('path',{fill:'none',stroke:'#e8e4da','stroke-width':1.6,'stroke-opacity':.7});
+    g.append(ring); drawRing(ring,N,e.agent,e.patient);
+    const t=textBg(s('text',{x:N.x.toFixed(1),y:(N.y+N.r+15).toFixed(1),'text-anchor':'middle','font-size':12,fill:'#e6e2d8'},e.name));
+    st.nodeItems.push({name:e.name,N,el:g,lab:t,ring,shown:true});
+    g.addEventListener('click',ev=>{ev.stopPropagation();
+      const rels=p.relations.filter(r=>!r.rejected&&(r.agent.entity===e.name||(target(r)&&target(r).entity===e.name)));
+      select(st,rels,`${e.name}: agent ${e.agent} · patient ${e.patient}`,'node|'+e.name);});
+    layerN.append(g); layerL.append(t);
+  });
+  svg.addEventListener('click',()=>select(st,null));
+  return svg;
+}
+
+function labelR(rels){
+  if(!rels.length) return '';
+  let t=[...new Set(rels.map(r=>r.verb.lemma))].join(', ');
+  if(rels.length>1) t+=` ×${rels.length}`;
+  return t;
+}
+/* white arc around a node: the share of its appearances so far that are as agent */
+function drawRing(ring,N,a,p){
+  const tot=a+p, R=N.r+3.5, fr=tot?a/tot:0;
+  if(fr<=0.001){ring.setAttribute('d','');return;}
+  if(fr>=0.999){ring.setAttribute('d',`M${N.x-R},${N.y} a${R},${R} 0 1 0 ${2*R},0 a${R},${R} 0 1 0 ${-2*R},0`);return;}
+  const a0=-Math.PI/2,a1=a0+fr*2*Math.PI;
+  ring.setAttribute('d',`M${N.x+R*Math.cos(a0)},${N.y+R*Math.sin(a0)} A${R},${R} 0 ${fr>0.5?1:0} 1 ${N.x+R*Math.cos(a1)},${N.y+R*Math.sin(a1)}`);
+}
+function flash(el){
+  el.classList.remove('fresh'); void el.getBoundingClientRect(); el.classList.add('fresh');
+  clearTimeout(el._ft); el._ft=setTimeout(()=>el.classList.remove('fresh'),1300);
+}
+
+function graphTarget(r){
+  const t=r.copula?r.complement:r.patient;
+  return t&&t.entity?t.entity:null;
+}
+/* a verb whose object has not arrived yet: a short dashed arrow from the subject, aimed at the object's place */
+function drawPending(st,list,forward){
+  const layer=st.layerP, prev=st.pendingKeys||new Set(), now=new Set();
+  layer.replaceChildren();
+  for(const g of list){
+    const A=st.nodePos.get(g.a), B=st.nodePos.get(g.b); if(!A||!B) continue;
+    const dx=B.x-A.x, dy=B.y-A.y, dl=Math.hypot(dx,dy)||1, ux=dx/dl, uy=dy/dl;
+    const len=Math.min(48,Math.max(22,0.4*(dl-A.r-B.r)));
+    const sx=A.x+ux*(A.r+2), sy=A.y+uy*(A.r+2), ex=sx+ux*len, ey=sy+uy*len;
+    const color=KINDS[g.kind].color, key=g.a+'|'+g.b+'|'+g.kind;
+    const grp=s('g',{class:'edge pending','data-key':'pending|'+key,style:'cursor:pointer'});
+    grp.append(s('title',{},`${g.a} — ${labelR(g.rels)} → … (the object arrives on a later line)`));
+    grp.append(s('path',{d:`M${sx.toFixed(1)},${sy.toFixed(1)} L${ex.toFixed(1)},${ey.toFixed(1)}`,class:'vis',fill:'none',stroke:color,'stroke-width':1.6,'stroke-opacity':0.85,'stroke-dasharray':'3 3','marker-end':`url(#${st.marker(color,9)})`}));
+    grp.append(s('path',{d:`M${sx.toFixed(1)},${sy.toFixed(1)} L${ex.toFixed(1)},${ey.toFixed(1)}`,class:'edge-hit',fill:'none',stroke:'transparent','stroke-width':14}));
+    const t=s('text',{x:(ex+ux*8).toFixed(1),y:(ey+uy*8+3).toFixed(1),'text-anchor':ux>0.35?'start':ux<-0.35?'end':'middle','font-size':10.5,fill:color,'font-style':'italic'},labelR(g.rels)+' …');
+    t.setAttribute('paint-order','stroke');t.setAttribute('stroke','#15171a');t.setAttribute('stroke-width','4');t.setAttribute('stroke-linejoin','round');
+    grp.append(t);
+    grp.addEventListener('click',ev=>{ev.stopPropagation();select(st,g.rels,`${g.a} — ${labelR(g.rels)} → … (object still to come)`,'pending|'+key);});
+    layer.append(grp); now.add(key);
+    if(forward&&!prev.has(key)) flash(grp);
+  }
+  st.pendingKeys=now;
+}
+/* ---------------- timeline: show only clauses completed by line L ---------------- */
+function setTime(st,L){
+  const P=st.poem, last=P.lines.length;
+  const forward=st.t!=null&&L>st.t;
+  st.t=L;
+  const live=r=>!r.rejected&&r.show.edge<=L;
+  const seen=new Set();
+  const pending=new Map();
+  for(const r of P.relations){ if(r.rejected) continue;
+    if(r.show.agent<=L) seen.add(r.agent.entity);
+    const tg=graphTarget(r);
+    if(tg&&r.show.target<=L) seen.add(tg);
+    if(tg&&tg!==r.agent.entity&&r.show.edge>L&&r.show.agent<=L&&r.vline<=L){
+      const k=r.agent.entity+'|'+tg+'|'+r.verb.kind;
+      if(!pending.has(k)) pending.set(k,{a:r.agent.entity,b:tg,kind:r.verb.kind,rels:[]});
+      pending.get(k).rels.push(r); }
+  }
+  drawPending(st,[...pending.values()],forward);
+  for(const it of st.items){
+    const rels=it.g.rels.filter(live), n=rels.length;
+    it.grp.style.display=n?'':'none';
+    if(n&&n!==it.n){
+      const w=it.wfn(n), aw=it.awfn(w), d=it.geom(aw);
+      it.vis.setAttribute('d',d); it.hit.setAttribute('d',d); it.vis.setAttribute('stroke-width',w);
+      it.vis.setAttribute('marker-end',`url(#${st.marker(it.color,aw)})`);
+      if(it.tspans) it.tspans.forEach((ts,k)=>{const pr=it.g.parts[k].rels.filter(live);ts.style.display=pr.length?'':'none';ts.textContent=labelR(pr);});
+      else it.txt.textContent=labelR(rels)+it.suffix;
+      if(forward&&n>(it.n||0)) flash(it.grp);
+    }
+    it.n=n;
+  }
+  for(const di of st.descItems){
+    const vis=L>=di.d.lines[0];
+    di.grp.style.display=vis?'':'none';
+    if(vis){ di.d.links.forEach(l=>seen.add(l.entity)); if(!di.shown&&forward) flash(di.grp); }
+    di.shown=vis;
+  }
+  for(const bi of st.bondItems||[]){
+    const vis=L>=bi.b.line;
+    bi.grp.style.display=vis?'':'none';
+    if(vis){ seen.add(bi.b.a); seen.add(bi.b.b); if(!bi.shown&&forward) flash(bi.grp); }
+    bi.shown=vis;
+  }
+  for(const nd of st.nodeItems){
+    const vis=seen.has(nd.name);
+    nd.el.style.display=nd.lab.style.display=vis?'':'none';
+    if(vis&&!nd.shown&&forward) flash(nd.el);
+    nd.shown=vis;
+    let a=0,p=0;
+    for(const r of P.relations){ if(!live(r)||r.copula) continue;
+      if(r.agent.entity===nd.name)a++; if(r.patient&&r.patient.entity===nd.name)p++; }
+    drawRing(nd.ring,nd.N,a,p);
+  }
+  st.lineEls.forEach((el,i)=>{ if(!el) return; el.classList.toggle('future',i>L); el.classList.toggle('cur',i===L&&L<last); });
+  if(st.tl){
+    st.tl.range.value=L;
+    const done=P.relations.filter(live).length, all=P.relations.filter(r=>!r.rejected).length;
+    st.tl.status.textContent=L===0?`before line 1 · 0 of ${all} clauses`:`line ${L} of ${last} · ${done} of ${all} clauses`;
+    st.tl.line.textContent=L>0&&L<=last?P.lines[L-1]:'';
+  }
+}
+function stopPlay(st){ clearInterval(st.timer); st.timer=null; if(st.tl) st.tl.btn.textContent='▶'; }
+function startPlay(st){
+  const last=st.poem.lines.length;
+  if(st.t>=last) setTime(st,0);
+  st.tl.btn.textContent='❚❚';
+  const step=()=>{ if(st.t>=last){stopPlay(st);return;} setTime(st,st.t+1); if(st.t>=last) stopPlay(st); };
+  clearInterval(st.timer); st.timer=setInterval(step,1150/st.speed);
+}
+function buildTimeline(st){
+  const last=st.poem.lines.length;
+  const btn=h('button',{class:'play',title:'Play the poem line by line'},'▶');
+  const range=h('input',{type:'range',min:0,max:last,step:1,value:last,'aria-label':'Line of the poem'});
+  const status=h('span',{class:'tl-status'});
+  const speed=h('select',{title:'Speed'},h('option',{value:0.5},'slow'),h('option',{value:1,selected:'selected'},'normal'),h('option',{value:2},'fast'));
+  const line=h('div',{class:'tl-line'});
+  st.speed=1;
+  btn.addEventListener('click',()=>st.timer?stopPlay(st):startPlay(st));
+  range.addEventListener('input',()=>setTime(st,+range.value));
+  speed.addEventListener('change',()=>{st.speed=+speed.value; if(st.timer) startPlay(st);});
+  st.tl={btn,range,status,line};
+  return h('div',{class:'timeline'},h('div',{class:'tl-row'},btn,range,speed),h('div',{class:'tl-row tl-sub'},status,line));
+}
+
+/* nudge edge labels off each other, off node labels and off nodes (needs the svg in the DOM) */
+function relaxLabels(svg){
+  const vb=svg.viewBox.baseVal;
+  const movable=[...svg.querySelectorAll('.edge text, .desc text.dlabel, .bond text')];
+  const fixed=[...svg.querySelectorAll('.labels > text, .stanzas text')].map(t=>t.getBBox());
+  svg.querySelectorAll('.node circle').forEach(c=>{const r=+c.getAttribute('r'),x=+c.getAttribute('cx'),y=+c.getAttribute('cy');fixed.push({x:x-r,y:y-r,width:2*r,height:2*r});});
+  const box=t=>t.getBBox();
+  const hit=(a,b)=>Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x)>1&&Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y)>1;
+  for(let it=0;it<150;it++){
+    let moved=false;
+    movable.forEach((t,i)=>{
+      const b=box(t);
+      const others=[...fixed,...movable.filter((_,j)=>j!==i).map(box)];
+      const o=others.find(x=>hit(b,x));
+      if(!o) return;
+      let vx=(b.x+b.width/2)-(o.x+o.width/2), vy=(b.y+b.height/2)-(o.y+o.height/2);
+      if(b.height<20) vx*=0.25;
+      const vl=Math.hypot(vx,vy)||1;
+      let dx=vx/vl*3.5, dy=vy/vl*3.5;
+      if(b.y+dy<2||b.y+b.height+dy>vb.height-2) dy=0, dx=dx||(b.x+b.width/2<vb.width/2?4:-4);
+      if(b.x+dx<2||b.x+b.width+dx>vb.width-2) dx=0;
+      let y=+t.getAttribute('y')+dy, x=+t.getAttribute('x')+dx;
+      moveTo(t,x,y); moved=true;
+    });
+    if(!moved) break;
+  }
+  movable.forEach(t=>{const b=box(t);let x=+t.getAttribute('x');
+    if(b.x<2) x+=2-b.x; if(b.x+b.width>vb.width-2) x-=b.x+b.width-vb.width+2; moveTo(t,x,+t.getAttribute('y'));});
+}
+function moveTo(t,x,y){
+  const dx=x-(+t.getAttribute('x'));
+  t.setAttribute('x',x.toFixed(1)); t.setAttribute('y',y.toFixed(1));
+  t.querySelectorAll('tspan[x]').forEach(ts=>ts.setAttribute('x',(+ts.getAttribute('x')+dx).toFixed(1)));
+}
+
+/* ---------------- per-poem section ---------------- */
+function entityTable(p){
+  const rows=p.entities.filter(e=>e.total>0).sort((a,b)=>(b.agent+b.patient)-(a.agent+a.patient)||b.total-a.total);
+  const tb=h('tbody');
+  rows.forEach(e=>tb.append(h('tr',{},
+    h('td',{},h('span',{class:'sw',style:`background:${TYPES[e.type].color}`}),e.name),
+    h('td',{style:'color:#8d8a83'},TYPES[e.type].label),
+    h('td',{class:'num'},e.agent+(e.negA?` (${e.negA} neg.)`:'')),
+    h('td',{class:'num'},e.patient+(e.negP?` (${e.negP} neg.)`:'')),
+    h('td',{class:'num',style:'color:#8d8a83'},e.copula||''))));
+  return h('table',{},h('thead',{},h('tr',{},h('th',{},'entity'),h('th',{},'type'),h('th',{class:'num'},'agent'),h('th',{class:'num'},'patient'),h('th',{class:'num'},'subject of “be”'))),tb);
+}
+function pronTable(p){
+  const tb=h('tbody');
+  p.pronouns.forEach(x=>tb.append(h('tr',{},h('td',{},h('code',{},x.key)),h('td',{},'→ ',x.entity),h('td',{style:'color:#6d6a64'},x.used?'':'(not a participant)'))));
+  return h('table',{class:'pron'},h('thead',{},h('tr',{},h('th',{},'line:word'),h('th',{},'resolved to'),h('th',{},''))),tb);
+}
+function kindLegend(p){
+  const used=new Set(p.relations.filter(r=>!r.rejected).map(r=>r.verb.kind));
+  const d=h('div',{class:'legend'},h('b',{},'Verb kinds:'));
+  Object.entries(KINDS).forEach(([k,v])=>{if(used.has(k))d.append(h('span',{},h('i',{class:'bar',style:`background:${v.color}`}),v.label));});
+  return d;
+}
+function descToggle(st){
+  if(!(st.poem.descriptions||[]).length) return null;
+  const cb=h('input',{type:'checkbox',checked:'checked'});
+  cb.addEventListener('change',()=>st.svg.classList.toggle('nodesc',!cb.checked));
+  return h('div',{class:'legend'},h('label',{style:'cursor:pointer'},cb,' ',h('span',{class:'k-d'},'◇ descriptions & metaphors')),
+    h('span',{},'dotted line → what the phrase describes · faint “?” → another possible attachment · “as” → compared with · “not” → set against'));
+}
+function buildDescTable(){
+  const tb=document.querySelector('#desctable tbody');
+  DATA.poems.forEach(p=>(p.descriptions||[]).forEach(d=>{
+    const [L0,L1]=descSpan(p,d);
+    const by=r=>d.links.filter(l=>l.role===r).map(l=>l.entity).join(', ');
+    const other=[by('alt')&&`or ${by('alt')}`,by('vehicle')&&`as ${by('vehicle')}`,by('contrast')&&`against ${by('contrast')}`].filter(Boolean).join(' · ');
+    const tr=h('tr',{},h('td',{},shortName[p.id]),h('td',{},lineLabel(d)),
+      h('td',{class:'q'},quoteFrom(p,L0,L1,descMap([d]))),h('td',{class:'ent'},d.kind),
+      h('td',{},h('span',{class:'k-d'},by('tenor'))),h('td',{class:'ent'},other),h('td',{class:'fl'},d.note||''));
+    tr.addEventListener('click',()=>{const st=STATE[p.id];selectDesc(st,d);st.tokEls[d.toks[0]].scrollIntoView({block:'center'});});
+    tb.append(tr);
+  }));
+}
+function buildPoem(p){
+  const st={poem:p,pinned:null}; STATE[p.id]=st;
+  p.relations.forEach(r=>REL.set(r.id,r));
+  const svg=buildGraph(st);
+  st.detail=h('div',{class:'detail'});
+  const live=p.relations.filter(r=>!r.rejected);
+  const nflag=live.filter(r=>r.flags.length).length;
+  const sec=h('section',{class:'poem',id:'poem-'+p.id},
+    h('div',{class:'poem-head'},h('h2',{},p.title),h('span',{class:'au'},p.author),
+      h('span',{class:'ent'},`${live.length} relations · ${nflag} with manual intervention`)),
+    h('div',{class:'grid'},
+      h('div',{},buildTimeline(st),svg,kindLegend(p),descToggle(st),bondToggle(st),h('div',{class:'hint'},'Press ▶ or drag the slider (or click a line number) to watch the graph build. A participant appears on the line where it is named; a verb appears on its own line, as a short dashed arrow (“needed …”) if its object is still to come, and stretches to the object on the line where the object is named. Arrow: agent → patient (thickness = frequency). Loop: reflexive. Short outward arrow: no patient. Dashed: “is”. White ring around a node: share of its appearances that are as agent.')),
+      buildText(st)),
+    st.detail,
+    h('div',{class:'cols'},
+      h('div',{},h('h3',{},'Agent / patient counts'),entityTable(p)),
+      h('div',{},h('h3',{},'Reference links resolved by hand'),pronTable(p))));
+  select(st,null);
+  setTime(st,p.lines.length);
+  return sec;
+}
+
+/* ---------------- balance chart ---------------- */
+function buildBalance(){
+  const poems=DATA.poems; const types=Object.keys(TYPES);
+  const agg={};
+  types.forEach(t=>{agg[t]={};poems.forEach(p=>agg[t][p.id]={a:0,p:0,na:0,np:0});});
+  poems.forEach(p=>p.entities.forEach(e=>{const x=agg[e.type][p.id];x.a+=e.agent;x.p+=e.patient;x.na+=e.negA;x.np+=e.negP;}));
+  const rows=types.filter(t=>poems.some(p=>agg[t][p.id].a+agg[t][p.id].p>0));
+  const max=Math.max(...rows.flatMap(t=>poems.flatMap(p=>[agg[t][p.id].a,agg[t][p.id].p])));
+  const W=1000,labW=190,mid=labW+(W-labW-20)/2,half=(W-labW-60)/2,bh=13,gap=4,rowH=poems.length*(bh+gap)+16;
+  const H=40+rows.length*rowH+10;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,class:'graph',style:'max-width:1100px'});
+  const defs=s('defs');const pat=s('pattern',{id:'hatch',width:5,height:5,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'});
+  pat.append(s('rect',{width:5,height:5,fill:'rgba(0,0,0,0)'}));pat.append(s('line',{x1:0,y1:0,x2:0,y2:5,stroke:'#0f1012','stroke-width':2.2}));defs.append(pat);svg.append(defs);
+  const sc=v=>v/max*half;
+  svg.append(s('text',{x:mid-8,y:22,'text-anchor':'end','font-size':12,fill:'#8d8a83'},'← acted on (patient)'));
+  svg.append(s('text',{x:mid+8,y:22,'font-size':12,fill:'#8d8a83'},'acts (agent) →'));
+  svg.append(s('line',{x1:mid,x2:mid,y1:30,y2:H-6,stroke:'#3a3d42'}));
+  const shade={graham:1,montale:0.72,rilke:0.48};
+  rows.forEach((t,ri)=>{
+    const y0=40+ri*rowH;
+    svg.append(s('line',{x1:10,x2:W-10,y1:y0-6,y2:y0-6,stroke:'#202326'}));
+    svg.append(s('circle',{cx:16,cy:y0+rowH/2-8,r:5,fill:TYPES[t].color}));
+    svg.append(s('text',{x:28,y:y0+rowH/2-4,'font-size':13,fill:'#e6e2d8'},TYPES[t].label));
+    poems.forEach((p,pi)=>{
+      const x=agg[t][p.id];const y=y0+pi*(bh+gap);const col=TYPES[t].color;
+      const g=s('g');g.append(s('title',{},`${shortName[p.id]} · ${TYPES[t].label}: agent ${x.a}${x.na?` (${x.na} negated)`:''}, patient ${x.p}${x.np?` (${x.np} negated)`:''}`));
+      g.append(s('text',{x:labW+4,y:y+bh-3,'font-size':10.5,fill:'#77746e'},shortName[p.id]));
+      if(x.a){g.append(s('rect',{x:mid,y,width:sc(x.a),height:bh,fill:col,'fill-opacity':shade[p.id],rx:2}));
+        if(x.na)g.append(s('rect',{x:mid+sc(x.a-x.na),y,width:sc(x.na),height:bh,fill:'url(#hatch)'}));}
+      if(x.p){g.append(s('rect',{x:mid-sc(x.p),y,width:sc(x.p),height:bh,fill:col,'fill-opacity':shade[p.id],rx:2}));
+        if(x.np)g.append(s('rect',{x:mid-sc(x.p),y,width:sc(x.np),height:bh,fill:'url(#hatch)'}));}
+      g.append(s('text',{x:mid+sc(x.a)+5,y:y+bh-3,'font-size':10.5,fill:'#b9b5ac'},x.a||''));
+      g.append(s('text',{x:mid-sc(x.p)-5,y:y+bh-3,'font-size':10.5,fill:'#b9b5ac','text-anchor':'end'},x.p||''));
+      svg.append(g);
+    });
+  });
+  document.getElementById('balancechart').append(svg);
+}
+
+/* ---------------- relations table ---------------- */
+function buildTable(){
+  const tb=document.querySelector('#reltable tbody'); const sel=document.getElementById('fpoem');
+  DATA.poems.forEach(p=>sel.append(h('option',{value:p.id},shortName[p.id])));
+  const rows=[];
+  DATA.poems.forEach(p=>p.relations.forEach(r=>{
+    const t=target(r);
+    const fl=h('td',{class:'fl'},...badges(r),r.note?h('div',{},r.note):null,
+      r.flags.includes('pronoun')?h('div',{style:'color:#9b8cc0'},[r.agent,r.patient,r.complement].filter(x=>x&&x.manual).map(x=>x.how).join('; ')):null);
+    const tr=h('tr',{class:r.rejected?'rej':''},
+      h('td',{class:'num'},r.n),h('td',{},shortName[p.id]),h('td',{},lineLabel(r)),
+      h('td',{class:'q'},quoteNode(p,r)),
+      h('td',{},h('span',{class:'k-a'},r.agent.text),h('div',{class:'ent'},r.agent.entity)),
+      h('td',{},h('span',{class:'k-v'},r.verb.text),h('div',{class:'ent'},KINDS[r.verb.kind].label+(r.negated?' · negated':''))),
+      h('td',{},t?h('span',{class:'k-p'},t.text):(r.clause?h('span',{class:'ent'},`[${r.clause}]`):h('span',{class:'ent'},'∅')),t&&t.entity?h('div',{class:'ent'},t.entity):null),
+      h('td',{class:'ent'},r.construction+(r.voice==='passive'&&!/passive/.test(r.construction)?' (passive)':'')),
+      fl, h('td',{class:'pr'},r.parser||''));
+    tr.addEventListener('click',()=>{const st=STATE[p.id];if(r.rejected)return;
+      select(st,[r],`${lineLabel(r)} · from the table`);st.tokEls[r.verb.toks[0]??r.agent.toks[0]??0].scrollIntoView({block:'center'});});
+    rows.push({tr,r,p,text:tr.textContent.toLowerCase()}); tb.append(tr);
+  }));
+  const fman=document.getElementById('fman'),frej=document.getElementById('frej'),fq=document.getElementById('fq'),cnt=document.getElementById('fcount');
+  const apply=()=>{let n=0;const q=fq.value.trim().toLowerCase();
+    rows.forEach(x=>{const ok=(!sel.value||x.p.id===sel.value)&&(!fman.checked||x.r.flags.length)&&(frej.checked||!x.r.rejected)&&(!q||x.text.includes(q));
+      x.tr.style.display=ok?'':'none';n+=ok;});cnt.textContent=`${n} rows`;};
+  [sel,fman,frej].forEach(e=>e.addEventListener('change',apply));fq.addEventListener('input',apply);apply();
+}
+
+/* ---------------- init ---------------- */
+function init(){
+  const nav=document.getElementById('nav');
+  DATA.poems.forEach(p=>nav.append(h('a',{href:'#poem-'+p.id},`${shortName[p.id]} — ${p.title}`)));
+  [['#balance','Agent / patient balance'],['#relations','All relations'],['#descriptions','Descriptions'],['#method','Method']].forEach(([a,t])=>nav.append(h('a',{href:a},t)));
+  const tl=document.getElementById('typelegend');tl.append(h('b',{},'Entity types:'));
+  Object.values(TYPES).forEach(v=>tl.append(h('span',{},h('i',{style:`background:${v.color}`}),v.label)));
+  const box=document.getElementById('poems');
+  DATA.poems.forEach(p=>box.append(buildPoem(p)));
+  DATA.poems.forEach(p=>relaxLabels(STATE[p.id].svg));
+  buildBalance(); buildTable(); buildDescTable();
+}
+init();
+function openRel(id){
+  const r=REL.get(id); if(!r||r.rejected) return;
+  const st=STATE[r.poem]; select(st,[r],`${lineLabel(r)} · linked`);
+  document.getElementById('poem-'+r.poem).scrollIntoView();
+}
+if(location.hash.startsWith('#rel=')) openRel(location.hash.slice(5));
+window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#rel='))openRel(location.hash.slice(5));});
+
+if(location.hash==='#selftest'){
+  const out={errors:ERRORS,poems:{}};
+  for(const p of DATA.poems){
+    const st=STATE[p.id];const r={};
+    r.edges=st.svg.querySelectorAll('.edge').length; r.nodes=st.svg.querySelectorAll('.node').length;
+    const hit=st.svg.querySelector('.edge-hit'); hit.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    r.detailRowsAfterEdgeClick=st.detail.querySelectorAll('.rel').length;
+    r.tokensHighlighted=st.tokEls.filter(e=>e&&(e.classList.contains('ra')||e.classList.contains('rv')||e.classList.contains('rp'))).length;
+    select(st,null);
+    const v=st.tokEls.find(e=>e&&e.classList.contains('isv')); v.dispatchEvent(new MouseEvent('mouseover',{bubbles:true}));
+    r.hoverVerb=v.textContent; r.hoverHighlighted=st.tokEls.filter(e=>e&&e.classList.contains('rv')).length; r.caption=st.caption.textContent.slice(0,90);
+    v.dispatchEvent(new MouseEvent('mouseout',{bubbles:true}));
+    const node=st.svg.querySelector('.node'); node.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    r.detailRowsAfterNodeClick=st.detail.querySelectorAll('.rel').length; select(st,null);
+    // label overlap check
+    const boxes=[...st.svg.querySelectorAll('text')].map(t=>t.getBBox()).filter(b=>b.width>0);
+    let ov=0;for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i],b=boxes[j];
+      const ix=Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x),iy=Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y);if(ix>2&&iy>2)ov++;}
+    r.labelOverlaps=ov;
+    const vb=st.svg.viewBox.baseVal;let outside=0;boxes.forEach(b=>{if(b.x<0||b.y<0||b.x+b.width>vb.width||b.y+b.height>vb.height)outside++;});
+    r.labelsOutside=outside;
+    out.poems[p.id]=r;
+  }
+  out.tableRows=document.querySelectorAll('#reltable tbody tr').length;
+  out.relationsTotal=DATA.poems.reduce((n,p)=>n+p.relations.length,0);
+  out.balanceRects=document.querySelectorAll('#balancechart rect').length;
+  out.desc={};
+  for(const p of DATA.poems){
+    const st=STATE[p.id]; const g=st.svg.querySelector('.desc'); const r={markers:st.svg.querySelectorAll('.desc').length};
+    if(g){ g.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+      r.detailRows=st.detail.querySelectorAll('.rel').length;
+      r.descToks=st.tokEls.filter(e=>e&&e.classList.contains('rd')).length;
+      r.anchorToks=st.tokEls.filter(e=>e&&(e.classList.contains('rt')||e.classList.contains('ro'))).length;
+      select(st,null); }
+    out.desc[p.id]=r;
+  }
+  out.bonds={};
+  for(const p of DATA.poems){
+    const st=STATE[p.id], gs=[...st.svg.querySelectorAll('.bond')], r={ties:gs.length};
+    if(gs.length){ gs[0].dispatchEvent(new MouseEvent('click',{bubbles:true}));
+      r.detailRows=st.detail.querySelectorAll('.rel').length;
+      r.toks=st.tokEls.filter(e=>e&&e.classList.contains('rd')).length;
+      select(st,null); }
+    out.bonds[p.id]=r;
+  }
+  out.descTableRows=document.querySelectorAll('#desctable tbody tr').length;
+  const shown=sel=>[...STATE[sel.p].svg.querySelectorAll(sel.q)].filter(e=>e.style.display!=='none').length;
+  out.timeline={};
+  for(const p of DATA.poems){
+    const st=STATE[p.id], last=p.lines.length, seq=[];
+    for(let L=0;L<=last;L++){ setTime(st,L); seq.push([shown({p:p.id,q:'.edge'}),shown({p:p.id,q:'.node'})]); }
+    const mono=seq.every((x,i)=>!i||(x[0]>=seq[i-1][0]&&x[1]>=seq[i-1][1]));
+    out.timeline[p.id]={atStart:seq[0],middle:seq[Math.floor(last/2)],atEnd:seq[last],total:[st.svg.querySelectorAll('.edge').length,st.svg.querySelectorAll('.node').length],monotonic:mono,
+      status:st.tl.status.textContent,futureLinesAtEnd:st.lineEls.filter(e=>e&&e.classList.contains('future')).length};
+  }
+  const rs=STATE.rilke; setTime(rs,0); startPlay(rs);
+  setTimeout(()=>{
+    out.timeline.playAfter3s={t:rs.t,button:rs.tl.btn.textContent,line:rs.tl.line.textContent,flashing:rs.svg.querySelectorAll('.fresh').length};
+    stopPlay(rs); setTime(rs,rs.poem.lines.length);
+    document.getElementById('selftest').textContent=JSON.stringify(out,null,1);
+  },3000);
+}
+</script>
+</body>
+</html>
