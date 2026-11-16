@@ -906,10 +906,7 @@ function buildPoem(p){
     h('div',{class:'grid'},
       h('div',{},buildTimeline(st),svg,kindLegend(p),descToggle(st),bondToggle(st),h('div',{class:'hint'},'Press ▶ or drag the slider (or click a line number) to watch the graph build. A participant appears on the line where it is named; a verb appears on its own line, as a short dashed arrow (“needed …”) if its object is still to come, and stretches to the object on the line where the object is named. Arrow: agent → patient (thickness = frequency). Loop: reflexive. Short outward arrow: no patient. Dashed: “is”. White ring around a node: share of its appearances that are as agent.')),
       buildText(st)),
-    st.detail,
-    h('div',{class:'cols'},
-      h('div',{},h('h3',{},'Agent / patient counts'),entityTable(p)),
-      h('div',{},h('h3',{},'Reference links resolved by hand'),pronTable(p))));
+    st.detail);
   select(st,null);
   setTime(st,p.lines.length);
   return sec;
