@@ -143,13 +143,6 @@ Clauses come from a dependency parse (<span id="modelname"></span>), checked and
 <span><span class="k-a">■</span> agent / subject</span><span><span class="k-v">■</span> verb</span><span><span class="k-p">■</span> patient / object / complement</span></div>
 <div id="poems"></div>
 
-<section class="poem" id="balance">
-<div class="poem-head"><h2>Agent / patient balance</h2></div>
-<p class="lede">For each entity type and poem: how many times it is the agent of an action (right) and how many times it is acted on (left).
-Hatching marks negated clauses (“we <i>cannot</i> escape it”). Copular clauses (“existence … is a miracle”) are left out; reflexives count on both sides.</p>
-<div id="balancechart"></div>
-</section>
-
 <section class="poem" id="relations">
 <div class="poem-head"><h2>Every extracted relation</h2></div>
 <div class="tools">
@@ -912,45 +905,6 @@ function buildPoem(p){
   return sec;
 }
 
-/* ---------------- balance chart ---------------- */
-function buildBalance(){
-  const poems=DATA.poems; const types=Object.keys(TYPES);
-  const agg={};
-  types.forEach(t=>{agg[t]={};poems.forEach(p=>agg[t][p.id]={a:0,p:0,na:0,np:0});});
-  poems.forEach(p=>p.entities.forEach(e=>{const x=agg[e.type][p.id];x.a+=e.agent;x.p+=e.patient;x.na+=e.negA;x.np+=e.negP;}));
-  const rows=types.filter(t=>poems.some(p=>agg[t][p.id].a+agg[t][p.id].p>0));
-  const max=Math.max(...rows.flatMap(t=>poems.flatMap(p=>[agg[t][p.id].a,agg[t][p.id].p])));
-  const W=1000,labW=190,mid=labW+(W-labW-20)/2,half=(W-labW-60)/2,bh=13,gap=4,rowH=poems.length*(bh+gap)+16;
-  const H=40+rows.length*rowH+10;
-  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,class:'graph',style:'max-width:1100px'});
-  const defs=s('defs');const pat=s('pattern',{id:'hatch',width:5,height:5,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'});
-  pat.append(s('rect',{width:5,height:5,fill:'rgba(0,0,0,0)'}));pat.append(s('line',{x1:0,y1:0,x2:0,y2:5,stroke:'#0f1012','stroke-width':2.2}));defs.append(pat);svg.append(defs);
-  const sc=v=>v/max*half;
-  svg.append(s('text',{x:mid-8,y:22,'text-anchor':'end','font-size':12,fill:'#8d8a83'},'← acted on (patient)'));
-  svg.append(s('text',{x:mid+8,y:22,'font-size':12,fill:'#8d8a83'},'acts (agent) →'));
-  svg.append(s('line',{x1:mid,x2:mid,y1:30,y2:H-6,stroke:'#3a3d42'}));
-  const shade={graham:1,montale:0.72,rilke:0.48};
-  rows.forEach((t,ri)=>{
-    const y0=40+ri*rowH;
-    svg.append(s('line',{x1:10,x2:W-10,y1:y0-6,y2:y0-6,stroke:'#202326'}));
-    svg.append(s('circle',{cx:16,cy:y0+rowH/2-8,r:5,fill:TYPES[t].color}));
-    svg.append(s('text',{x:28,y:y0+rowH/2-4,'font-size':13,fill:'#e6e2d8'},TYPES[t].label));
-    poems.forEach((p,pi)=>{
-      const x=agg[t][p.id];const y=y0+pi*(bh+gap);const col=TYPES[t].color;
-      const g=s('g');g.append(s('title',{},`${shortName[p.id]} · ${TYPES[t].label}: agent ${x.a}${x.na?` (${x.na} negated)`:''}, patient ${x.p}${x.np?` (${x.np} negated)`:''}`));
-      g.append(s('text',{x:labW+4,y:y+bh-3,'font-size':10.5,fill:'#77746e'},shortName[p.id]));
-      if(x.a){g.append(s('rect',{x:mid,y,width:sc(x.a),height:bh,fill:col,'fill-opacity':shade[p.id],rx:2}));
-        if(x.na)g.append(s('rect',{x:mid+sc(x.a-x.na),y,width:sc(x.na),height:bh,fill:'url(#hatch)'}));}
-      if(x.p){g.append(s('rect',{x:mid-sc(x.p),y,width:sc(x.p),height:bh,fill:col,'fill-opacity':shade[p.id],rx:2}));
-        if(x.np)g.append(s('rect',{x:mid-sc(x.p),y,width:sc(x.np),height:bh,fill:'url(#hatch)'}));}
-      g.append(s('text',{x:mid+sc(x.a)+5,y:y+bh-3,'font-size':10.5,fill:'#b9b5ac'},x.a||''));
-      g.append(s('text',{x:mid-sc(x.p)-5,y:y+bh-3,'font-size':10.5,fill:'#b9b5ac','text-anchor':'end'},x.p||''));
-      svg.append(g);
-    });
-  });
-  document.getElementById('balancechart').append(svg);
-}
-
 /* ---------------- relations table ---------------- */
 function buildTable(){
   const tb=document.querySelector('#reltable tbody'); const sel=document.getElementById('fpoem');
@@ -983,13 +937,13 @@ function buildTable(){
 function init(){
   const nav=document.getElementById('nav');
   DATA.poems.forEach(p=>nav.append(h('a',{href:'#poem-'+p.id},`${shortName[p.id]} — ${p.title}`)));
-  [['#balance','Agent / patient balance'],['#relations','All relations'],['#descriptions','Descriptions'],['#method','Method']].forEach(([a,t])=>nav.append(h('a',{href:a},t)));
+  [['#relations','All relations'],['#descriptions','Descriptions'],['#method','Method']].forEach(([a,t])=>nav.append(h('a',{href:a},t)));
   const tl=document.getElementById('typelegend');tl.append(h('b',{},'Entity types:'));
   Object.values(TYPES).forEach(v=>tl.append(h('span',{},h('i',{style:`background:${v.color}`}),v.label)));
   const box=document.getElementById('poems');
   DATA.poems.forEach(p=>box.append(buildPoem(p)));
   DATA.poems.forEach(p=>relaxLabels(STATE[p.id].svg));
-  buildBalance(); buildTable(); buildDescTable();
+  buildTable(); buildDescTable();
 }
 init();
 function openRel(id){
@@ -1025,7 +979,6 @@ if(location.hash==='#selftest'){
   }
   out.tableRows=document.querySelectorAll('#reltable tbody tr').length;
   out.relationsTotal=DATA.poems.reduce((n,p)=>n+p.relations.length,0);
-  out.balanceRects=document.querySelectorAll('#balancechart rect').length;
   out.desc={};
   for(const p of DATA.poems){
     const st=STATE[p.id]; const g=st.svg.querySelector('.desc'); const r={markers:st.svg.querySelectorAll('.desc').length};
